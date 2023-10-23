@@ -4,9 +4,9 @@ import java.util.Iterator;
 
 public class TaiKhoan {
     //check tài khoản role nào
-    private String UserName;
-    private String Password;
-    private String role;
+    private  String UserName;
+    private  String Password;
+    private  String role;
     //CONSTRUCTOR
     public TaiKhoan(String userName, String password, String role) {
         this.UserName = userName;
@@ -45,7 +45,7 @@ public class TaiKhoan {
 }
 
 class DanhSachTK {
-    private static ArrayList<TaiKhoan> dstaikhoans;
+    private  ArrayList<TaiKhoan> dstaikhoans;
     
 
     public DanhSachTK() {
@@ -62,12 +62,12 @@ class DanhSachTK {
         return null; // Trả về null nếu không tìm thấy tài khoản
     }
 
-    public static void themTaiKhoan(String maSV, String tenSV, String lop) {
+    public  void themTaiKhoan(String maSV, String tenSV, String lop) {
         TaiKhoan tk = new TaiKhoan(maSV, tenSV, lop);
         dstaikhoans.add(tk);
     }
 
-    public static void inTaiKhoan() {
+    public  void inTaiKhoan() {
         for (TaiKhoan tk : dstaikhoans) {
             System.out.println(tk.toString());
         }

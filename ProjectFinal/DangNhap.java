@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 public class DangNhap {
     //menu cho từng quyền và ghi sẵn tài khoản trong main
-    private TaiKhoan tk;
-    public DangNhap(TaiKhoan tk){
-        this.tk=tk;
-    }
+    // private TaiKhoan tk;
+    // public DangNhap(TaiKhoan tk){
+    //     this.tk=tk;
+    // }
     public static void DangNhaptaikhoan(){
         Scanner sc=new Scanner(System.in);
         System.out.println("Ten tai khoan: ");
@@ -16,8 +16,8 @@ public class DangNhap {
         String Mk=sc.nextLine();
         boolean DangNhapThanhCong=false;
         DanhSachTK ds=new DanhSachTK();
-        ds.themTaiKhoan("helo1", "122", "admin");
-        ds.themTaiKhoan("helo2", "123", "user");
+        ds.themTaiKhoan("helo1", "121", "admin");
+        ds.themTaiKhoan("helo2", "122", "user");
         ds.themTaiKhoan("helo3","123" ,"cc");
         ds.inTaiKhoan();
         if (ds.timKiem(TenTK)) {
