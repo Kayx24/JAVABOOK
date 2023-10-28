@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class QuyenSach {
-    List<Sach> danhSachSach;
+    private List<Sach> danhSachSach;
     private Scanner sc;
     private boolean isAdmin;
 
@@ -156,9 +156,10 @@ public class QuyenSach {
             this.namXuatBan = namXuatBan;
         }
     }
-    public Sach[] getDanhSachSach() {
-        return null;
+    public List<QuyenSach.Sach> getDanhSachSach() {
+        return this.danhSachSach;
     }
+    
 
     public boolean isAdmin() {
         return false;
