@@ -11,11 +11,11 @@ public class QuyenUser {
         String tenSach=sc.nextLine();
         // Lấy danh sách sách
         QuyenSach qs=new QuyenSach();
-        QuyenSach.Sach[] danhSachSach = qs.getDanhSachSach().toArray(new QuyenSach.Sach[0]);
+        Sach[] danhSachSach = qs.getDanhSachSach().toArray(new Sach[0]);
 
         // Tìm kiếm cuốn sách có tên là tenSach
-        QuyenSach.Sach sach = null;
-        for (QuyenSach.Sach sach1 : danhSachSach) {
+        Sach sach = null;
+        for (Sach sach1 : danhSachSach) {
             if (sach1.getTenSach().equals(tenSach)) {
                 sach = sach1;
                 break;

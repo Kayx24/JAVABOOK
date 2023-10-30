@@ -29,7 +29,7 @@ public class QuyenSach {
     }
 
     public void themSach(int maSach, String tenSach, int maTg, String tenLoaiSach, int giaBia, int taiBan, String tenNhaXuatBan, int namXuatBan) {
-        Sach sach = new Sach(maSach, tenSach, maTg, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan);
+        Sach sach = new Sach(maSach, tenSach, maTg, tenLoaiSach, tenNhaXuatBan, giaBia, taiBan, tenNhaXuatBan, namXuatBan);
         danhSachSach.add(sach);
     }
     public void xoaSach(int maSach){
@@ -82,81 +82,7 @@ public class QuyenSach {
             }
         }
     }
-     public static class Sach {
-        private int maSach;
-        private String tenSach;
-        private int maTg;
-        private String tenLinhVuc;
-        private String tenLoaiSach;
-        private int giaBia;
-        private int taiBan;
-        private String tenNhaXuatBan;
-        private int namXuatBan;
-
-        public Sach(int maSach, String tenSach, int maTg,String tenLoaiSach, int giaBia, int taiBan, String tenNhaXuatBan, int namXuatBan) {
-            this.maSach = maSach;
-            this.tenSach = tenSach;
-            this.maTg = maTg;
-            this.tenLoaiSach = tenLoaiSach;
-            this.giaBia = giaBia;
-            this.taiBan = taiBan;
-            this.tenNhaXuatBan = tenNhaXuatBan;
-            this.namXuatBan = namXuatBan;
-        }
-
-        public int getMaSach() {
-            return maSach;
-        }
-        public void setMaSach(int maSach) {
-            this.maSach = maSach;
-        }
-        public String getTenSach() {
-            return tenSach;
-        }
-        public void setTenSach(String tenSach) {
-            this.tenSach = tenSach;
-        }
-        public int getMaTg() {
-            return maTg;
-        }
-        public void setMaTg(int maTg) {
-            this.maTg = maTg;
-        }
-        public String getTenLinhVuc() {
-            return tenLinhVuc;
-        }
-        public String getTenLoaiSach() {
-            return tenLoaiSach;
-        }
-        public void setTenLoaiSach(String tenLoaiSach) {
-            this.tenLoaiSach = tenLoaiSach;
-        }
-        public int getGiaBia() {
-            return giaBia;
-        }
-        public void setGiaBia(int giaBia) {
-            this.giaBia = giaBia;
-        }
-        public int getTaiBan() {
-            return taiBan;
-        }
-        public void setTaiBan(int taiBan) {
-            this.taiBan = taiBan;
-        }
-        public String getTenNhaXuatBan() {
-            return tenNhaXuatBan;
-        }
-        public void setTenNhaXuatBan(String tenNhaXuatBan) {
-            this.tenNhaXuatBan = tenNhaXuatBan;
-        }
-        public int getNamXuatBan() {
-            return namXuatBan;
-        }
-        public void setNamXuatBan(int namXuatBan) {
-            this.namXuatBan = namXuatBan;
-        }
-    }
-    public List<QuyenSach.Sach> getDanhSachSach() {
+    public List<Sach> getDanhSachSach() {
         return danhSachSach;
     }
     
