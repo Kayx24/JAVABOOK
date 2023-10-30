@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class QuyenSach {
-    private List<Sach> danhSachSach;
+    private List<Sach> danhSachSach = new ArrayList<>();
     private Scanner sc;
     private boolean isAdmin;
 
@@ -41,7 +41,7 @@ public class QuyenSach {
         }
     }
 
-    public void nhapThongTinSach() {
+    public void nhapThongTinSachMoi() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhap thong tin sach moi:");
         System.out.print("Ma sach: ");
@@ -157,11 +157,13 @@ public class QuyenSach {
         }
     }
     public List<QuyenSach.Sach> getDanhSachSach() {
-        return this.danhSachSach;
+        return danhSachSach;
     }
     
-
     public boolean isAdmin() {
         return false;
+    }
+
+    public void nhapthongtinsach(String string) {
     }
 }

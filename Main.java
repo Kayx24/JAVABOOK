@@ -1,43 +1,28 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         DanhSachTK ds = new DanhSachTK();
+        List<Sach> danhSachSach = new ArrayList<>();
         ds.themTaiKhoan("helo1", "121", "admin");
         ds.themTaiKhoan("helo2", "122", "user");
         ds.themTaiKhoan("helo3", "123", "cc");
 
         DangNhap dangNhap = new DangNhap();
-        dangNhap.DangNhaptaikhoan();
-
-        // Thêm phần kiểm tra tài khoản ở đây
-        Scanner scanner = new Scanner(System.in);
-        String luaChon = scanner.nextLine();
-        if (luaChon.equalsIgnoreCase("Y")) {
-            System.out.println("Nhap ten tai khoan: ");
-            String tenTK = scanner.nextLine();
-            System.out.println("Nhap mat khau: ");
-            String matKhau = scanner.nextLine();
-            System.out.println("Nhap quyen truy cap: ");
-            String quyenTruyCap = scanner.nextLine();
-
-            ds.themTaiKhoan(tenTK, matKhau, quyenTruyCap);
-            System.out.println("Tai khoan đã được thêm thành công.");
-        }
-
         QuyenSach QS = new QuyenSach();
-        kiemtraDangNhap(QS);
-        if(QS.isAdmin()){
-            QS.nhapThongTinSach();
+        // Thực hiện đăng nhập
+        dangNhap.DangNhaptaikhoan();
+        // Kiểm tra đăng nhập và quyền admin
+        if (QS.isAdmin()) {
+            QS.nhapThongTinSachMoi();
         }
-        System.out.println("Danh sach sach sau khi chinh sua: ");
-        for (QuyenSach.Sach sach : QS.getDanhSachSach()) {
-            System.out.println(sach.getMaSach() + " - " + sach.getTenSach() + " - " + sach.getGiaBia());
-        }
+        danhSachSach.add(new Sach(1, "Conan", 123, "Linh vuc A", "Loai sach A", 100, 2, "Nha xuat ban A", 2023));
+        danhSachSach.add(new Sach(2, "Doraemon", 456, "Linh vuc B", "Loai sach B", 150, 3, "Nha xuat ban B", 2022));
+        danhSachSach.add(new Sach(3, "One Piece", 789, "Linh vuc C", "Loai sach C", 200, 4, "Nha xuat ban C", 2021));
+    for (Sach sach : danhSachSach) {
+        System.out.println(sach);
     }
-
-    public static void kiemtraDangNhap(QuyenSach QS){
-        QS.kiemtraDangNhap();
-        QS.nhapThongTinSach();
-    }
+}
 }
