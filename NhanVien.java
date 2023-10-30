@@ -99,8 +99,6 @@ public class NhanVien {
 
         System.out.print("Nhap ten nhan vien: ");
         TenNhanVien = sc.nextLine();
-        System.out.print("Nhap ma nhan vien: ");
-        MaNV = sc.nextInt();
         System.out.print("Chuc vu: ");
         ChucVu = sc.nextLine();
         System.out.print("So dien thoai: ");
@@ -123,6 +121,8 @@ public class NhanVien {
         }
         System.out.print("Trang thai cong viec: ");
         TrangThaiCongViec = sc.nextLine();
+        System.out.print("Nhap ma nhan vien: ");
+        MaNV = sc.nextInt();
     }
 
     @Override
@@ -134,5 +134,9 @@ public class NhanVien {
         return "NhanVien [TenNhanVien=" + TenNhanVien + ", MaNV=" + MaNV + ", ChucVu=" + ChucVu + ", SDT=" + SDT
                 + ", NgaySinh=" + ngaySinhStr + ", GioiTinh=" + GioiTinh + ", NgayBatDauLam=" + ngayBatDauLamStr
                 + ", TrangThaiCongViec=" + TrangThaiCongViec + "]";
+    }
+    public static void main(String[] args) {
+        NhanVien a = new NhanVien();
+        System.out.print(a.toString());
     }
 }
