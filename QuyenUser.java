@@ -1,5 +1,6 @@
 // mua sách đi vào hóa đơn,phân loại  cái này bên phân loại sẽ làm
 //(tìm kiếm),
+// thêm user và những thằng user (arraylist) 
 
 import java.util.Scanner;
 

@@ -4,6 +4,7 @@ public class User extends TaiKhoan{
     private  String role;
     private  int msUser;
     // check ma user nhằm tránh sai sót khi có 2 user trở lên với database
+    // thêm menu user
 
     public User(String userName, String password, String role,int msUser) {
         super(userName, password, role);
