@@ -2,10 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PhanLoai {
-    public static List<Sach> phanLoaiTheoGiaBia(List<Sach> danhSachSach, int giaBia) {
+    public static List<Sach> phanLoaiTheoGiaBia(List<Sach> danhSachSach, int giaMin, int giaMax) {
         List<Sach> sachTheoGiaBia = new ArrayList<>();
         for (Sach sach : danhSachSach) {
-            if (sach.getGiaBia() == giaBia) {
+            if (sach.getGiaBia() >= giaMin && sach.getGiaBia() <= giaMax) {
                 sachTheoGiaBia.add(sach);
             }
         }
