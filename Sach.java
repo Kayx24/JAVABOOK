@@ -11,7 +11,12 @@ public class Sach{
     //Constructor
     public Sach() {
     }
-    
+    public Sach(int maSach, String tenSach, int giaBia) {
+        this.MaSach = maSach;
+        this.TenSach = tenSach;
+        this.GiaBia = giaBia;
+    }
+
     public Sach(int maSach, String tenSach, int maTg, String tenLinhVuc, String tenLoaiSach, int giaBia,
             int taiBan, String tenNhaXuatBan, int namXuatBan) {
         MaSach = maSach;

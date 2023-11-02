@@ -93,38 +93,6 @@ public class NhanVien {
         TrangThaiCongViec = trangThaiCongViec;
     }
 
-    // public void NhapNhanVien() {
-    //     Scanner sc = new Scanner(System.in);
-    //     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); // Định dạng ngày
-
-    //     System.out.print("Nhap ten nhan vien: ");
-    //     TenNhanVien = sc.nextLine();
-    //     System.out.print("Chuc vu: ");
-    //     ChucVu = sc.nextLine();
-    //     System.out.print("So dien thoai: ");
-    //     SDT = sc.nextLine();
-    //     try {
-    //         System.out.print("Ngay sinh (dd/MM/yyyy): ");
-    //         String ngaySinhStr = sc.nextLine();
-    //         NgaySinh = dateFormat.parse(ngaySinhStr);
-    //     } catch (ParseException e) {
-    //         System.out.println("Ngay sinh khong hop le.");
-    //     }
-    //     System.out.print("Gioi tinh: ");
-    //     GioiTinh = sc.nextLine();
-    //     try {
-    //         System.out.print("Ngay bat dau lam (dd/MM/yyyy): ");
-    //         String ngayBatDauLamStr = sc.nextLine();
-    //         NgayBatDauLam = dateFormat.parse(ngayBatDauLamStr);
-    //     } catch (ParseException e) {
-    //         System.out.println("Ngay bat dau lam khong hop le.");
-    //     }
-    //     System.out.print("Trang thai cong viec: ");
-    //     TrangThaiCongViec = sc.nextLine();
-    //     System.out.print("Nhap ma nhan vien: ");
-    //     MaNV = sc.nextInt();
-    // }
-
     public void NhapNhanVien() {
         Scanner sc = new Scanner(System.in);
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); // Định dạng ngày
@@ -180,8 +148,8 @@ public class NhanVien {
                 + ", NgaySinh=" + ngaySinhStr + ", GioiTinh=" + GioiTinh + ", NgayBatDauLam=" + ngayBatDauLamStr
                 + ", TrangThaiCongViec=" + TrangThaiCongViec + "]";
     }
-    // public static void main(String[] args) {
-    //     NhanVien a = new NhanVien();
-    //     System.out.print(a.toString());
-    // }
+    public static void main(String[] args) {
+        NhanVien a = new NhanVien();
+        System.out.print(a.toString());
+    }
 }
