@@ -42,6 +42,7 @@ public class User extends TaiKhoan{
     public void setMsUser(int msUser) {
         this.msUser = msUser;
     }
-    
-    
+    public void menu(){
+        
+    }
 }
