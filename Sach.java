@@ -18,7 +18,7 @@ public class Sach{
     }
 
     public Sach(int maSach, String tenSach, int maTg, String tenLinhVuc, String tenLoaiSach, int giaBia,
-            int taiBan, String tenNhaXuatBan, int namXuatBan) {
+        int taiBan, String tenNhaXuatBan, int namXuatBan) {
         MaSach = maSach;
         TenSach = tenSach;
         MaTg = maTg;
@@ -89,7 +89,6 @@ public class Sach{
     public String toString() {
         return "Ten sach: "+getTenSach()+" Gia: "+getGiaBia()+" Nha xuat ban:"+getTenNhaXuatBan()+" Nam xuat ban:"+getNamXuatBan();
     }
-
     //hàm thêm,sửa,xóa sách thêm khi cho vào danh sách sách dựa trên get,set
     
 }
