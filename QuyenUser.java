@@ -11,9 +11,6 @@ public class QuyenUser {
         Scanner sc=new Scanner(System.in);
         System.out.println("Nhap ten sach muon tim: ");
         String tenSach=sc.nextLine();
-        // Lấy danh sách sách
-        QuyenSach qs=new QuyenSach();
-
         // Tìm kiếm cuốn sách có tên là tenSach
         Sach sach = null;
         for (Sach sach1 : danhSachSach) {

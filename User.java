@@ -54,8 +54,8 @@ public class User extends TaiKhoan{
             System.out.println("[0] THOAT MENU");
             System.out.println("[1] Xem thong tin sach can tim");
             System.out.println("[2] Phan loai Sach");
-            System.out.println("[3] The loai.");
-            System.out.println("[3] Show sach");
+            System.out.println("[3] Mua");
+            System.out.println("[4] Chi tiet hoa don");
             System.out.print("Chon: ");
             boolean shouldExit = false;
             choice = sc.nextInt();
@@ -68,6 +68,8 @@ public class User extends TaiKhoan{
                     break;
                 case 2:
                     PhanLoai.MenuPhanLoai(danhSachSach);
+                case 3:
+                    HoaDon.hoaDonSach(danhSachSach);
             }
         }
     }
