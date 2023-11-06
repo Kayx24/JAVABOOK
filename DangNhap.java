@@ -19,7 +19,8 @@ public class DangNhap {
         DanhSachTK ds=new DanhSachTK();
         ds.themTaiKhoan("helo1", "121", "admin");
         ds.themTaiKhoan("helo2", "122", "user");
-        ds.themTaiKhoan("helo3","123" ,"cc");
+        ds.themTaiKhoan("helo3", "123", "NhanVien");
+        ds.themTaiKhoan("helo4","124" ,"QuanLy");
 
         List<Sach> danhSachSach = new ArrayList<>();
         danhSachSach.add(new Sach(1, "Conan", 123, "Linh vuc A", "Trinh tham", 10000, 2, "Nha xuat ban A", 2023));
