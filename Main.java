@@ -27,7 +27,6 @@ public class Main {
         danhSachSach.add(new Sach(4,"Sharelock Homes tap 3",101,"Linh vuc D","Trinh tham",300,5,"Nha xuat ban Kim Dong",2022));
         danhSachSach.add(new Sach(4,"Sharelock Homes tap 4",101,"Linh vuc D","Trinh tham",300,5,"Nha xuat ban Kim Dong",2022));
         danhSachSach.add(new Sach(4,"Sharelock Homes tap 5",101,"Linh vuc D","Trinh tham",300,5,"Nha xuat ban Kim Dong",2022));
-        danhSachSach.add(new Sach(7,"Sach day tieng dopng vat",101));
         PhanLoai.MenuPhanLoai(danhSachSach);
     }
 }
