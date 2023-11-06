@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.Scanner;
+
 public class User extends TaiKhoan{
     private  String UserName;
     private  String Password;
@@ -42,7 +45,30 @@ public class User extends TaiKhoan{
     public void setMsUser(int msUser) {
         this.msUser = msUser;
     }
-    public void menu(){
-        
+    public static void MenuUser(List<Sach> danhSachSach){
+        Scanner sc = new Scanner(System.in);
+        int choice;
+        while (true) {
+            System.out.println("------------------------------------------------------------------------------------------------------------------");
+            System.out.println("Chuc nang User");
+            System.out.println("[0] THOAT MENU");
+            System.out.println("[1] Xem thong tin sach can tim");
+            System.out.println("[2] Phan loai Sach");
+            System.out.println("[3] The loai.");
+            System.out.println("[4] Nha xuat ban.");
+            System.out.print("Chon de phan loai: ");
+            boolean shouldExit = false;
+            choice = sc.nextInt();
+            switch (choice) {
+                case 0:
+                    // nhay vao menu dang nhap;
+                    break;
+                case 1:
+                    QuyenUser.xemThongTinSach(danhSachSach);
+                    break;
+                case 2:
+                    PhanLoai.MenuPhanLoai(danhSachSach);
+            }
+        }
     }
 }

@@ -3,13 +3,19 @@ import java.util.List;
 import java.util.Scanner;
 
 public class HoaDon {
-    public static void hoaDonSach(List<Sach> danhSachSach) {
-        // List<Sach> danhSachSach = new ArrayList<>();
+    public static void main(String[] args) {
+        List<Sach> danhSachSach = new ArrayList<>();
+        danhSachSach.add(new Sach(1, "conan", 123));
+        danhSachSach.add(new Sach(2, "Doraemon", 456));
+        danhSachSach.add(new Sach(3, "One Piece", 789));
+
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ten sach can mua: ");
         String tenSachMua = sc.nextLine();
         double tongBill = 0;
+
         boolean timThaySach = false;
+
         for (Sach sach : danhSachSach) {
             if (sach.getTenSach().equalsIgnoreCase(tenSachMua)) {
                 timThaySach = true;
@@ -38,18 +44,4 @@ public class HoaDon {
             System.out.println("Khong tim thay sach ban can.");
         }
     }
-    // public static void main(String[] args) {
-    //     List<Sach> danhSachSach = new ArrayList<>();
-    //     danhSachSach.add(new Sach(1, "Conan", 123, "Linh vuc A", "Trinh tham", 100, 2, "Nha xuat ban A", 2023));
-    //     danhSachSach.add(new Sach(2, "Doraemon", 456, "Linh vuc B", "Vui ve", 150, 3, "Nha xuat ban B", 2022));
-    //     danhSachSach.add(new Sach(3, "One Piece", 789, "Linh vuc C", "Gia tuong", 200, 4, "Nha xuat ban C", 2021));
-    //     danhSachSach.add(new Sach(4,"Sharelock Homes tap 1",101,"Linh vuc D","Trinh tham",300,5,"Nha xuat ban Kim Dong",2022));        
-    //     danhSachSach.add(new Sach(4,"Sharelock Homes tap 2",101,"Linh vuc D","Trinh tham",300,5,"Nha xuat ban Kim Dong",2022));
-    //     danhSachSach.add(new Sach(4,"Sharelock Homes tap 3",101,"Linh vuc D","Trinh tham",300,5,"Nha xuat ban Kim Dong",2022));
-    //     danhSachSach.add(new Sach(4,"Sharelock Homes tap 4",101,"Linh vuc D","Trinh tham",300,5,"Nha xuat ban Kim Dong",2022));
-    //     danhSachSach.add(new Sach(4,"Sharelock Homes tap 5",101,"Linh vuc D","Trinh tham",300,5,"Nha xuat ban Kim Dong",2022));
-    //     danhSachSach.add(new Sach(7,"Sach day tieng dong vat",101));
-
-    //     hoaDonSach(danhSachSach);
-    // }
 }
