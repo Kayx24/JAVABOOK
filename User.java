@@ -55,8 +55,8 @@ public class User extends TaiKhoan{
             System.out.println("[1] Xem thong tin sach can tim");
             System.out.println("[2] Phan loai Sach");
             System.out.println("[3] The loai.");
-            System.out.println("[4] Nha xuat ban.");
-            System.out.print("Chon de phan loai: ");
+            System.out.println("[3] Show sach");
+            System.out.print("Chon: ");
             boolean shouldExit = false;
             choice = sc.nextInt();
             switch (choice) {
