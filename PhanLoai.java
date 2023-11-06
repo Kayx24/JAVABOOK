@@ -161,8 +161,8 @@ public class PhanLoai {
                     }
                     break;
                 case 0:
-                    System.out.println("Exited.");
-                    System.exit(0);
+                // tạm thời để MenuUser
+                    User.MenuUser(danhSachSach);
                     break;
             }
         }
