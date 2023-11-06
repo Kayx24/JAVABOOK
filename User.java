@@ -61,7 +61,7 @@ public class User extends TaiKhoan{
             choice = sc.nextInt();
             switch (choice) {
                 case 0:
-                    // nhay vao menu dang nhap;
+                    DangNhap.DangNhaptaikhoan();
                     break;
                 case 1:
                     QuyenUser.xemThongTinSach(danhSachSach);

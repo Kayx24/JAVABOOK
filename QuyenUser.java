@@ -23,16 +23,16 @@ public class QuyenUser {
         // Nếu tìm thấy cuốn sách
         if (sach != null) {
             // Xem thông tin của cuốn sách
-            System.out.println("Thông tin sách:");
-            System.out.println("Mã sách: " + sach.getMaSach());
-            System.out.println("Tên sách: " + sach.getTenSach());
-            System.out.println("Mã tác giả: " + sach.getMaTg());
-            System.out.println("Tên lĩnh vực: " + sach.getTenLinhVuc());
-            System.out.println("Tên loại sách: " + sach.getTenLoaiSach());
-            System.out.println("Giá bìa: " + sach.getGiaBia());
-            System.out.println("Số lần tái bản: " + sach.getTaiBan());
-            System.out.println("Tên nhà xuất bản: " + sach.getTenNhaXuatBan());
-            System.out.println("Năm xuất bản: " + sach.getNamXuatBan());
+            System.out.println("Thong tin sach:");
+            System.out.println("Ma sach: " + sach.getMaSach());
+            System.out.println("Ten sach: " + sach.getTenSach());
+            System.out.println("Ma tac gia: " + sach.getMaTg());
+            System.out.println("Ten linh vuc: " + sach.getTenLinhVuc());
+            System.out.println("Ten loai sach: " + sach.getTenLoaiSach());
+            System.out.println("Gia sach: " + sach.getGiaBia());
+            System.out.println("So lan tai ban: " + sach.getTaiBan());
+            System.out.println("Ten nha xuat ban: " + sach.getTenNhaXuatBan());
+            System.out.println("Nam xuat ban: " + sach.getNamXuatBan());
         } else {
             // Không tìm thấy cuốn sách
             System.out.println("Không tìm thấy sách có tên " + tenSach);
