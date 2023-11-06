@@ -35,28 +35,12 @@ public class Main {
         danhSachSach.add(new Sach(4,"Sharelock Homes tap 3",101,"Linh vuc D","Trinh tham",300,5,"Nha xuat ban Kim Dong",2022));
         danhSachSach.add(new Sach(4,"Sharelock Homes tap 4",101,"Linh vuc D","Trinh tham",300,5,"Nha xuat ban Kim Dong",2022));
         danhSachSach.add(new Sach(4,"Sharelock Homes tap 5",101,"Linh vuc D","Trinh tham",300,5,"Nha xuat ban Kim Dong",2022));
-        danhSachSach.add(new Sach(7,"Sach day tieng dopng vat",101));
         // User.MenuUser(danhSachSach);
 
         // PhanLoai.MenuPhanLoai(danhSachSach);
 
         for (Sach sach : danhSachSach) {
-            System.out.println(sach);
-        }
-        List<Sach> sachTheoGiaBia = PhanLoai.phanLoaiTheoGiaBia(danhSachSach, 100, 150);
-        System.out.println("Cac sach co gia bia trong khoang 100-150:");
-        for (Sach sach : sachTheoGiaBia) {
-            System.out.println(sach);
-        }
-        List<Sach> sachTheoLinhVuc = PhanLoai.phanLoaiTheoLinhVuc(danhSachSach, "Linh vuc A");
-        System.out.println("Cac Sach theo linh vuc A:");
-        for (Sach sach : sachTheoLinhVuc){
-            System.out.println(sach);
-        }
-        List<Sach> sachTheoLoaiSach = PhanLoai.phanLoaiTheoLoaiSach(danhSachSach, "Loai sach B");
-        System.out.println("Cac Sach theo loai B:");        
-        for(Sach sach : sachTheoLoaiSach){
-            System.out.println(sach);
+            System.out.println(sach.getTenSach());
         }
     }
 }
