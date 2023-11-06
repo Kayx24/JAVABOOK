@@ -61,11 +61,11 @@ public class Sach{
     public void setTenLoaiSach(String tenLoaiSach) {
         TenLoaiSach = tenLoaiSach;
     }
-    public int getGiaBia() {
+    public double getGiaBia() {
         return GiaBia;
     }
-    public void setGiaBia(int giaBia) {
-        GiaBia = giaBia;
+    public void setGiaBia(double giaBia) {
+        GiaBia = (int) giaBia;
     }
     public int getTaiBan() {
         return TaiBan;
