@@ -35,7 +35,7 @@ public class Main {
         danhSachSach.add(new Sach(4,"Sharelock Homes tap 3",101,"Linh vuc D","Trinh tham",300,5,"Nha xuat ban Kim Dong",2022));
         danhSachSach.add(new Sach(4,"Sharelock Homes tap 4",101,"Linh vuc D","Trinh tham",300,5,"Nha xuat ban Kim Dong",2022));
         danhSachSach.add(new Sach(4,"Sharelock Homes tap 5",101,"Linh vuc D","Trinh tham",300,5,"Nha xuat ban Kim Dong",2022));
-        danhSachSach.add(new Sach(7,"Sach day tieng dopng vat",101));
+        danhSachSach.add(new Sach(7,"Sach day tieng dong vat",101,"Linh vuc E","Thu vi",25000,3,"John Witch",2023));
         for (Sach sach : danhSachSach) {
             System.out.println("======"+sach.getTenSach()+"======");
         }

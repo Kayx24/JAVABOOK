@@ -17,7 +17,7 @@ public class DangNhap {
         String Mk=sc.nextLine();
         boolean DangNhapThanhCong =false;
         DanhSachTK ds=new DanhSachTK();
-        ds.themTaiKhoan("helo1", "121", "admin");
+        ds.themTaiKhoan("admin", "121", "admin");
         ds.themTaiKhoan("helo2", "122", "user");
         ds.themTaiKhoan("helo3", "123", "NhanVien");
         ds.themTaiKhoan("helo4","124" ,"QuanLy");

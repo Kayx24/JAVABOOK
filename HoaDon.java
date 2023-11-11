@@ -24,12 +24,12 @@ public class HoaDon {
                 double tongTienSach = giaSach * soLuongMua;
 
                 System.out.println("Hoa don cua ban:");
-                System.out.println("+-------------------+---------------+----------+---------------+");
-                System.out.println("| Ten sach          | So luong      | Gia tien | Tong tien     |");
-                System.out.println("+-------------------+---------------+----------+---------------+");
+                System.out.println("+------------------------------+---------------+----------+---------------+");
+                System.out.println("| Ten sach                     | So luong      | Gia tien | Tong tien     |");
+                System.out.println("+------------------------------+---------------+----------+---------------+");
                 System.out.printf("| %-17s | %-13d | %-8.1f | %-13.1f |\n", tenSachMua, soLuongMua, giaSach, tongTienSach);
                 tongBill += tongTienSach;
-                System.out.println("+-------------------+---------------+----------+---------------+");
+                System.out.println("+------------------------------+---------------+----------+---------------+");
                 System.out.printf("| %60s |\n", "So tien can thanh toan: " + tongBill+" VND");
                 System.out.println("+--------------------------------------------------------------+");
                 break;

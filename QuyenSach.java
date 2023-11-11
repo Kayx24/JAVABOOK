@@ -13,7 +13,7 @@ public class QuyenSach {
         System.out.print("Nhap mat khau: ");
         String matKhau = sc.nextLine();
 
-        if(tenDangNhap.equals("helo1") && matKhau.equals("121")){
+        if(tenDangNhap.equals("admin") && matKhau.equals("121")){
             isAdmin= true;
             System.out.println("Dang nhap thanh cong vao tai khoan admin ");
         } else {

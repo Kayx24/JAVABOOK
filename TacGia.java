@@ -7,7 +7,7 @@ public TacGia(String ten,String ngaysinh,String quequan,String tieusu){
     this.ten=ten;
     this.ngaysinh=ngaysinh;
     this.quequan=quequan;
-    this.tieusu=tieusu;
+    this.tieusu=tieusu; 
 }
 
     public String getTen() {
