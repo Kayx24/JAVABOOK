@@ -1,5 +1,8 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+
 
 public class User extends TaiKhoan{
     private  String UserName;
@@ -41,11 +44,9 @@ public class User extends TaiKhoan{
     public int getMsUser() {
         return msUser;
     }
+   
 
-    public void setMsUser(int msUser) {
-        this.msUser = msUser;
-    }
-    public static void MenuUser(List<Sach> danhSachSach){
+    public static void MenuUser(List<Sach> danhSachSach,List<HoaDonItem> hoaDonItems){
         Scanner sc = new Scanner(System.in);
         int choice;
         while (true) {
@@ -74,8 +75,14 @@ public class User extends TaiKhoan{
                     break;
                 case 3:
                     PhanLoai.MenuPhanLoai(danhSachSach);
+                    break;
                 case 4:
-                    HoaDon.hoaDonSach(danhSachSach);
+                    HoaDon.hoaDon(danhSachSach,hoaDonItems);
+                    break;
+                case 5:
+                    ChiTietHoaDon.ChiTietHoaDon(danhSachSach,hoaDonItems);
+                    break;
+
             }
         }
     }

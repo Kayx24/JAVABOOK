@@ -41,6 +41,8 @@ public class DangNhap {
         danhSachSach.add(new Sach(4,"Sharelock Homes tap 5",101,"Linh vuc D","Trinh tham",300,5,"Nha xuat ban Kim Dong",2022));
         danhSachSach.add(new Sach(7,"Sach day tieng dopng vat",101));
 
+        List<HoaDonItem> hoaDonItems = new ArrayList<>();
+
         if (ds.timKiem(TenTK)) {
             TaiKhoan taiKhoanTimThay = ds.layTaiKhoan(TenTK);
             if (taiKhoanTimThay.getPassword().equals(Mk)) {
@@ -49,8 +51,7 @@ public class DangNhap {
                 System.out.println("Quyen truy cap la quyen " + taiKhoanTimThay.getRole());
                 String ROLE=taiKhoanTimThay.getRole();
                 if(ROLE=="user"){
-                    
-                    User.MenuUser(danhSachSach);
+                    User.MenuUser(danhSachSach, hoaDonItems);
                 }
                 else if(ROLE=="admin"){
                     // menu admin;
