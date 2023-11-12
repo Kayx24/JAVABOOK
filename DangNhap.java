@@ -60,7 +60,7 @@ public class DangNhap {
                     // menu quản lý
                 }
                 else if(ROLE=="NhanVien"){
-                    // menu nhân viên
+                    QuyenNhanVien.MenuNhanVien(danhSachSach, hoaDonItems);
                 }
             } else {
                 System.out.println("Mat khau khong chinh xac");
