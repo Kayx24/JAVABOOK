@@ -8,6 +8,11 @@ public class TaiKhoan {
     private  String Password;
     private  String role;
     //CONSTRUCTOR
+
+    public TaiKhoan(){
+        
+    }
+
     public TaiKhoan(String userName, String password, String role) {
         this.UserName = userName;
         this.Password = password;

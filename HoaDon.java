@@ -65,7 +65,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class HoaDon {
-<<<<<<< Updated upstream
     public static void hoaDonSach(List<Sach> danhSachSach) {
         // List<Sach> danhSachSach = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
@@ -95,10 +94,9 @@ public class HoaDon {
                 System.out.println("+------------------------------+---------------+----------+---------------+");
                 System.out.printf("| %60s |\n", "So tien can thanh toan: " + tongBill+" VND");
                 System.out.println("+--------------------------------------------------------------+");
-=======
-   
-
-  
+            }
+        }
+    }
     public static void hoaDon(List<Sach> danhSachSach, List<HoaDonItem> hoaDonItems) {
         while (true) {
             Scanner sc = new Scanner(System.in);
@@ -106,7 +104,6 @@ public class HoaDon {
             String tenSachMua = sc.nextLine();
 
             if (tenSachMua.equalsIgnoreCase("exit")) {
->>>>>>> Stashed changes
                 break;
             }
 
@@ -165,14 +162,14 @@ public class HoaDon {
 
 
 
-    //   public static void main(String[] args) {
-    //     List<HoaDonItem> hoaDonItems = new ArrayList<>();
-    //     List<Sach> danhSachSach = new ArrayList<>();
-    //     danhSachSach.add(new Sach(1, "conan", 123, "Linh vuc A", "Trinh tham", 100, 2, "Nha xuat ban A", 2023));
-    //     danhSachSach.add(new Sach(2, "Doraemon", 456, "Linh vuc B", "Vui ve", 150, 3, "Nha xuat ban B", 2022));
-    //     
+      public static void main(String[] args) {
+        List<HoaDonItem> hoaDonItems = new ArrayList<>();
+        List<Sach> danhSachSach = new ArrayList<>();
+        danhSachSach.add(new Sach(1, "conan", 123, "Linh vuc A", "Trinh tham", 100, 2, "Nha xuat ban A", 2023));
+        danhSachSach.add(new Sach(2, "Doraemon", 456, "Linh vuc B", "Vui ve", 150, 3, "Nha xuat ban B", 2022));
+        
 
-    //     hoaDon(danhSachSach, hoaDonItems);
-    // }
+        hoaDon(danhSachSach, hoaDonItems);
+    }
 
 }
