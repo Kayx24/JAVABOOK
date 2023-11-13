@@ -1,9 +1,38 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 public class PhanLoai {
-    //ArrayList<Sach> danhSachSach = QuyenSach.getDanhSachSach();
+    public static List<Sach> DocDuLieuTuFileSach(String TenFile, List<Sach> danhSachSach){
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(TenFile));
+            String line;
+            while ((line = bufferedReader.readLine()) != null){
+                String[] parts = line.split(",");
+                if (parts.length == 8){
+                    int MaSach = Integer.parseInt(parts[0].trim());
+                    String TenSach = parts[1];
+                    String TenLinhVuc = parts[2];
+                    String TenLoaiSach = parts[3];
+                    int GiaBia = Integer.parseInt(parts[4].trim());
+                    int TaiBan = Integer.parseInt(parts[5].trim());
+                    String TenNhaXuatBan = parts [6];
+                    int NamXuatBan = Integer.parseInt(parts[7].trim());
+                    Sach sach = new Sach(MaSach, TenSach, TenLinhVuc, TenLoaiSach, GiaBia, TaiBan, TenNhaXuatBan, NamXuatBan);
+                    danhSachSach.add(sach);
+                }
+            }
+        } catch (IOException e){
+            System.out.println("Co loi trong qua trinh doc file");
+            e.printStackTrace();
+        }
+        //System.out.println("Doc du lieu thanh cong.");
+        return danhSachSach;
+    }
+
     public static List<Sach> phanLoaiTheoGiaBia(List<Sach> danhSachSach, int giaMin, int giaMax) {
         List<Sach> sachTheoGiaBia = new ArrayList<>();
         for (Sach sach : danhSachSach) {
@@ -46,6 +75,7 @@ public class PhanLoai {
 
     
     public static void MenuPhanLoai(List<Sach> danhSachSach) {
+        DocDuLieuTuFileSach("Sach.txt", danhSachSach);
         Scanner sc = new Scanner(System.in);
         int choice;
         while (true) {
@@ -180,18 +210,9 @@ public class PhanLoai {
         }
     }
 
-    // public static void main(String[] args) {
-    //     List<Sach> danhSachSach = new ArrayList<>();
-    //     danhSachSach.add(new Sach(1, "Conan", 123, "Linh vuc A", "Trinh tham", 100, 2, "Nha xuat ban A", 2023));
-    //     danhSachSach.add(new Sach(2, "Doraemon", 456, "Linh vuc B", "Vui ve", 150, 3, "Nha xuat ban B", 2022));
-    //     danhSachSach.add(new Sach(3, "One Piece", 789, "Linh vuc C", "Gia tuong", 200, 4, "Nha xuat ban C", 2021));
-    //     danhSachSach.add(new Sach(4,"Sharelock Homes tap 1",101,"Linh vuc D","Trinh tham",300,5,"Nha xuat ban Kim Dong",2022));        
-    //     danhSachSach.add(new Sach(4,"Sharelock Homes tap 2",101,"Linh vuc D","Trinh tham",300,5,"Nha xuat ban Kim Dong",2022));
-    //     danhSachSach.add(new Sach(4,"Sharelock Homes tap 3",101,"Linh vuc D","Trinh tham",300,5,"Nha xuat ban Kim Dong",2022));
-    //     danhSachSach.add(new Sach(4,"Sharelock Homes tap 4",101,"Linh vuc D","Trinh tham",300,5,"Nha xuat ban Kim Dong",2022));
-    //     danhSachSach.add(new Sach(4,"Sharelock Homes tap 5",101,"Linh vuc D","Trinh tham",300,5,"Nha xuat ban Kim Dong",2022));
-    //     danhSachSach.add(new Sach(7,"Sach day tieng dopng vat",101));
-
-    //     MenuPhanLoai(danhSachSach);
-    // }
+    public static void main(String[] args) {
+        List<Sach> danhSachSach = new ArrayList<>();
+        PhanLoai.DocDuLieuTuFileSach("Sach.txt" ,danhSachSach);
+        PhanLoai.MenuPhanLoai(danhSachSach);
+    }
 }

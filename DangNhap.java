@@ -57,7 +57,7 @@ public class DangNhap {
                    QuanLy.MenuQuanly(danhSachSach, hoaDonItems);
                 }
                 else if(ROLE.equals("NhanVien")){
-                    QuyenNhanVien.MenuNhanVien(danhSachSach, hoaDonItems);
+                    NhanVien.MenuNhanVien(danhSachSach, hoaDonItems, ds);
                 }
             } else {
                 System.out.println("Mat khau khong chinh xac");

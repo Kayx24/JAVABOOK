@@ -2,50 +2,38 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class QuyenNhanVien {
-    public static void MenuNhanVien(List<Sach> danhSachSach, List<HoaDonItem> hoaDonItems) {
+public class QuyenNhanVien {    
+    public void ThemNhanVien(DanhSachTK ds){
         Scanner sc = new Scanner(System.in);
-        int choice;
-        while (true) {
-            System.out.println("------------------------------------------------------------------------------------------------------------------");
-            System.out.println("Chuc nang cua nhan vien: ");
-            System.out.println("[0] Thoat Menu.");
-            System.out.println("[1] Xem danh sach sach.");
-            System.out.println("[2] Phan loai sach.");
-            System.out.println("[3] Xem thong tin quyen sach.");
-            System.out.println("[4] Xuat hoa don sach.");
-            System.out.println("[5] Chi tiet hoa don.");
-            System.out.print("Chon de thuc hien chuc nang: ");
-            //boolean shouldExit = false;
-            choice = sc.nextInt();
-            switch (choice) {
-                case 1:
-                    System.out.println("------------------------------------------------------------------------------------------------------------------");
-                    for(Sach sach: danhSachSach){
-                        System.out.println("=====" + sach.getTenSach() + "=====") ;
-                    }
-                    break;
-    
-                case 2:
-                    PhanLoai.MenuPhanLoai(danhSachSach);
-                    break;
-    
-                case 3:
-                    QuyenUser.xemThongTinSach(danhSachSach);
-                    break;
-
-                case 4:
-                    HoaDon.hoaDon(danhSachSach, hoaDonItems);
-                    break;
-
-                case 5:
-                    ChiTietHoaDon.ChiTietHoaDon(danhSachSach, hoaDonItems);
-                    break;
-                // case 0:
-                //  tạm thời để MenuUser
-                //     User.MenuUser(danhSachSach);
-                //     break;
-            }
+        ds.docDuLieuTuFile("DanhSachTaiKhoan.txt");
+        System.out.print("Nhap Username cho tai khoan nhan vien : ");
+        String UserName = sc.nextLine();
+        while(ds.timKiem(UserName) == true){
+            System.out.println("Tai khoan nay da duoc su dung.");
+            System.out.print("Nhap lai Username khac: ");
+            UserName = sc.nextLine();
         }
+        System.out.print("Nhap Password cho tai khoan nhan vien: ");
+        String Password = sc.nextLine();
+        String Role = "NhanVien";
+        ds.themTaiKhoan(UserName, Password, Role);
+        ds.luuDuLieuVaoFile("DanhSachTaiKhoan.txt");
     }
+
+    public void XoaNhanVien(DanhSachTK ds){
+        Scanner sc = new Scanner(System.in);
+        ds.docDuLieuTuFile("DanhSachTaiKhoan.txt");
+        System.out.print("Ten tai khoan nhan vien muon xoa"); 
+        String UserName = sc.nextLine();
+        if (ds.timKiem(UserName) == true){
+            ds.xoaTaiKhaon(UserName);
+            ds.luuDuLieuVaoFile("DanhSachTaiKhoan.txt");
+            System.out.print("Tai khoan da duoc xoa");
+        } else {
+            System.out.println("Khong tim thay tai khoan nhan vien can xoa");
+        }
+
+    }
+
+    
 }

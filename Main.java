@@ -38,6 +38,6 @@ public class Main {
         for (Sach sach : danhSachSach) {
             System.out.println("======"+sach.getTenSach()+"======");
         }
-        QuyenNhanVien.MenuNhanVien(danhSachSach, hoaDonItems);
+        //QuyenNhanVien.MenuNhanVien(danhSachSach, hoaDonItems);
     }
 }
