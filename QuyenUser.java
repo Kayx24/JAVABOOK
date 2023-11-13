@@ -27,7 +27,6 @@ public class QuyenUser {
             for (Sach sach : sachGanDung) {
                 System.out.println("Ma sach: " + sach.getMaSach());
                 System.out.println("Ten sach: " + sach.getTenSach());
-                System.out.println("Ma tac gia: " + sach.getMaTg());
                 System.out.println("Ten linh vuc: " + sach.getTenLinhVuc());
                 System.out.println("Ten loai sach: " + sach.getTenLoaiSach());
                 System.out.println("Gia sach: " + sach.getGiaBia());

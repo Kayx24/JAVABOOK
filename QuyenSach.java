@@ -29,7 +29,7 @@ public class QuyenSach {
     }
 
     public void themSach(int maSach, String tenSach, int maTg, String tenLoaiSach, int giaBia, int taiBan, String tenNhaXuatBan, int namXuatBan) {
-        Sach sach = new Sach(maSach, tenSach, maTg, tenLoaiSach, tenNhaXuatBan, giaBia, taiBan, tenNhaXuatBan, namXuatBan);
+        Sach sach = new Sach(maSach, tenSach, tenLoaiSach, tenNhaXuatBan, giaBia, taiBan, tenNhaXuatBan, namXuatBan);
         danhSachSach.add(sach);
     }
     public void xoaSach(int maSach){
@@ -72,7 +72,6 @@ public class QuyenSach {
         for(Sach sach : danhSachSach){
             if(sach.getMaSach() == maSach){
                 sach.setTenSach(tenSach);
-                sach.setMaTg(maTg);
                 sach.setTenLoaiSach(tenLoaiSach);
                 sach.setGiaBia(giaBia);
                 sach.setTaiBan(taiBan);

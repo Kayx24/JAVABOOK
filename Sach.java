@@ -1,7 +1,6 @@
 public class Sach{
     private int MaSach;
     private String TenSach;
-    private int MaTg; //mã tác giả
     private String TenLinhVuc; //thuộc lĩnh vực nào
     private String TenLoaiSach; //thuộc loại sách nào
     private int GiaBia;   //Gía bán sách
@@ -17,11 +16,10 @@ public class Sach{
         this.GiaBia = giaBia;
     }
 
-    public Sach(int maSach, String tenSach, int maTg, String tenLinhVuc, String tenLoaiSach, int giaBia,
+    public Sach(int maSach, String tenSach, String tenLinhVuc, String tenLoaiSach, int giaBia,
         int taiBan, String tenNhaXuatBan, int namXuatBan) {
         MaSach = maSach;
         TenSach = tenSach;
-        MaTg = maTg;
         TenLinhVuc = tenLinhVuc;
         TenLoaiSach = tenLoaiSach;
         GiaBia = giaBia;
@@ -42,12 +40,6 @@ public class Sach{
     }
     public void setTenSach(String tenSach) {
         TenSach = tenSach;
-    }
-    public int getMaTg() {
-        return MaTg;
-    }
-    public void setMaTg(int maTg) {
-        MaTg = maTg;
     }
     public String getTenLinhVuc() {
         return TenLinhVuc;
@@ -85,25 +77,8 @@ public class Sach{
     public void setNamXuatBan(int namXuatBan) {
         NamXuatBan = namXuatBan;
     }
-    // public class HoaDonItem {
-    //     String tenSach;
-    //     int soLuongMua;
-    //     double giaSach;
-    //     double tongTien;
-
-    //     public HoaDonItem(String tenSach, int soLuongMua, double giaSach, double tongTien) {
-    //         this.tenSach = tenSach;
-    //         this.soLuongMua = soLuongMua;
-    //         this.giaSach = giaSach;
-    //         this.tongTien = tongTien;
-    //      }
-    // }
-
-
     @Override
     public String toString() {
         return "Ten sach: "+getTenSach()+" Gia: "+getGiaBia()+" Nha xuat ban:"+getTenNhaXuatBan()+" Nam xuat ban:"+getNamXuatBan();
     }
-    //hàm thêm,sửa,xóa sách thêm khi cho vào danh sách sách dựa trên get,set
-    
 }
