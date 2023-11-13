@@ -68,19 +68,61 @@ public class QuyenSach {
         themSach(maSach, tenSach, maTg, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan);
     }
     
-    public void chinhSuaThongTinSach(int maSach,String tenSach,int maTg,String tenLinhVuc,String tenLoaiSach,int giaBia,int taiBan,String tenNhaXuatBan,int namXuatBan){
-        for(Sach sach : danhSachSach){
-            if(sach.getMaSach() == maSach){
-                sach.setTenSach(tenSach);
-                sach.setTenLoaiSach(tenLoaiSach);
-                sach.setGiaBia(giaBia);
-                sach.setTaiBan(taiBan);
-                sach.setTenNhaXuatBan(tenNhaXuatBan);
-                sach.setNamXuatBan(namXuatBan);
-                break;
-            }
+
+
+public void chinhSuaThongTinSach() {
+    Scanner sc = new Scanner(System.in);
+    System.out.print("Nhap ma sach can sua: ");
+    int maSach = sc.nextInt();
+    sc.nextLine();
+    
+    for (Sach sach : danhSachSach) {
+        if (sach.getMaSach() == maSach) {
+            System.out.println("Thong tin sach can sua:");
+            System.out.println("Ten sach hien tai: " + sach.getTenSach());
+            System.out.print("Nhap ten sach moi: ");
+            String tenSach = sc.nextLine();
+            sach.setTenSach(tenSach);
+            
+            System.out.println("Ma tac gia hien tai: " + sach.getMaTg());
+            System.out.print("Nhap ma tac gia moi: ");
+            int maTg = sc.nextInt();
+            sc.nextLine();
+            sach.setMaTg(maTg);
+            
+            System.out.println("Ten loai sach hien tai: " + sach.getTenLoaiSach());
+            System.out.print("Nhap ten loai sach moi: ");
+            String tenLoaiSach = sc.nextLine();
+            sach.setTenLoaiSach(tenLoaiSach);
+            
+            System.out.println("Gia sach hien tai: " + sach.getGiaBia());
+            System.out.print("Nhap gia sach moi: ");
+            int giaBia = sc.nextInt();
+            sc.nextLine();
+            sach.setGiaBia(giaBia);
+            
+            System.out.println("So lan tai ban hien tai: " + sach.getTaiBan());
+            System.out.print("Nhap so lan tai ban moi: ");
+            int taiBan = sc.nextInt();
+            sc.nextLine();
+            sach.setTaiBan(taiBan);
+            
+            System.out.println("Ten nha xuat ban hien tai: " + sach.getTenNhaXuatBan());
+            System.out.print("Nhap ten nha xuat ban moi: ");
+            String tenNhaXuatBan = sc.nextLine();
+            sach.setTenNhaXuatBan(tenNhaXuatBan);
+            
+            System.out.println("Nam xuat ban hien tai: " + sach.getNamXuatBan());
+            System.out.print("Nhap nam xuat ban moi: ");
+            int namXuatBan = sc.nextInt();
+            sc.nextLine();
+            sach.setNamXuatBan(namXuatBan);
+            
+            System.out.println("Da sua thong tin sach.");
+            break;
         }
     }
+}
 
     public List<Sach> getDanhSachSach() {
         return danhSachSach;

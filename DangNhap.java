@@ -71,7 +71,7 @@ public class DangNhap {
                     // menu admin;
                 }
                 else if(ROLE.equals("QuanLy")){
-                    // menu quản lý
+                   QuanLy.MenuQuanly(danhSachSach, hoaDonItems);
                 }
                 else if(ROLE.equals("NhanVien")){
                     QuyenNhanVien.MenuNhanVien(danhSachSach, hoaDonItems);
@@ -88,9 +88,10 @@ public class DangNhap {
         QuyenSach QS = new QuyenSach();
         // Thực hiện đăng nhập
         // Kiểm tra đăng nhập và quyền admin
-        if (QS.isAdmin()) {
-            QS.nhapThongTinSachMoi();
-        }
+        // if (QS.isAdmin()) {
+           
+        //     QS.nhapThongTinSachMoi();
+        // }
         // KẾT THÚC
     }
 
