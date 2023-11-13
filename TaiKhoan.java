@@ -135,7 +135,7 @@ class DanhSachTK {
                 }
             }
             bufferedReader.close();
-            System.out.println("Doc du lieu tu file thanh cong!");
+            // System.out.println("Doc du lieu tu file thanh cong!");
         } catch (IOException e) {
             System.out.println("Co loi xay ra khi doc du lieu tu file.");
             e.printStackTrace();

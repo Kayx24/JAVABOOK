@@ -12,7 +12,7 @@ public class DangNhap {
     // }
     public static void DangNhaptaikhoan(){
         DanhSachTK ds=new DanhSachTK();
-        ds.themTaiKhoan("admin", "121", "admin");
+        
         Scanner sc=new Scanner(System.in);
         System.out.println("Bam [0] de dang ky");
         System.out.println("Bam [1] de dang nhap");

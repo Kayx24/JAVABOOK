@@ -100,17 +100,4 @@ public class HoaDon {
         }
         return tongTien;
     }
-
-
-
-      public static void main(String[] args) {
-        List<HoaDonItem> hoaDonItems = new ArrayList<>();
-        List<Sach> danhSachSach = new ArrayList<>();
-        danhSachSach.add(new Sach(1, "conan","Linh vuc A", "Trinh tham", 100, 2, "Nha xuat ban A", 2023));
-        danhSachSach.add(new Sach(2, "Doraemon","Linh vuc B", "Vui ve", 150, 3, "Nha xuat ban B", 2022));
-        
-
-        hoaDon(danhSachSach, hoaDonItems);
-    }
-
 }
