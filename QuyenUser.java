@@ -2,40 +2,43 @@
 //(tìm kiếm),
 // thêm user và những thằng user (arraylist) 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class QuyenUser {
     // ...
     public static void xemThongTinSach(List<Sach> danhSachSach) {
-        Scanner sc=new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         System.out.println("Nhap ten sach muon tim: ");
-        String tenSach=sc.nextLine();
-        // Tìm kiếm cuốn sách có tên là tenSach
-        Sach sach = null;
-        for (Sach sach1 : danhSachSach) {
-            if (sach1.getTenSach().equals(tenSach)) {
-                sach = sach1;
-                break;
+        String tenSach = sc.nextLine();
+        // Tim kiem cuon sach co ten gan dung la tenSach
+        List<Sach> sachGanDung = new ArrayList<>();
+        for (Sach sach : danhSachSach) {
+            if (sach.getTenSach().contains(tenSach)) {
+                sachGanDung.add(sach);
             }
         }
 
-        // Nếu tìm thấy cuốn sách
-        if (sach != null) {
-            // Xem thông tin của cuốn sách
+        // Kiem tra danh sach sach gan dung
+        if (!sachGanDung.isEmpty()) {
+            // In ra thong tin cac sach gan dung
             System.out.println("Thong tin sach:");
-            System.out.println("Ma sach: " + sach.getMaSach());
-            System.out.println("Ten sach: " + sach.getTenSach());
-            System.out.println("Ma tac gia: " + sach.getMaTg());
-            System.out.println("Ten linh vuc: " + sach.getTenLinhVuc());
-            System.out.println("Ten loai sach: " + sach.getTenLoaiSach());
-            System.out.println("Gia sach: " + sach.getGiaBia());
-            System.out.println("So lan tai ban: " + sach.getTaiBan());
-            System.out.println("Ten nha xuat ban: " + sach.getTenNhaXuatBan());
-            System.out.println("Nam xuat ban: " + sach.getNamXuatBan());
+            for (Sach sach : sachGanDung) {
+                System.out.println("Ma sach: " + sach.getMaSach());
+                System.out.println("Ten sach: " + sach.getTenSach());
+                System.out.println("Ma tac gia: " + sach.getMaTg());
+                System.out.println("Ten linh vuc: " + sach.getTenLinhVuc());
+                System.out.println("Ten loai sach: " + sach.getTenLoaiSach());
+                System.out.println("Gia sach: " + sach.getGiaBia());
+                System.out.println("So lan tai ban: " + sach.getTaiBan());
+                System.out.println("Ten nha xuat ban: " + sach.getTenNhaXuatBan());
+                System.out.println("Nam xuat ban: " + sach.getNamXuatBan());
+                System.out.println("------------------------");
+            }
         } else {
-            // Không tìm thấy cuốn sách
-            System.out.println("Không tìm thấy sách có tên " + tenSach);
+            // Khong tim thay sach gan dung
+            System.out.println("Khong tim thay sach gan dung voi ten " + tenSach);
         }
     }
 }

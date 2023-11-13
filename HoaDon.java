@@ -65,6 +65,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class HoaDon {
+
     public static void hoaDonSach(List<Sach> danhSachSach) {
         // List<Sach> danhSachSach = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
@@ -97,6 +98,7 @@ public class HoaDon {
             }
         }
     }
+
     public static void hoaDon(List<Sach> danhSachSach, List<HoaDonItem> hoaDonItems) {
         while (true) {
             Scanner sc = new Scanner(System.in);
