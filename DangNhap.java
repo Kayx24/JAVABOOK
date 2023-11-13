@@ -14,8 +14,8 @@ public class DangNhap {
         DanhSachTK ds=new DanhSachTK();
         ds.themTaiKhoan("admin", "121", "admin");
         Scanner sc=new Scanner(System.in);
-        System.out.println("Tao tai khoan neu chua co nhan so [0]");
-        System.out.println("da co tai khoan nhan so [1] de tiep tuc");
+        System.out.println("Bam [0] de dang ky");
+        System.out.println("Bam [1] de dang nhap");
         int tieptuc=sc.nextInt();
         if(tieptuc==0){
             QuyenUser.TaiKhoanUser(ds);
@@ -64,17 +64,16 @@ public class DangNhap {
                 System.out.println("Dang nhap thanh cong");
                 System.out.println("Quyen truy cap la quyen " + taiKhoanTimThay.getRole());
                 String ROLE=taiKhoanTimThay.getRole();
-                if(ROLE=="user"){
-                    
+                if(ROLE.equals("user")){
                     User.MenuUser(danhSachSach, hoaDonItems,ds);
                 }
-                else if(ROLE=="admin"){
+                else if(ROLE.equals("admin")){
                     // menu admin;
                 }
-                else if(ROLE=="QuanLy"){
+                else if(ROLE.equals("QuanLy")){
                     // menu quản lý
                 }
-                else if(ROLE=="NhanVien"){
+                else if(ROLE.equals("NhanVien")){
                     QuyenNhanVien.MenuNhanVien(danhSachSach, hoaDonItems);
                 }
             } else {
