@@ -3,7 +3,7 @@ public class TacGia {
     private String ngaysinh;
     private String quequan;
     private String tieusu;
-public TacGia(String ten,String ngaysinh,String quequan,String tieusu){
+public TacGia(){
     this.ten=ten;
     this.ngaysinh=ngaysinh;
     this.quequan=quequan;
