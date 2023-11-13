@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 
 
+
 public class DangNhap {
     //menu cho từng quyền và ghi sẵn tài khoản trong main
     // private TaiKhoan tk;
@@ -10,17 +11,30 @@ public class DangNhap {
     //     this.tk=tk;
     // }
     public static void DangNhaptaikhoan(){
-        Scanner sc=new Scanner(System.in);
-        System.out.println("Ten tai khoan: ");
-        String TenTK=sc.nextLine();
-        System.out.println("Mat khau la: ");
-        String Mk=sc.nextLine();
-        boolean DangNhapThanhCong =false;
         DanhSachTK ds=new DanhSachTK();
         ds.themTaiKhoan("admin", "121", "admin");
-        ds.themTaiKhoan("helo2", "122", "user");
-        ds.themTaiKhoan("helo3", "123", "NhanVien");
-        ds.themTaiKhoan("helo4","124" ,"QuanLy");
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Tao tai khoan neu chua co nhan so [0]");
+        System.out.println("da co tai khoan nhan so [1] de tiep tuc");
+        int tieptuc=sc.nextInt();
+        if(tieptuc==0){
+            QuyenUser.TaiKhoanUser(ds);
+            DangNhap.DangNhaptaikhoan();
+        }
+        else{
+            String bientam=sc.nextLine();
+            System.out.println("Ten tai khoan: ");
+            String TenTK=sc.nextLine();
+            System.out.println("Mat khau la: ");
+            String Mk=sc.nextLine();
+
+        boolean DangNhapThanhCong =false;
+        
+        
+        // ds.themTaiKhoan("helo2", "122", "user");
+       // ds.themTaiKhoan("helo3", "123", "NhanVien");
+       // ds.themTaiKhoan("helo4","124" ,"QuanLy");
+        ds.docDuLieuTuFile("DanhSachTaiKhoan.txt");
 
         List<Sach> danhSachSach = new ArrayList<>();
         danhSachSach.add(new Sach(1, "Conan","Linh vuc A", "Trinh tham", 10000, 2, "Nha xuat ban A", 2023));
@@ -51,7 +65,8 @@ public class DangNhap {
                 System.out.println("Quyen truy cap la quyen " + taiKhoanTimThay.getRole());
                 String ROLE=taiKhoanTimThay.getRole();
                 if(ROLE=="user"){
-                    User.MenuUser(danhSachSach, hoaDonItems);
+                    
+                    User.MenuUser(danhSachSach, hoaDonItems,ds);
                 }
                 else if(ROLE=="admin"){
                     // menu admin;
@@ -69,6 +84,7 @@ public class DangNhap {
             System.out.println("Tai khoan khong ton tai");
         } 
         
+    }
         // BỎ VÀO MENU ADMIN
         QuyenSach QS = new QuyenSach();
         // Thực hiện đăng nhập

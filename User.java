@@ -46,19 +46,28 @@ public class User extends TaiKhoan{
     }
    
 
-    public static void MenuUser(List<Sach> danhSachSach,List<HoaDonItem> hoaDonItems){
+    public static void MenuUser(List<Sach> danhSachSach,List<HoaDonItem> hoaDonItems,DanhSachTK ds){
         Scanner sc = new Scanner(System.in);
         int choice;
         while (true) {
             System.out.println("------------------------------------------------------------------------------------------------------------------");
             System.out.println("Chuc nang User");
             System.out.println("[0] THOAT MENU");
+<<<<<<< Updated upstream
             System.out.println("[1] Xem danh sach sach");
             System.out.println("[2] Xem thong tin sach can tim");
             System.out.println("[3] Phan loai Sach");
             System.out.println("[4] Mua");
             System.out.println("[5] Chi tiet hoa don");
             System.out.println("[6] xem thong tin tac gia");
+=======
+            System.out.println("[1] Dang ky tai khoan");
+            System.out.println("[2] Xem danh sach sach");
+            System.out.println("[3] Xem thong tin sach can tim");
+            System.out.println("[4] Phan loai Sach");
+            System.out.println("[5] Mua");
+            System.out.println("[6] Chi tiet hoa don");
+>>>>>>> Stashed changes
             System.out.print("Chon: ");
             boolean shouldExit = false;
             choice = sc.nextInt();
@@ -67,20 +76,23 @@ public class User extends TaiKhoan{
                     DangNhap.DangNhaptaikhoan();
                     break;
                 case 1:
+                    QuyenUser.TaiKhoanUser(ds);
+                    break;
+                case 2:
                 for (Sach sach : danhSachSach) {
                     System.out.println("======"+sach.getTenSach()+"======");
                     }
                     break;
-                case 2:
+                case 3:
                     QuyenUser.xemThongTinSach(danhSachSach);
                     break;
-                case 3:
+                case 4:
                     PhanLoai.MenuPhanLoai(danhSachSach);
                     break;
-                case 4:
+                case 5:
                     HoaDon.hoaDon(danhSachSach,hoaDonItems);
                     break;
-                case 5:
+                case 6:
                     ChiTietHoaDon.ChiTietHoaDon(danhSachSach,hoaDonItems);
                     break;
             }
