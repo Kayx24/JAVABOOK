@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
 public class QuyenUser {
     // ...
     public static void xemThongTinSach(List<Sach> danhSachSach) {
@@ -41,19 +40,19 @@ public class QuyenUser {
             System.out.println("Khong tim thay sach gan dung voi ten " + tenSach);
         }
     }
-    public static void TaiKhoanUser(DanhSachTK ds){
+
+    public static void TaiKhoanUser(DanhSachTK ds) {
         Scanner sc = new Scanner(System.in);
         ds.docDuLieuTuFile("DanhSachTaiKhoan.txt");
         System.out.println("Nhap ten tai khoan muon tao: ");
         String UserName = sc.nextLine();
-        while (ds.timKiem(UserName)==true) {
+        while (ds.timKiem(UserName) == true) {
             System.out.println("Da co UserName nay");
-         UserName=sc.nextLine();   
+            UserName = sc.nextLine();
         }
         System.out.println("Nhap mat khau muon tao: ");
-        String Password=sc.nextLine();
+        String Password = sc.nextLine();
         ds.themTaiKhoan(UserName, Password, "user");
         ds.luuDuLieuVaoFile("DanhSachTaiKhoan.txt");
     }
 }
-

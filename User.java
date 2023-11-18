@@ -72,13 +72,13 @@ public class User extends TaiKhoan{
                     QuyenUser.xemThongTinSach(danhSachSach);
                     break;
                 case 3:
-                    PhanLoai.MenuPhanLoai(danhSachSach);
+                    PhanLoai.MenuPhanLoai(danhSachSach, hoaDonItems, ds);
                     break;
                 case 4:
-                    HoaDon.hoaDon(danhSachSach,hoaDonItems);
+                    HoaDon.hoaDon(hoaDonItems);
                     break;
                 case 5:
-                    ChiTietHoaDon.ChiTietHoaDon(danhSachSach,hoaDonItems);
+                    ChiTietHoaDon.runChiTietHoaDon();
                     break;
             }
         }

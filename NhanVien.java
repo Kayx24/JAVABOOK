@@ -98,11 +98,11 @@ public class NhanVien extends TaiKhoan {
         TrangThaiCongViec = trangThaiCongViec;
     }
 
-    public void setUserName(String UserName){
+    public void setUserName(String UserName) {
         this.UserName = UserName;
     }
 
-    public String getUserName (){
+    public String getUserName() {
         return UserName;
     }
 
@@ -127,7 +127,7 @@ public class NhanVien extends TaiKhoan {
         System.out.print("Nhap ten nhan vien: ");
         TenNhanVien = sc.nextLine();
         System.out.print("Nhap ma nhan vien: ");
-        MaNV = sc.nextLine(); 
+        MaNV = sc.nextLine();
         System.out.print("Nhap Ngay Sinh: ");
         setNgaySinh(NgaySinh);
         System.out.print("Gioi tinh: ");
@@ -139,8 +139,6 @@ public class NhanVien extends TaiKhoan {
         System.out.print("Nhap trang thai");
         TrangThaiCongViec = sc.nextBoolean();
     }
-
-
 
     @Override
     public String toString() {
@@ -158,7 +156,8 @@ public class NhanVien extends TaiKhoan {
         Scanner sc = new Scanner(System.in);
         int choice;
         while (true) {
-            System.out.println("------------------------------------------------------------------------------------------------------------------");
+            System.out.println(
+                    "------------------------------------------------------------------------------------------------------------------");
             System.out.println("Chuc nang cua nhan vien: ");
             System.out.println("[0] Thoat Menu.");
             System.out.println("[1] Xem danh sach sach.");
@@ -166,25 +165,26 @@ public class NhanVien extends TaiKhoan {
             System.out.println("[3] Xem thong tin quyen sach.");
             System.out.println("[4] Xuat hoa don sach.");
             System.out.print("Chon de thuc hien chuc nang: ");
-            //boolean shouldExit = false;
+            // boolean shouldExit = false;
             choice = sc.nextInt();
             switch (choice) {
                 case 1:
-                    System.out.println("------------------------------------------------------------------------------------------------------------------");
-                    for(Sach sach: danhSachSach){
-                        System.out.println("=====" + sach.getTenSach() + "=====") ;
+                    System.out.println(
+                            "------------------------------------------------------------------------------------------------------------------");
+                    for (Sach sach : danhSachSach) {
+                        System.out.println("=====" + sach.getTenSach() + "=====");
                     }
                     break;
                 case 2:
-                    PhanLoai.MenuPhanLoai(danhSachSach);
+                    PhanLoai.MenuPhanLoai(danhSachSach, hoaDonItems, ds);
                     break;
-    
+
                 case 3:
                     QuyenUser.xemThongTinSach(danhSachSach);
                     break;
 
                 case 4:
-                    HoaDon.hoaDon(danhSachSach, hoaDonItems);
+                    ChiTietHoaDon.runChiTietHoaDon();
                     break;
 
                 case 0:
@@ -199,4 +199,3 @@ public class NhanVien extends TaiKhoan {
     // System.out.print(a.toString());
     // }
 }
-

@@ -97,30 +97,30 @@ public class QuanLy extends TaiKhoan {
                 case 2:
                     QuyenUser.xemThongTinSach(danhSachSach);
                     break;
-                case 3:
-                    PhanLoai.MenuPhanLoai(danhSachSach);
-                    break;
-                case 4:
-                    HoaDon.hoaDon(danhSachSach,hoaDonItems);
-                    break;
-                case 5:
-                    ChiTietHoaDon.ChiTietHoaDon(danhSachSach,hoaDonItems);
-                    break;
-                case 6:
-                    ChiTietHoaDon.editSachInHoaDon(hoaDonItems);
-                    break;
-                case 7:
-                    ChiTietHoaDon.deleteSachFromHoaDon(hoaDonItems);
-                    break;
-                case 8:
-                    quyenSach.nhapThongTinSachMoi();
-                    break;
-                case 9:
-                    quyenSach.chinhSuaThongTinSach();
-                    break;
-                case 10:
-                    ChiTietHoaDon.ChiTietHoaDon(danhSachSach,hoaDonItems);
-                    break;
+                // case 3:
+                //     PhanLoai.MenuPhanLoai(danhSachSach);
+                //     break;
+                // case 4:
+                //     HoaDon.hoaDon(danhSachSach,hoaDonItems);
+                //     break;
+                // case 5:
+                //     ChiTietHoaDon.ChiTietHoaDon(danhSachSach,hoaDonItems);
+                //     break;
+                // case 6:
+                //     ChiTietHoaDon.editSachInHoaDon(hoaDonItems);
+                //     break;
+                // case 7:
+                //     ChiTietHoaDon.deleteSachFromHoaDon(hoaDonItems);
+                //     break;
+                // case 8:
+                //     quyenSach.nhapThongTinSachMoi();
+                //     break;
+                // case 9:
+                //     quyenSach.chinhSuaThongTinSach();
+                //     break;
+                // case 10:
+                //     ChiTietHoaDon.ChiTietHoaDon(danhSachSach,hoaDonItems);
+                //     break;
                 
 
             }
