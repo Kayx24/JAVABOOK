@@ -1,12 +1,5 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
+import java.util.Date;
 public class HoaDonItem {
   
     String tenSach;
@@ -65,34 +58,7 @@ public class HoaDonItem {
     public void setMaKhachHang(String maKhachHang) {
         this.maKhachHang = maKhachHang;
     }
-     public static List<HoaDonItem> readHoaDonItemsFromFile(String fileName) {
-        List<HoaDonItem> hoaDonItems = new ArrayList<>();
-
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length == 6) {
-                    String maKhachHang = parts[0];
-                    Date ngayDatSach = dateFormat.parse(parts[1]);
-                    String tenSach = parts[2];
-                    int soLuongMua = Integer.parseInt(parts[3]);
-                    double giaSach = Double.parseDouble(parts[4]);
-                    double tongTien = Double.parseDouble(parts[5]);
-
-                    HoaDonItem hoaDonItem = new HoaDonItem(maKhachHang, ngayDatSach, tenSach, soLuongMua, giaSach, tongTien);
-                    hoaDonItems.add(hoaDonItem);
-                }
-            }
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
-        }
-
-        return hoaDonItems;
-    }
-        
+    
    
 
 }

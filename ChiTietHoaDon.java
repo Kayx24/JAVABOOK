@@ -1,5 +1,4 @@
-
-// // ko có xóa sửa, chỉ có hủy hóa đơn
+// ko có xóa sửa, chỉ có hủy hóa đơn
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -14,10 +13,9 @@ import java.util.Scanner;
 
 public class ChiTietHoaDon {
     public static Scanner sc = new Scanner(System.in);
-
     public static void runChiTietHoaDon() {
 
-        List<List<HoaDonItem>> danhSachHoaDon = processHoaDonFromFile("hoadon.txt");
+        List<List<HoaDonItem>> danhSachHoaDon = HoaDonFromFile("hoadon.txt");
 
         int choice;
         do {
@@ -54,7 +52,7 @@ public class ChiTietHoaDon {
     }
 
 
-    public static List<List<HoaDonItem>> processHoaDonFromFile(String File) {
+    public static List<List<HoaDonItem>> HoaDonFromFile(String File) {
         List<String> lines = docDuLieuTuFile(File);
         return parseLinesToDanhSachHoaDon(lines);
     }
@@ -92,7 +90,6 @@ public class ChiTietHoaDon {
         if (!currentInvoice.isEmpty()) {
             danhSachHoaDon.add(new ArrayList<>(currentInvoice));
         }
-
         return danhSachHoaDon;
     }
 
@@ -207,215 +204,3 @@ public class ChiTietHoaDon {
 }
 
 
-
-
-
-
-// import java.io.BufferedReader;
-// import java.io.FileReader;
-// import java.io.IOException;
-// import java.text.ParseException;
-// import java.text.SimpleDateFormat;
-// import java.util.ArrayList;
-// import java.util.Date;
-// import java.util.List;
-
-// public class ChiTietHoaDon {
-
-//     public static void main(String[] args) {
-//         List<String> lines = docDuLieuTuFile("hoadon.txt");
-
-//         List<List<HoaDonItem>> danhSachHoaDon = parseLinesToDanhSachHoaDon(lines);
-//         inDanhSachHoaDon(danhSachHoaDon);
-//     }
-
-//     public static List<String> docDuLieuTuFile(String tenTep) {
-//         List<String> lines = new ArrayList<>();
-//         try {
-//             BufferedReader br = new BufferedReader(new FileReader(tenTep));
-//             String line;
-//             while ((line = br.readLine()) != null) {
-//                 lines.add(line);
-//             }
-//             br.close();
-//         } catch (IOException e) {
-//             e.printStackTrace();
-//         }
-//         return lines;
-//     }
-
-//     public static List<List<HoaDonItem>> parseLinesToDanhSachHoaDon(List<String> lines) {
-//         List<List<HoaDonItem>> danhSachHoaDon = new ArrayList<>();
-//         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-
-//         List<HoaDonItem> currentInvoice = new ArrayList<>();
-//         for (String line : lines) {
-//             if (!line.trim().isEmpty()) {
-//                 currentInvoice.addAll(parseLineToHoaDonItem(line, dateFormat));
-//             } else {
-//                 danhSachHoaDon.add(new ArrayList<>(currentInvoice));
-//                 currentInvoice.clear();
-//             }
-//         }
-
-//         // Xử lý trường hợp cuối cùng nếu có dữ liệu
-//         if (!currentInvoice.isEmpty()) {
-//             danhSachHoaDon.add(new ArrayList<>(currentInvoice));
-//         }
-
-//         return danhSachHoaDon;
-//     }
-
-//     private static List<HoaDonItem> parseLineToHoaDonItem(String line, SimpleDateFormat dateFormat) {
-//         List<HoaDonItem> hoaDonItems = new ArrayList<>();
-//         String[] parts = line.split(",");
-//         if (parts.length == 6) {
-//             try {
-//                 String maKhachHang =parts[0];
-//                 Date ngayDatSach = dateFormat.parse(parts[1]);
-//                 String tenSach = parts[2];
-//                 int soLuongMua = Integer.parseInt(parts[3]);
-//                 double giaSach = Double.parseDouble(parts[4]);
-//                 double tongTien = Double.parseDouble(parts[5]);
-
-//                 HoaDonItem hoaDonItem = new HoaDonItem(maKhachHang, ngayDatSach, tenSach, soLuongMua, giaSach, tongTien);
-//                 hoaDonItems.add(hoaDonItem);
-//             } catch (ParseException e) {
-//                 e.printStackTrace();
-//             }
-//         }
-//         return hoaDonItems;
-//     }
-
-//     public static void inDanhSachHoaDon(List<List<HoaDonItem>> danhSachHoaDon) {
-//         for (int i = 0; i < danhSachHoaDon.size(); i++) {
-//             List<HoaDonItem> hoaDonItems = danhSachHoaDon.get(i);
-//             System.out.println("Hoa don " + (i + 1) + ":");
-//             inHoaDonTuList(hoaDonItems);
-//             System.out.println();
-//         }
-//     }
-
-//     public static void inHoaDonTuList(List<HoaDonItem> hoaDonItems) {
-//         System.out.println("+------------------+------------------+-------------------+---------------+----------+---------------+");
-//         System.out.println("| Ma khach hang    | Ngay dat sach    | Ten sach          | So luong      | Gia tien | Tong tien     |");
-//         System.out.println("+------------------+------------------+-------------------+---------------+----------+---------------+");
-
-//         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-
-//         double tongTienHoaDon = 0;
-//         for (HoaDonItem item : hoaDonItems) {
-//             String ngayDatSachStr = dateFormat.format(item.getNgayDatSach());
-//             System.out.printf("| %-16s | %-16s | %-17s | %-13d | %-8.1f | %-13.1f |\n", item.getMaKhachHang(), ngayDatSachStr, item.getTenSach(), item.getSoLuongMua(), item.getGiaSach(), item.getTongTien());
-//             tongTienHoaDon += item.getTongTien();
-//         }
-
-//         System.out.println("+------------------+------------------+-------------------+---------------+----------+---------------+");
-//         System.out.printf("| %82s | %-13.1f |\n", "Tong tien hoa don: ", tongTienHoaDon);
-//         System.out.println("+----------------------------------------------------------------------------------------------------+");
-//     }
-// }
-
-// import java.io.BufferedReader;
-// import java.io.FileReader;
-// import java.io.IOException;
-// import java.text.ParseException;
-// import java.text.SimpleDateFormat;
-// import java.util.ArrayList;
-// import java.util.Date;
-// import java.util.List;
-
-// public class ChiTietHoaDon {
-
-//     public static void processHoaDonFromFile(String File) {
-//         List<String> lines = docDuLieuTuFile(File);
-//         List<List<HoaDonItem>> danhSachHoaDon = parseLinesToDanhSachHoaDon(lines);
-//         inDanhSachHoaDon(danhSachHoaDon);
-//     }
-
-//     public static List<String> docDuLieuTuFile(String tenTep) {
-//         List<String> lines = new ArrayList<>();
-//         try {
-//             BufferedReader br = new BufferedReader(new FileReader(tenTep));
-//             String line;
-//             while ((line = br.readLine()) != null) {
-//                 lines.add(line);
-//             }
-//             br.close();
-//         } catch (IOException e) {
-//             e.printStackTrace();
-//         }
-//         return lines;
-//     }
-
-//     public static List<List<HoaDonItem>> parseLinesToDanhSachHoaDon(List<String> lines) {
-//         List<List<HoaDonItem>> danhSachHoaDon = new ArrayList<>();
-//         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-
-//         List<HoaDonItem> currentInvoice = new ArrayList<>();
-//         for (String line : lines) {
-//             if (!line.trim().isEmpty()) {
-//                 currentInvoice.addAll(parseLineToHoaDonItem(line, dateFormat));
-//             } else {
-//                 danhSachHoaDon.add(new ArrayList<>(currentInvoice));
-//                 currentInvoice.clear();
-//             }
-//         }
-
-//         // Xử lý trường hợp cuối cùng nếu có dữ liệu
-//         if (!currentInvoice.isEmpty()) {
-//             danhSachHoaDon.add(new ArrayList<>(currentInvoice));
-//         }
-
-//         return danhSachHoaDon;
-//     }
-
-//     private static List<HoaDonItem> parseLineToHoaDonItem(String line, SimpleDateFormat dateFormat) {
-//         List<HoaDonItem> hoaDonItems = new ArrayList<>();
-//         String[] parts = line.split(",");
-//         if (parts.length == 6) {
-//             try {
-//                 String maKhachHang =parts[0];
-//                 Date ngayDatSach = dateFormat.parse(parts[1]);
-//                 String tenSach = parts[2];
-//                 int soLuongMua = Integer.parseInt(parts[3]);
-//                 double giaSach = Double.parseDouble(parts[4]);
-//                 double tongTien = Double.parseDouble(parts[5]);
-
-//                 HoaDonItem hoaDonItem = new HoaDonItem(maKhachHang, ngayDatSach, tenSach, soLuongMua, giaSach, tongTien);
-//                 hoaDonItems.add(hoaDonItem);
-//             } catch (ParseException e) {
-//                 e.printStackTrace();
-//             }
-//         }
-//         return hoaDonItems;
-//     }
-
-//     public static void inDanhSachHoaDon(List<List<HoaDonItem>> danhSachHoaDon) {
-//         for (int i = 0; i < danhSachHoaDon.size(); i++) {
-//             List<HoaDonItem> hoaDonItems = danhSachHoaDon.get(i);
-//             System.out.println("Hoa don " + (i + 1) + ":");
-//             inHoaDonTuList(hoaDonItems);
-//             System.out.println();
-//         }
-//     }
-
-//     public static void inHoaDonTuList(List<HoaDonItem> hoaDonItems) {
-//         System.out.println("+------------------+------------------+-------------------+---------------+----------+---------------+");
-//         System.out.println("| Ma khach hang    | Ngay dat sach    | Ten sach          | So luong      | Gia tien | Tong tien     |");
-//         System.out.println("+------------------+------------------+-------------------+---------------+----------+---------------+");
-
-//         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-
-//         double tongTienHoaDon = 0;
-//         for (HoaDonItem item : hoaDonItems) {
-//             String ngayDatSachStr = dateFormat.format(item.getNgayDatSach());
-//             System.out.printf("| %-16s | %-16s | %-17s | %-13d | %-8.1f | %-13.1f |\n", item.getMaKhachHang(), ngayDatSachStr, item.getTenSach(), item.getSoLuongMua(), item.getGiaSach(), item.getTongTien());
-//             tongTienHoaDon += item.getTongTien();
-//         }
-
-//         System.out.println("+------------------+------------------+-------------------+---------------+----------+---------------+");
-//         System.out.printf("| %82s | %-13.1f |\n", "Tong tien hoa don: ", tongTienHoaDon);
-//         System.out.println("+----------------------------------------------------------------------------------------------------+");
-//     }
-// }
