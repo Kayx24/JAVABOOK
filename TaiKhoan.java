@@ -5,16 +5,15 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-
 public class TaiKhoan {
-    //check tài khoản role nào
-    private  String UserName;
-    private  String Password;
-    private  String role;
-    //CONSTRUCTOR
+    // check tài khoản role nào
+    private String UserName;
+    private String Password;
+    private String role;
+    // CONSTRUCTOR
 
-    public TaiKhoan(){
-        
+    public TaiKhoan() {
+
     }
 
     public TaiKhoan(String userName, String password, String role) {
@@ -22,7 +21,7 @@ public class TaiKhoan {
         this.Password = password;
         this.role = role;
     }
-    //GETTER,SETTER
+    // GETTER,SETTER
 
     public String getUserName() {
         return UserName;
@@ -47,20 +46,19 @@ public class TaiKhoan {
     public void setRole(String role) {
         this.role = role;
     }
+
     @Override
-    public String toString(){
-        return "UserName: "+getUserName()+" Password: "+getPassword();
+    public String toString() {
+        return "UserName: " + getUserName() + " Password: " + getPassword();
     }
 }
 
-
 class DanhSachTK {
-    private  ArrayList<TaiKhoan> dstaikhoans;
-    
+    private ArrayList<TaiKhoan> dstaikhoans;
 
     public DanhSachTK() {
         dstaikhoans = new ArrayList<>();
-        
+
     }
 
     public TaiKhoan layTaiKhoan(String tenTK) {
@@ -72,12 +70,12 @@ class DanhSachTK {
         return null; // Trả về null nếu không tìm thấy tài khoản
     }
 
-    public  void themTaiKhoan(String maSV, String tenSV, String lop) {
+    public void themTaiKhoan(String maSV, String tenSV, String lop) {
         TaiKhoan tk = new TaiKhoan(maSV, tenSV, lop);
         dstaikhoans.add(tk);
     }
 
-    public  void inTaiKhoan() {
+    public void inTaiKhoan() {
         for (TaiKhoan tk : dstaikhoans) {
             System.out.println(tk.toString());
         }
@@ -96,14 +94,13 @@ class DanhSachTK {
 
     public boolean timKiem(String UserName) {
         for (TaiKhoan tk : dstaikhoans) {
-            if (tk.getUserName().equals(UserName) ) {
+            if (tk.getUserName().equals(UserName)) {
                 return true;
             }
         }
         return false;
     }
-    // thêm tài khoản 
-
+    // thêm tài khoản
 
     public void luuDuLieuVaoFile(String tenTepTin) {
         try {
@@ -142,4 +139,4 @@ class DanhSachTK {
         }
     }
 }
-    //có các hàm check,sửa,xóa ,thêm NẾU RẢNH
+// có các hàm check,sửa,xóa ,thêm NẾU RẢNH

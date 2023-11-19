@@ -7,6 +7,28 @@ import java.io.FileReader;
 
 public class PhanLoai {
 
+    public void docDuLieuTuFile(String TenFile, DanhSachTK dstaikhoans) {
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(TenFile));
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 3) {
+                    String username = parts[0];
+                    String password = parts[1];
+                    String role = parts[2];
+                    // TaiKhoan taiKhoan = new TaiKhoan(username, password, role);
+                    dstaikhoans.themTaiKhoan(username, password, role);
+                }
+            }
+            bufferedReader.close();
+            // System.out.println("Doc du lieu tu file thanh cong!");
+        } catch (IOException e) {
+            System.out.println("Co loi xay ra khi doc du lieu tu file.");
+            e.printStackTrace();
+        }
+    }
+
     public static List<Sach> DocDuLieuTuFileSach(String TenFile, List<Sach> danhSachSach) {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(TenFile));
@@ -75,7 +97,8 @@ public class PhanLoai {
         return sachTheoNhaXuatBan;
     }
 
-    public static void MenuPhanLoai(List<Sach> danhSachSach,List<HoaDonItem> hoaDonItems, DanhSachTK ds) {
+    public static void MenuPhanLoai(List<Sach> danhSachSach, List<HoaDonItem> hoaDonItems, DanhSachTK ds) {
+        ds.docDuLieuTuFile("DanhSachTaiKhoan.txt");
         DocDuLieuTuFileSach("Sach.txt", danhSachSach);
         Scanner sc = new Scanner(System.in);
         int choice;
@@ -200,22 +223,13 @@ public class PhanLoai {
                             break;
                     }
                     break;
-                // case 0:
-                //     for(TaiKhoan tk : ds.getTaiK){
-                //         if(tk.getRole().equals("NhanVien")){
-                //             NhanVien.MenuNhanVien(danhSachSach, hoaDonItems, ds);
-                //         }
-                //         if(tk.getRole().equals("QuanLy")){
-                //             QuanLy.MenuQuanly(danhSachSach, hoaDonItems);
-                //         }
-                //         // if(tk.getRole().equals("admin"){
+                case 0:
+                    shouldExit = true;
+                    break;
+            }
 
-                //         // }
-                //         if(tk.getRole().equals("user")){
-                //             User.MenuUser(danhSachSach, hoaDonItems, ds);
-                //         }
-                //     }
-                //     break;
+            if (shouldExit) {
+                break; // Exit the loop only if shouldExit is true
             }
         }
     }
@@ -232,8 +246,9 @@ public class PhanLoai {
     }
 
     // public static void main(String[] args) {
-    //     List<Sach> danhSachSach = new ArrayList<>();
-    //     PhanLoai.DocDuLieuTuFileSach("Sach.txt", danhSachSach);
-    //     PhanLoai.MenuPhanLoai(danhSachSach);
+    // List<Sach> danhSachSach = new ArrayList<>();
+    // List<HoaDonItem> hoaDonItems = new ArrayList<>();
+    // DanhSachTK ds = new DanhSachTK();
+    // NhanVien.MenuNhanVien(danhSachSach, hoaDonItems, ds);
     // }
 }
