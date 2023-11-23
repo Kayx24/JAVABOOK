@@ -84,12 +84,6 @@ public class QuyenSach {
                 String tenSach = sc.nextLine();
                 sach.setTenSach(tenSach);
 
-                System.out.println("Ma tac gia hien tai: " + sach.getMaTg());
-                System.out.print("Nhap ma tac gia moi: ");
-                int maTg = sc.nextInt();
-                sc.nextLine();
-                sach.setMaTg(maTg);
-
                 System.out.println("Ten loai sach hien tai: " + sach.getTenLoaiSach());
                 System.out.print("Nhap ten loai sach moi: ");
                 String tenLoaiSach = sc.nextLine();

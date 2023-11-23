@@ -7,7 +7,6 @@ public class Sach {
     private int TaiBan; // số lần tái bản
     private String TenNhaXuatBan;
     private int NamXuatBan;
-    private int MaTg;
 
     // Constructor
     public Sach() {
@@ -95,15 +94,7 @@ public class Sach {
     public void setNamXuatBan(int namXuatBan) {
         NamXuatBan = namXuatBan;
     }
-
-    public int getMaTg() {
-        return MaTg;
-    }
-
-    public void setMaTg(int maTg) {
-        MaTg = maTg;
-    }
-
+    
     @Override
     public String toString() {
         return "Ten sach: " + getTenSach() + " Gia: " + getGiaBia() + " Nha xuat ban:" + getTenNhaXuatBan()
