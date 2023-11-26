@@ -43,7 +43,7 @@ public class DangNhap {
                     if (taiKhoanTimThay.getRole().equals("user")) {
                         User.MenuUser(danhSachSach, hoaDonItems,ds);
                     } else if (taiKhoanTimThay.getRole().equals("admin")) {
-                        // Gọi hàm menu cho admin
+                        // Admin.MenuAdmin();
                     } else if (taiKhoanTimThay.getRole().equals("QuanLy")) {
                         // QuanLy.MenuQuanly();
                     } else if (taiKhoanTimThay.getRole().equals("NhanVien")) {

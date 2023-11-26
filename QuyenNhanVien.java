@@ -29,7 +29,7 @@ public class QuyenNhanVien {
         System.out.print("Ten tai khoan nhan vien muon xoa");
         String UserName = sc.nextLine();
         if (ds.timKiem(UserName) == true) {
-            ds.xoaTaiKhaon(UserName);
+            ds.xoaTaiKhoan(UserName);
             ds.luuDuLieuVaoFile("DanhSachTaiKhoan.txt");
             System.out.print("Tai khoan da duoc xoa");
         } else {

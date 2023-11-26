@@ -81,7 +81,7 @@ class DanhSachTK {
         }
     }
 
-    public void xoaTaiKhaon(String UserName) {
+    public void xoaTaiKhoan(String UserName) {
         Iterator<TaiKhoan> iterator = dstaikhoans.iterator();
         while (iterator.hasNext()) {
             TaiKhoan tk = iterator.next();
