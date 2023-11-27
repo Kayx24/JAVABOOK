@@ -20,7 +20,7 @@ public class DangNhap {
             DangNhap.DangNhaptaikhoan();
         } else {
             System.out.println("Ten tai khoan: ");
-            String TenTK = sc.nextLine();
+            String TenTK = sc.nextLine();   
             System.out.println("Mat khau la: ");
             String Mk = sc.nextLine();
 
@@ -46,7 +46,7 @@ public class DangNhap {
                     if (taiKhoanTimThay.getRole().equals("user")) {
                         User.MenuUser(danhSachSach, hoaDonItems,ds,tenFile);
                     } else if (taiKhoanTimThay.getRole().equals("admin")) {
-                        // Admin.MenuAdmin();
+                        Admin.MenuAdmin(danhSachSach,hoaDonItems,ds);
                     } else if (taiKhoanTimThay.getRole().equals("QuanLy")) {
                          QuanLy.MenuQuanly(danhSachSach, hoaDonItems,ds,tenFile);
                     } else if (taiKhoanTimThay.getRole().equals("NhanVien")) {
