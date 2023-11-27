@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,28 +24,17 @@ public class QuyenSach {
     }
 
     public QuyenSach() {
-        this.danhSachSach = new ArrayList<>();
         this.sc = new Scanner(System.in);
         this.isAdmin = false;
     }
 
-    public void themSach(int maSach, String tenSach, int maTg, String tenLoaiSach, int giaBia, int taiBan,
-            String tenNhaXuatBan, int namXuatBan) {
-        Sach sach = new Sach(maSach, tenSach, tenLoaiSach, tenNhaXuatBan, giaBia, taiBan, tenNhaXuatBan, namXuatBan);
+    public void themSach(int maSach, String tenSach,String tenLinhVuc, String tenLoaiSach, int giaBia, int taiBan,
+                         String tenNhaXuatBan, int namXuatBan) {
+        Sach sach = new Sach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan);
         danhSachSach.add(sach);
     }
 
-    public void xoaSach(int maSach) {
-        for (Sach sach : danhSachSach) {
-            if (sach.getMaSach() == maSach) {
-                danhSachSach.remove(sach);
-                break;
-            }
-        }
-    }
-
     public void nhapThongTinSachMoi() {
-        Scanner sc = new Scanner(System.in);
         System.out.println("Nhap thong tin sach moi:");
         System.out.print("Ma sach: ");
         int maSach = sc.nextInt();
@@ -52,7 +42,7 @@ public class QuyenSach {
         System.out.print("Ten sach: ");
         String tenSach = sc.nextLine();
         System.out.print("Ma tac gia: ");
-        int maTg = sc.nextInt();
+        String tenLinhVuc = sc.nextLine();
         sc.nextLine();
         System.out.print("Ten loai sach: ");
         String tenLoaiSach = sc.nextLine();
@@ -67,11 +57,10 @@ public class QuyenSach {
         int namXuatBan = sc.nextInt();
         sc.nextLine();
 
-        themSach(maSach, tenSach, maTg, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan);
+        themSach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan);
     }
 
     public void chinhSuaThongTinSach() {
-        Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ma sach can sua: ");
         int maSach = sc.nextInt();
         sc.nextLine();
@@ -113,9 +102,47 @@ public class QuyenSach {
                 sach.setNamXuatBan(namXuatBan);
 
                 System.out.println("Da sua thong tin sach.");
-                break;
+                return;
             }
         }
+        System.out.println("Khong tim thay sach co ma " + maSach);
+    }
+
+    public void chinhSuaSoLuongSach() {
+        if (isAdmin) {
+            System.out.println("Nhap so luong sach moi: ");
+            int soLuongSachMoi = sc.nextInt();
+            Sach.setSoLuongSach(soLuongSachMoi);
+            System.out.println("Da chinh sua so luong sach");
+        } else {
+            System.out.println("Ban khong co quyen chinh sua so luong sach");
+        }
+        sc.nextLine(); // Đọc bỏ dòng new line
+    }
+
+    public boolean kiemTraSachConLai() {
+        return Sach.getSoLuongSach() > 0;
+    }
+
+    public void datMuaSach() {
+        if (kiemTraSachConLai()) {
+            System.out.println("Dat mua thanh cong.");
+        } else {
+            System.out.println("Xin loi! Da het sach.");
+        }
+    }
+
+    public void xoaSach(int maSach) {
+        Iterator<Sach> iterator = danhSachSach.iterator();
+        while (iterator.hasNext()) {
+            Sach sach = iterator.next();
+            if (sach.getMaSach() == maSach) {
+                iterator.remove();
+                System.out.println("Da xoa sach co ma " + maSach);
+                return;
+            }
+        }
+        System.out.println("Khong tim thay sach co ma " + maSach);
     }
 
     public List<Sach> getDanhSachSach() {
@@ -123,10 +150,6 @@ public class QuyenSach {
     }
 
     public boolean isAdmin() {
-        return false;
-    }
-
-    public void nhapthongtinsach(String string) {
+        return isAdmin;
     }
 }
-

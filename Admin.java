@@ -1,7 +1,8 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class Admin {
-    public static void MenuAdmin(String[] args) {
+    public static void MenuAdmin(List<Sach> danhSachSach,List<HoaDonItem> hoaDonItems,DanhSachTK ds) {
         
         QuyenSach quyenSach = new QuyenSach();
         quyenSach.kiemtraDangNhap();
@@ -10,10 +11,9 @@ public class Admin {
             System.out.println("Chào mừng bạn đến với quyền của Admin!");
 
             Scanner sc = new Scanner(System.in);
-            DanhSachTK danhSachTK = new DanhSachTK(); // Tạo một đối tượng DanhSachTK
+            DanhSachTK danhSachTK = new DanhSachTK();
 
             int choice;
-
             do {
                 System.out.println("1. Thêm sách mới");
                 System.out.println("2. Chỉnh sửa thông tin sách");
