@@ -192,7 +192,7 @@ public class ChiTietHoaDon {
                     String ngayDatSachStr = dateFormat.format(item.getNgayDatSach());
                     String line = item.getMaKhachHang() + "," + ngayDatSachStr + "," + item.getTenSach() + "," + item.getSoLuongMua() + "," + item.getGiaSach() + "," + item.getTongTien();
                     bw.write(line);
-                    bw.newLine();
+                    // bw.newLine();
                 }
                 bw.newLine();
             }

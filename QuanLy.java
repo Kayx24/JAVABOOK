@@ -70,6 +70,8 @@ public class QuanLy extends TaiKhoan {
         QuyenSach quyenSach = new QuyenSach();
         QuyenQuanLy qql = new QuyenQuanLy();
         QuyenNhanVien qnv = new QuyenNhanVien();
+        ChiTietHoaDon cthd =new ChiTietHoaDon();
+
         while (true) {
             System.out.println("------------------------------------------------------------------------------------------------------------------");
             System.out.println("Chuc nang Quanly");
@@ -78,13 +80,11 @@ public class QuanLy extends TaiKhoan {
             System.out.println("[2] Xem thong tin sach can tim");
             System.out.println("[3] Phan loai Sach");
             System.out.println("[4] Mua");
-            System.out.println("[5] Chi tiet hoa don");
-            System.out.println("[6] Xoa hoa don ");
-            System.out.println("[7] Tim hoa don cua khach");
-            System.out.println("[8] Them sach");
-            System.out.println("[9] Sua Thong tin sach");
-            System.out.println("[10] Duoi nhan vien");
-            System.out.println("[11] Them nhan vien");
+            System.out.println("[5] Lua chon cac chuc nang hoa don");
+            System.out.println("[6] Them sach");
+            System.out.println("[7] Sua Thong tin sach");
+            System.out.println("[8] Duoi nhan vien");
+            System.out.println("[9] Them nhan vien");
             System.out.print("Chon: ");
             choice = sc.nextInt();
             switch (choice) {
@@ -104,23 +104,18 @@ public class QuanLy extends TaiKhoan {
                 HoaDon.hoaDon(hoaDonItems);
                 break;
                 case 5:
-                    HoaDon.thucHienThanhToan(hoaDonItems);
+                ChiTietHoaDon.runChiTietHoaDon();
                     break;
                 case 6:
-                    ChiTietHoaDon.xoaHoaDonTheoSoHoaDon(null, choice, null);
-                    break;
-                case 7:
-                    ChiTietHoaDon.timHoaDonTheoMaKhachHang(null, null);
-                case 8:
                     quyenSach.nhapThongTinSachMoi();
                     break;
-                case 9:
+                case 7:
                     quyenSach.chinhSuaThongTinSach();
                     break;
-                case 10:
+                case 8:
                     qnv.XoaNhanVien(ds);
                     break;
-                case 11:
+                case 9:
                     qnv.ThemNhanVien(ds);
                     break;
             }
