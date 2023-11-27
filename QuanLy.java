@@ -79,11 +79,11 @@ public class QuanLy extends TaiKhoan {
             System.out.println("[3] Phan loai Sach");
             System.out.println("[4] Mua");
             System.out.println("[5] Chi tiet hoa don");
-            System.out.println("[6] Xoa hoa don ");
-            System.out.println("[7] Them sach");
-            System.out.println("[8] Sua Thong tin sach");
-            System.out.println("[9] Duoi nhan vien");
-            System.out.println("[10] Them nhan vien");
+            System.out.println("[6] Sua hoa don");
+            System.out.println("[7] Xoa hoa don ");
+            System.out.println("[8] Them sach");
+            System.out.println("[9] Sua Thong tin sach");
+            System.out.println("[10] Duoi nhan vien");
             System.out.print("Chon: ");
             choice = sc.nextInt();
             switch (choice) {
@@ -96,30 +96,32 @@ public class QuanLy extends TaiKhoan {
                 case 2:
                     qql.TimKiemSach();
                     break;
-                case 3:
-                    PhanLoai.MenuPhanLoai(danhSachSach, hoaDonItems, ds);
-                break;
-                case 4:
-                    HoaDon.hoaDon(hoaDonItems);
-                    break;
-                case 5:
-                    HoaDon.thucHienThanhToan(hoaDonItems);
-                    break;
-                case 6:
-                    ChiTietHoaDon.xoaHoaDonTheoSoHoaDon(null, choice, null);
-                    break;
-                case 7:
-                    quyenSach.nhapThongTinSachMoi();
-                    break;
-                case 8:
-                    quyenSach.chinhSuaThongTinSach();
-                    break;
-                case 9:
-                    qnv.XoaNhanVien(ds);
-                    break;
-                case 10:
-                    qnv.ThemNhanVien(ds);
-                    break;
+                // case 3:
+                //     PhanLoai.MenuPhanLoai(danhSachSach);
+                //     break;
+                // case 4:
+                //     HoaDon.hoaDon(danhSachSach,hoaDonItems);
+                //     break;
+                // case 5:
+                //     ChiTietHoaDon.ChiTietHoaDon(danhSachSach,hoaDonItems);
+                //     break;
+                // case 6:
+                //     ChiTietHoaDon.editSachInHoaDon(hoaDonItems);
+                //     break;
+                // case 7:
+                //     ChiTietHoaDon.deleteSachFromHoaDon(hoaDonItems);
+                //     break;
+                // case 8:
+                //     quyenSach.nhapThongTinSachMoi();
+                //     break;
+                // case 9:
+                //     quyenSach.chinhSuaThongTinSach();
+                //     break;
+                // case 10:
+                //     ChiTietHoaDon.ChiTietHoaDon(danhSachSach,hoaDonItems);
+                //     break;
+                
+
             }
         }
     }
