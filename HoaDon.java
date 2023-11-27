@@ -18,9 +18,9 @@ public class HoaDon {
             System.out.println("[0] Thoat: ");
 
             String tenSachMua = sc.nextLine();
-            if (tenSachMua=="0")
+            if (tenSachMua.equals("0"))
                 break;
-            if (tenSachMua=="1") {
+            if (tenSachMua.equals("1")) {
                 if (checkBuy) {
                     thucHienThanhToan(hoaDonItems);
                 } else {
