@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -32,6 +35,7 @@ public class QuyenSach {
                          String tenNhaXuatBan, int namXuatBan) {
         Sach sach = new Sach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan);
         danhSachSach.add(sach);
+        ghiSachVaoFile(sach);
     }
 
     public void nhapThongTinSachMoi() {
@@ -58,6 +62,15 @@ public class QuyenSach {
         sc.nextLine();
 
         themSach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan);
+    }
+
+    private void ghiSachVaoFile(Sach sach) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("sach.txt", true))) {
+            writer.write(sach.toString());
+            writer.newLine(); 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void chinhSuaThongTinSach() {
