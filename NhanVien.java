@@ -152,6 +152,7 @@ public class NhanVien extends TaiKhoan {
     }
 
     public static void MenuNhanVien(List<Sach> danhSachSach, List<HoaDonItem> hoaDonItems, DanhSachTK ds,String tenFile) {
+        QuyenUser qus = new QuyenUser();
         PhanLoai.DocDuLieuTuFileSach("Sach.txt", danhSachSach);
         Scanner sc = new Scanner(System.in);
         int choice;
@@ -171,10 +172,8 @@ public class NhanVien extends TaiKhoan {
                 case 1:
                     System.out.println(
                             "------------------------------------------------------------------------------------------------------------------");
-                    for (Sach sach : danhSachSach) {
-                        System.out.println("=====" + sach.getTenSach() + "=====");
-                    }
-                    break;
+                            qus.Docsach();
+                            break;
                 case 2:
                     PhanLoai.MenuPhanLoai(danhSachSach, hoaDonItems, ds);
                     break;
@@ -197,5 +196,6 @@ public class NhanVien extends TaiKhoan {
     // public static void main(String[] args) {
     // NhanVien a = new NhanVien();
     // System.out.print(a.toString());
+    /////
     // }
 }
