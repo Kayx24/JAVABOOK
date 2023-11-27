@@ -7,9 +7,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class QuyenUser {
-    // ...
-    public static void xemThongTinSach(List<Sach> danhSachSach) {
+    List<Sach> danhSachSach = new ArrayList<>();
+String tenFile = "Sach.txt";
+
+   
+    public static void xemThongTinSach(List<Sach> danhSachSach,String tenFile) {
         Scanner sc = new Scanner(System.in);
+        danhSachSach = PhanLoai.DocDuLieuTuFileSach (tenFile,danhSachSach);
         System.out.println("Nhap ten sach muon tim: ");
         String tenSach = sc.nextLine();
         // Tim kiem cuon sach co ten gan dung la tenSach
@@ -55,4 +59,10 @@ public class QuyenUser {
         ds.themTaiKhoan(UserName, Password, "user");
         ds.luuDuLieuVaoFile("DanhSachTaiKhoan.txt");
     }
+public void Docsach(){
+danhSachSach = PhanLoai.DocDuLieuTuFileSach (tenFile,danhSachSach);
+for (Sach sach : danhSachSach) {
+        System.out.println(sach.toString());
+    }
+}
 }

@@ -43,8 +43,9 @@ public class User extends TaiKhoan{
     }
    
 
-    public static void MenuUser(List<Sach> danhSachSach,List<HoaDonItem> hoaDonItems,DanhSachTK ds){
+    public static void MenuUser(List<Sach> danhSachSach,List<HoaDonItem> hoaDonItems,DanhSachTK ds,String tenFile){
         Scanner sc = new Scanner(System.in);
+        QuyenUser qus = new QuyenUser();
         int choice;
         while (true) {
             System.out.println("------------------------------------------------------------------------------------------------------------------");
@@ -54,7 +55,6 @@ public class User extends TaiKhoan{
             System.out.println("[2] Xem thong tin sach can tim");
             System.out.println("[3] Phan loai Sach");
             System.out.println("[4] Mua");
-            System.out.println("[5] Chi tiet hoa don");
             System.out.print("Chon: ");
             boolean shouldExit = false;
             choice = sc.nextInt();
@@ -63,22 +63,16 @@ public class User extends TaiKhoan{
                     DangNhap.DangNhaptaikhoan();
                     break;
                 case 1:
-                
-                for (Sach sach : danhSachSach) {
-                    System.out.println("======"+sach.getTenSach()+"======");
-                    }
+                qus.Docsach();
                     break;
                 case 2:
-                    QuyenUser.xemThongTinSach(danhSachSach);
+                QuyenUser.xemThongTinSach(danhSachSach,tenFile);
                     break;
                 case 3:
                     PhanLoai.MenuPhanLoai(danhSachSach, hoaDonItems, ds);
-                    break;
+                break;
                 case 4:
                     HoaDon.hoaDon(hoaDonItems);
-                    break;
-                case 5:
-                    ChiTietHoaDon.runChiTietHoaDon();
                     break;
             }
         }

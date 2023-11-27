@@ -27,11 +27,14 @@ public class DangNhap {
             boolean DangNhapThanhCong = false;
             
         List<Sach> danhSachSach = new ArrayList<>();
+        
         List<HoaDonItem> hoaDonItems = new ArrayList<>();
         // List<List<HoaDonItem>> danhSachHoaDon = new ArrayList<>();
         ds.docDuLieuTuFile("DanhSachTaiKhoan.txt");
 
             if (ds.timKiem(TenTK)) {
+                String tenFile = "Sach.txt";
+
                 TaiKhoan taiKhoanTimThay = ds.layTaiKhoan(TenTK);
                 if (taiKhoanTimThay.getPassword().equals(Mk)) {
                     DangNhapThanhCong = true;
@@ -41,13 +44,13 @@ public class DangNhap {
                     // Gọi hàm hiển thị menu hoặc thực hiện các công việc liên quan đến đăng nhập thành công
 
                     if (taiKhoanTimThay.getRole().equals("user")) {
-                        User.MenuUser(danhSachSach, hoaDonItems,ds);
+                        User.MenuUser(danhSachSach, hoaDonItems,ds,tenFile);
                     } else if (taiKhoanTimThay.getRole().equals("admin")) {
                         // Admin.MenuAdmin();
                     } else if (taiKhoanTimThay.getRole().equals("QuanLy")) {
-                         QuanLy.MenuQuanly(danhSachSach, hoaDonItems,ds);
+                         QuanLy.MenuQuanly(danhSachSach, hoaDonItems,ds,tenFile);
                     } else if (taiKhoanTimThay.getRole().equals("NhanVien")) {
-                        NhanVien.MenuNhanVien(danhSachSach, hoaDonItems, ds);
+                        NhanVien.MenuNhanVien(danhSachSach, hoaDonItems, ds,tenFile);
                     }
                 } else {
                     System.out.println("Mat khau khong chinh xac");

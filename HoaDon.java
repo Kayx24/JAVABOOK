@@ -13,9 +13,10 @@ public class HoaDon {
         boolean checkBuy = false; // Biến để kiểm tra xem khách hàng có mua sách hay không
 
         while (true) {
-            System.out.println("Nhap ten sach can mua: ");
+            
             System.out.println("[1] Thanh toan: ");
             System.out.println("[0] Thoat: ");
+            System.out.println("Nhap ten sach can mua: ");
 
             String tenSachMua = sc.nextLine();
             if (tenSachMua.equals("0"))
