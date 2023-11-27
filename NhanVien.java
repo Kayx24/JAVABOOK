@@ -151,7 +151,7 @@ public class NhanVien extends TaiKhoan {
                 + ", TrangThaiCongViec=" + TrangThaiCongViec + "]";
     }
 
-    public static void MenuNhanVien(List<Sach> danhSachSach, List<HoaDonItem> hoaDonItems, DanhSachTK ds) {
+    public static void MenuNhanVien(List<Sach> danhSachSach, List<HoaDonItem> hoaDonItems, DanhSachTK ds,String tenFile) {
         PhanLoai.DocDuLieuTuFileSach("Sach.txt", danhSachSach);
         Scanner sc = new Scanner(System.in);
         int choice;
@@ -180,7 +180,7 @@ public class NhanVien extends TaiKhoan {
                     break;
 
                 case 3:
-                    QuyenUser.xemThongTinSach(danhSachSach);
+                    QuyenUser.xemThongTinSach(danhSachSach, tenFile);
                     break;
 
                 case 4:
