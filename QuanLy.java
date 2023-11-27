@@ -64,10 +64,12 @@ public class QuanLy extends TaiKhoan {
     }
 
 
- public static void MenuQuanly(List<Sach> danhSachSach,List<HoaDonItem> hoaDonItems){
+ public static void MenuQuanly(List<Sach> danhSachSach,List<HoaDonItem> hoaDonItems,DanhSachTK ds){
         Scanner sc = new Scanner(System.in);
         int choice;
         QuyenSach quyenSach = new QuyenSach();
+        QuyenQuanLy qql = new QuyenQuanLy();
+        QuyenNhanVien qnv = new QuyenNhanVien();
         while (true) {
             System.out.println("------------------------------------------------------------------------------------------------------------------");
             System.out.println("Chuc nang Quanly");
@@ -77,52 +79,47 @@ public class QuanLy extends TaiKhoan {
             System.out.println("[3] Phan loai Sach");
             System.out.println("[4] Mua");
             System.out.println("[5] Chi tiet hoa don");
-            System.out.println("[6] Sua hoa don");
-            System.out.println("[7] Xoa hoa don ");
-            System.out.println("[8] Them sach");
-            System.out.println("[9] Sua Thong tin sach");
-            System.out.println("[10] Duoi nhan vien");
+            System.out.println("[6] Xoa hoa don ");
+            System.out.println("[7] Them sach");
+            System.out.println("[8] Sua Thong tin sach");
+            System.out.println("[9] Duoi nhan vien");
+            System.out.println("[10] Them nhan vien");
             System.out.print("Chon: ");
-            boolean shouldExit = false;
             choice = sc.nextInt();
             switch (choice) {
                 case 0:
                     DangNhap.DangNhaptaikhoan();
                     break;
                 case 1:
-                for (Sach sach : danhSachSach) {
-                    System.out.println("======"+sach.getTenSach()+"======");
-                    }
-                    break;
+                    qql.Docsach();
+                break;
                 case 2:
-                    QuyenUser.xemThongTinSach(danhSachSach);
+                    qql.TimKiemSach();
                     break;
-                // case 3:
-                //     PhanLoai.MenuPhanLoai(danhSachSach);
-                //     break;
-                // case 4:
-                //     HoaDon.hoaDon(danhSachSach,hoaDonItems);
-                //     break;
-                // case 5:
-                //     ChiTietHoaDon.ChiTietHoaDon(danhSachSach,hoaDonItems);
-                //     break;
-                // case 6:
-                //     ChiTietHoaDon.editSachInHoaDon(hoaDonItems);
-                //     break;
-                // case 7:
-                //     ChiTietHoaDon.deleteSachFromHoaDon(hoaDonItems);
-                //     break;
-                // case 8:
-                //     quyenSach.nhapThongTinSachMoi();
-                //     break;
-                // case 9:
-                //     quyenSach.chinhSuaThongTinSach();
-                //     break;
-                // case 10:
-                //     ChiTietHoaDon.ChiTietHoaDon(danhSachSach,hoaDonItems);
-                //     break;
-                
-
+                case 3:
+                    PhanLoai.MenuPhanLoai(danhSachSach, hoaDonItems, ds);
+                break;
+                case 4:
+                    HoaDon.hoaDon(hoaDonItems);
+                    break;
+                case 5:
+                    HoaDon.thucHienThanhToan(hoaDonItems);
+                    break;
+                case 6:
+                    ChiTietHoaDon.xoaHoaDonTheoSoHoaDon(null, choice, null);
+                    break;
+                case 7:
+                    quyenSach.nhapThongTinSachMoi();
+                    break;
+                case 8:
+                    quyenSach.chinhSuaThongTinSach();
+                    break;
+                case 9:
+                    qnv.XoaNhanVien(ds);
+                    break;
+                case 10:
+                    qnv.ThemNhanVien(ds);
+                    break;
             }
         }
     }

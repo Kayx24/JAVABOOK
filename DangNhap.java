@@ -45,7 +45,7 @@ public class DangNhap {
                     } else if (taiKhoanTimThay.getRole().equals("admin")) {
                         // Admin.MenuAdmin();
                     } else if (taiKhoanTimThay.getRole().equals("QuanLy")) {
-                        // QuanLy.MenuQuanly();
+                         QuanLy.MenuQuanly(danhSachSach, hoaDonItems,ds);
                     } else if (taiKhoanTimThay.getRole().equals("NhanVien")) {
                         NhanVien.MenuNhanVien(danhSachSach, hoaDonItems, ds);
                     }
