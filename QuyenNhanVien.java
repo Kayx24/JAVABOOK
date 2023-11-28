@@ -95,25 +95,30 @@ public class QuyenNhanVien {
         System.out.println("Nhan vien da duoc xoa.");
     }
 
-    public void runQuyenNhanVien(DanhSachTK ds) {
+    public void runQuyenNhanVien(DanhSachTK ds,List<NhanVien> dsNhanViens) {
         Scanner sc = new Scanner(System.in);
         int choice;
     
         while (true) {
             System.out.println("Chuc nang cua nhan vien: ");
+            System.out.println("[0] Thoat.");
             System.out.println("[1] Them Nhan Vien.");
             System.out.println("[2] Xoa Nhan Vien.");
-            System.out.println("[3] Thoat.");
+            
             System.out.print("Chon de thuc hien chuc nang: ");
+            boolean shouldExit = false;
             choice = sc.nextInt();
     
             switch (choice) {
+                case 0:
+                DangNhap.DangNhaptaikhoan();
+                    break;
                 case 1:
-                    //ThemNhanVien(ds);
+                    ThemNhanVien(ds,dsNhanViens);
                     break;
     
                 case 2:
-                    //XoaNhanVien(ds);
+                    XoaNhanVien(ds,dsNhanViens);
                     break;
     
                 case 3:
@@ -124,14 +129,15 @@ public class QuyenNhanVien {
             }
         }
     }
-
-    public static void main(String[] args) {
-        DanhSachTK ds = new DanhSachTK();
-        QuyenNhanVien qs = new QuyenNhanVien();
-        List<NhanVien> dsNhanViens = new ArrayList<>();
-        
-        qs.ThemNhanVien(ds, dsNhanViens);
-        qs.XoaNhanVien(ds, dsNhanViens);
-    }
-
 }
+
+//     public static void main(String[] args) {
+//         DanhSachTK ds = new DanhSachTK();
+//         QuyenNhanVien qs = new QuyenNhanVien();
+//         List<NhanVien> dsNhanViens = new ArrayList<>();
+        
+//         qs.ThemNhanVien(ds, dsNhanViens);
+//         qs.XoaNhanVien(ds, dsNhanViens);
+//     }
+
+// }

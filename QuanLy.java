@@ -9,6 +9,10 @@ public class QuanLy extends TaiKhoan {
     private String MaQL;
     private String TenQL;
     private String Duoi;
+
+    public QuanLy (){
+
+    }
   
     public QuanLy(String MaQL, String userName, String password, String role){
     super(userName,password,role);
@@ -64,60 +68,45 @@ public class QuanLy extends TaiKhoan {
     }
 
 
- public static void MenuQuanly(List<Sach> danhSachSach,List<HoaDonItem> hoaDonItems,DanhSachTK ds, List<NhanVien> dsNhanViens, String tenFile){
+ public static void MenuQuanly(List<Sach> danhSachSach,List<HoaDonItem> hoaDonItems,DanhSachTK ds,List<NhanVien> dNhanViens,String tenFile){
         Scanner sc = new Scanner(System.in);
         int choice;
         QuyenSach quyenSach = new QuyenSach();
-        QuyenQuanLy qql = new QuyenQuanLy();
         QuyenNhanVien qnv = new QuyenNhanVien();
+        NhanVien nv = new NhanVien();
+        User us = new User();
         ChiTietHoaDon cthd =new ChiTietHoaDon();
 
         while (true) {
             System.out.println("------------------------------------------------------------------------------------------------------------------");
             System.out.println("Chuc nang Quanly");
             System.out.println("[0] THOAT MENU");
-            System.out.println("[1] Xem danh sach sach");
-            System.out.println("[2] Xem thong tin sach can tim");
-            System.out.println("[3] Phan loai Sach");
-            System.out.println("[4] Mua");
-            System.out.println("[5] Lua chon cac chuc nang hoa don");
-            System.out.println("[6] Them sach");
-            System.out.println("[7] Sua Thong tin sach");
-            System.out.println("[8] Duoi nhan vien");
-            System.out.println("[9] Them nhan vien");
+            System.out.println("[1] Lua chon cac chuc nang User");
+            System.out.println("[2] Lua chon cac chuc nang Nhan vien");
+            System.out.println("[3] Them sach");
+            System.out.println("[4] Sua Thong tin sach");
+            System.out.println("[5] Chinh sua nhan vien");
             System.out.print("Chon: ");
             choice = sc.nextInt();
             switch (choice) {
                 case 0:
                 DangNhap.DangNhaptaikhoan();
                 break;
-            case 1:
-            qql.Docsach();
-                break;
-            case 2:
-            QuyenUser.xemThongTinSach(danhSachSach,tenFile);
-                break;
-            case 3:
-                PhanLoai.MenuPhanLoai(danhSachSach, hoaDonItems, ds);
-            break;
-            case 4:
-                HoaDon.hoaDon(hoaDonItems);
-                break;
-                case 5:
-                ChiTietHoaDon.runChiTietHoaDon();
+                case 1:
+                    us.MenuUser(danhSachSach, hoaDonItems, ds, tenFile);
                     break;
-                case 6:
+                case 2:
+                    nv.MenuNhanVien(danhSachSach, hoaDonItems, ds, tenFile);
+                    break;
+                case 3:
                     quyenSach.nhapThongTinSachMoi();
                     break;
-                case 7:
+                case 4:
                     quyenSach.chinhSuaThongTinSach();
                     break;
-                case 8:
-                    qnv.XoaNhanVien(ds, dsNhanViens);
-                    break;
-                case 9:
-                    qnv.ThemNhanVien(ds, dsNhanViens);
-                    break;
+                case 5:
+                    qnv.runQuyenNhanVien(ds,dNhanViens);
+                   break;
             }
         }
     }
