@@ -64,7 +64,7 @@ public class QuanLy extends TaiKhoan {
     }
 
 
- public static void MenuQuanly(List<Sach> danhSachSach,List<HoaDonItem> hoaDonItems,DanhSachTK ds,String tenFile){
+ public static void MenuQuanly(List<Sach> danhSachSach,List<HoaDonItem> hoaDonItems,DanhSachTK ds, List<NhanVien> dsNhanViens, String tenFile){
         Scanner sc = new Scanner(System.in);
         int choice;
         QuyenSach quyenSach = new QuyenSach();
@@ -113,10 +113,10 @@ public class QuanLy extends TaiKhoan {
                     quyenSach.chinhSuaThongTinSach();
                     break;
                 case 8:
-                    qnv.XoaNhanVien(ds);
+                    qnv.XoaNhanVien(ds, dsNhanViens);
                     break;
                 case 9:
-                    qnv.ThemNhanVien(ds);
+                    qnv.ThemNhanVien(ds, dsNhanViens);
                     break;
             }
         }

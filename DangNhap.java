@@ -29,6 +29,7 @@ public class DangNhap {
         List<Sach> danhSachSach = new ArrayList<>();
         
         List<HoaDonItem> hoaDonItems = new ArrayList<>();
+        List<NhanVien> dNhanViens = new ArrayList<>();
         // List<List<HoaDonItem>> danhSachHoaDon = new ArrayList<>();
         ds.docDuLieuTuFile("DanhSachTaiKhoan.txt");
 
@@ -48,7 +49,7 @@ public class DangNhap {
                     } else if (taiKhoanTimThay.getRole().equals("admin")) {
                         Admin.MenuAdmin(danhSachSach,hoaDonItems,ds);
                     } else if (taiKhoanTimThay.getRole().equals("QuanLy")) {
-                         QuanLy.MenuQuanly(danhSachSach, hoaDonItems,ds,tenFile);
+                         QuanLy.MenuQuanly(danhSachSach, hoaDonItems,ds, dNhanViens, tenFile);
                     } else if (taiKhoanTimThay.getRole().equals("NhanVien")) {
                         NhanVien.MenuNhanVien(danhSachSach, hoaDonItems, ds,tenFile);
                     }
