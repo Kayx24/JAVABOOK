@@ -55,9 +55,11 @@ public class DangNhap {
                     }
                 } else {
                     System.out.println("Mat khau khong chinh xac");
+                    DangNhap.DangNhaptaikhoan();
                 }
             } else {
                 System.out.println("Tai khoan khong ton tai");
+                DangNhap.DangNhaptaikhoan();
             }
         }
     }

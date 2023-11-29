@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 public class QuanLy extends TaiKhoan {
@@ -76,7 +77,33 @@ public class QuanLy extends TaiKhoan {
         NhanVien nv = new NhanVien();
         User us = new User();
         ChiTietHoaDon cthd =new ChiTietHoaDon();
-
+        QuyenQuanLy qql=new QuyenQuanLy() {
+            @Override
+            public String getRole() {
+                Scanner sc = new Scanner(System.in);
+                System.out.println("Chon vai tro cho tai khoan");
+                System.out.println("[1]: user");
+                System.out.println("[2] NhanVien");
+                System.out.println("[0] Thoat");
+                int choose = sc.nextInt();
+                switch (choose) {
+                    case 1:
+                        return "user";
+                    case 2:
+                        return "NhanVien";
+                    default:
+                        return "";
+                }
+            };
+            @Override
+            public boolean CoTheXoa(String tenTaiKhoan, DanhSachTK ds) {
+                TaiKhoan tk = ds.layTaiKhoan(tenTaiKhoan);
+                if (tk != null && tk.getRole().equals("Admin")) {
+                    return false; // Account with role "Admin" cannot be deleted
+                }
+                return true; // Allow deletion for other roles
+            }
+        };
         while (true) {
             System.out.println("------------------------------------------------------------------------------------------------------------------");
             System.out.println("Chuc nang Quanly");
@@ -86,6 +113,9 @@ public class QuanLy extends TaiKhoan {
             System.out.println("[3] Them sach");
             System.out.println("[4] Sua Thong tin sach");
             System.out.println("[5] Chinh sua nhan vien");
+            System.out.println("[6] Them Tai Khoan");
+            System.out.println("[7] Xoa Tai Khoan");
+            System.out.println("[8] In Danh Sach Tai Khoan");
             System.out.print("Chon: ");
             choice = sc.nextInt();
             switch (choice) {
@@ -107,6 +137,13 @@ public class QuanLy extends TaiKhoan {
                 case 5:
                     qnv.runQuyenNhanVien(ds,dNhanViens);
                    break;
+                case 6:
+                    qql.QuanLyThemTaiKhoan(ds);
+                    break;
+                case 7:
+                    qql.QuanLyXoaTaiKhoan(ds);
+                case 8:
+                    QuyenQuanLy.QuanLyInTaiKhoan(ds);
             }
         }
     }

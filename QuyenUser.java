@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class QuyenUser {
     List<Sach> danhSachSach = new ArrayList<>();
-String tenFile = "Sach.txt";
+    String tenFile = "Sach.txt";
 
    
     public static void xemThongTinSach(List<Sach> danhSachSach,String tenFile) {
@@ -51,7 +51,7 @@ String tenFile = "Sach.txt";
         System.out.println("Nhap ten tai khoan muon tao: ");
         String UserName = sc.nextLine();
         while (ds.timKiem(UserName) == true) {
-            System.out.println("Da co UserName nay");
+            System.out.println("Da co UserName nay,hay nhap UserName khac:");
             UserName = sc.nextLine();
         }
         System.out.println("Nhap mat khau muon tao: ");
@@ -59,10 +59,10 @@ String tenFile = "Sach.txt";
         ds.themTaiKhoan(UserName, Password, "user");
         ds.luuDuLieuVaoFile("DanhSachTaiKhoan.txt");
     }
-public void Docsach(){
-danhSachSach = PhanLoai.DocDuLieuTuFileSach (tenFile,danhSachSach);
-for (Sach sach : danhSachSach) {
-        System.out.println(sach.toString());
+    public void Docsach(){
+    danhSachSach = PhanLoai.DocDuLieuTuFileSach (tenFile,danhSachSach);
+    for (Sach sach : danhSachSach) {
+            System.out.println(sach.toString());
+        }
     }
-}
 }
