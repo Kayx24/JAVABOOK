@@ -2,48 +2,33 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Admin {
-    public static void MenuAdmin(List<Sach> danhSachSach,List<HoaDonItem> hoaDonItems,DanhSachTK ds) {
-        
+    public static void MenuAdmin(List<Sach> danhSachSach, List<HoaDonItem> hoaDonItems, DanhSachTK ds) {
         QuyenSach quyenSach = new QuyenSach();
         quyenSach.kiemtraDangNhap();
 
         if (quyenSach.isAdmin()) {
             System.out.println("Chào mừng bạn đến với quyền của Admin!");
-
             Scanner sc = new Scanner(System.in);
             DanhSachTK danhSachTK = new DanhSachTK();
-
-            int choice;
+            int mainChoice;
             do {
-                System.out.println("1. Thêm sách mới");
-                System.out.println("2. Chỉnh sửa thông tin sách");
-                System.out.println("3. Xóa sách");
-                System.out.println("4. Xóa tài khoản");
-                System.out.println("5. Kiem soat nhan vien");
                 System.out.println("0. Thoát");
+                System.out.println("1. Quản lý sách");
+                System.out.println("2. Quản lý nhân viên");
+                System.out.println("3. Quản lý tài khoản");
 
                 System.out.print("Nhập lựa chọn của bạn: ");
-                choice = sc.nextInt();
+                mainChoice = sc.nextInt();
 
-                switch (choice) {
+                switch (mainChoice) {
                     case 1:
-                        quyenSach.nhapThongTinSachMoi();
+                        quanLySachMenu(sc, quyenSach, danhSachTK);
                         break;
                     case 2:
-                        quyenSach.chinhSuaThongTinSach();
+                        MenuNhanVien(sc, quyenSach, danhSachTK); 
                         break;
                     case 3:
-                        System.out.print("Nhập mã sách cần xóa: ");
-                        int maSachXoa = sc.nextInt();
-                        quyenSach.xoaSach(maSachXoa);
-                        break;
-                    case 4:
-                        System.out.print("Nhập tên tài khoản cần xóa: ");
-                        String taiKhoanXoa = sc.next();
-                        danhSachTK.xoaTaiKhoan(taiKhoanXoa);
-                        break;
-                    case 5:
-                        // chuabiet
+                        // quanLyTaiKhoanMenu(sc, quyenSach, danhSachTK);
                         break;
                     case 0:
                         System.out.println("Đã thoát chương trình.");
@@ -52,9 +37,49 @@ public class Admin {
                         System.out.println("Lựa chọn không hợp lệ. Vui lòng nhập lại.");
                         break;
                 }
-            } while (choice != 0);
+            } while (mainChoice != 0);
         } else {
             System.out.println("Bạn không có quyền truy cập vào quyền của Admin.");
         }
     }
+
+    private static void quanLySachMenu(Scanner sc, QuyenSach quyenSach, DanhSachTK danhSachTK) {
+        int choice;
+        do {
+            System.out.println("1. Thêm sách mới");
+            System.out.println("2. Chỉnh sửa thông tin sách");
+            System.out.println("3. Xóa sách");
+            System.out.println("0. Quay lại");
+
+            System.out.print("Nhập lựa chọn của bạn: ");
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    quyenSach.nhapThongTinSachMoi();
+                    break;
+                case 2:
+                    quyenSach.chinhSuaThongTinSach();
+                    break;
+                case 3:
+                    System.out.print("Nhập mã sách cần xóa: ");
+                    int maSachXoa = sc.nextInt();
+                    quyenSach.xoaSach(maSachXoa);
+                    break;
+                case 0:
+                    break;
+                default:
+                    System.out.println("Lựa chọn không hợp lệ. Vui lòng nhập lại.");
+                    break;
+            }
+        } while (choice != 0);
+    }
+
+    private static void MenuNhanVien(Scanner sc, QuyenSach quyenSach, DanhSachTK danhSachTK) {
+        // Thêm code quản lý nhân viên ở đây    
+    }
+
+    // private static void Men(Scanner sc, QuyenSach quyenSach, DanhSachTK danhSachTK) {
+        // Thêm code quản lý tài khoản ở đây
+    // }
 }
