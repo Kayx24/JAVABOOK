@@ -41,32 +41,6 @@ public class QuyenNhanVien {
         dsNhanViens.add(nv);
     }
 
-    // public void XoaNhanVien(DanhSachTK ds, List<NhanVien> dsNhanViens) {
-    //     Scanner sc = new Scanner(System.in);
-    //     ds.docDuLieuTuFile("DanhSachTaiKhoan.txt");
-
-    //     System.out.print("Ten tai khoan nhan vien muon xoa: ");
-    //     String userName = sc.nextLine();
-
-    //     // Tìm nhân viên trong danh sách
-    //     NhanVien nvToRemove = null;
-    //     for (NhanVien nv : dsNhanViens) {
-    //         if (nv.getUserName().equals(userName)) {
-    //             nvToRemove = nv;
-    //             break;
-    //         }
-    //     }
-
-    //     if (nvToRemove != null) {
-    //         // Xoá nhân viên từ DanhSachNhanVien.txt và DanhSachTaiKhoan.txt
-    //         nvToRemove.XoaNhanVienTuFile(userName, ds);
-    //         dsNhanViens.remove(nvToRemove);
-    //         System.out.println("Nhân viên đã được xóa.");
-    //     } else {
-    //         System.out.println("Khong tim thay tai khoan nhan vien can xoa trong danh sach.");
-    //     }
-    // }
-
     public void XoaNhanVien(DanhSachTK ds, List<NhanVien> dsNhanViens) {
         Scanner sc = new Scanner(System.in);
         ds.docDuLieuTuFile("DanhSachTaiKhoan.txt");
@@ -111,7 +85,7 @@ public class QuyenNhanVien {
     
             switch (choice) {
                 case 0:
-                DangNhap.DangNhaptaikhoan();
+                    shouldExit = true;
                     break;
                 case 1:
                     ThemNhanVien(ds,dsNhanViens);
@@ -121,11 +95,10 @@ public class QuyenNhanVien {
                     XoaNhanVien(ds,dsNhanViens);
                     break;
     
-                case 3:
-                    System.exit(0);
-    
-                default:
-                    System.out.println("Lua chon khong hop le. Vui long nhap lai.");
+                
+            }
+            if (shouldExit) {
+                break; // Exit the loop only if shouldExit is true
             }
         }
     }

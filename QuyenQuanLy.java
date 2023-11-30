@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public abstract class QuyenQuanLy extends QuyenNhanVien {
+
     List<Sach> danhSachSach = new ArrayList<>();
 
     public abstract String getRole();
@@ -23,11 +24,7 @@ public abstract class QuyenQuanLy extends QuyenNhanVien {
         String password = sc.nextLine();
     
         String role = getRole();
-    
-        // Thêm tài khoản mới vào danh sách
         ds.themTaiKhoan(userName, password, role);
-    
-        // Lưu dữ liệu vào tệp
         ds.luuDuLieuVaoFile("DanhSachTaiKhoan.txt");
     }
     public abstract boolean CoTheXoa(String tenTaiKhoan,DanhSachTK ds);
@@ -46,5 +43,56 @@ public abstract class QuyenQuanLy extends QuyenNhanVien {
 
     public static void QuanLyInTaiKhoan(DanhSachTK ds) {
         ds.inTaiKhoan();
+    }
+
+    public void MenuQuyenQuanLy(List<Sach> danhSachSach, DanhSachTK ds) {
+        Scanner sc = new Scanner(System.in);
+        int choice;
+        while (true) {
+            System.out.println("----------------------------------------------------------");
+            System.out.println("Quyen cua Quan ly: ");
+            System.out.println("[0] Thoat phan loai sach.");
+            System.out.println("[1] Quan li them tai khoan.");
+            System.out.println("[2] Kiem tra xem tai khoan co the xoa hay khong.");
+            System.out.println("[3] Xoa tai khoan da chon.");
+            System.out.println("[4] Lay thong tin tai khoan.");
+            System.out.print("Chon de phan loai: ");
+            boolean shouldExit = false;
+            choice = sc.nextInt();
+            sc.nextLine(); // Consume the newline character
+
+            switch (choice) {
+                case 1:
+                    QuanLyThemTaiKhoan(ds);
+                    break;
+
+                case 2:
+                    System.out.print("Nhap ten tai khoan can kiem tra: ");
+                    String tenTaiKhoanKT = sc.nextLine();
+                    boolean coTheXoa = CoTheXoa(tenTaiKhoanKT, ds);
+                    if (coTheXoa) {
+                        System.out.println("Tai khoan co the xoa.");
+                    } else {
+                        System.out.println("TAI KHOAN ADMIN KHONG DUOC PHEP XOA");
+                    }
+                    break;
+
+                case 3:
+                    QuanLyXoaTaiKhoan(ds);
+                    break;
+
+                case 4:
+                    QuanLyInTaiKhoan(ds);
+                    break;
+
+                case 0:
+                    shouldExit = true;
+                    break;
+            }
+
+            if (shouldExit) {
+                break; // Exit the loop only if shouldExit is true
+            }
+        }
     }
 }

@@ -184,77 +184,21 @@ public class NhanVien extends TaiKhoan {
         }
     }
 
-    // public void LuuNhanVienVaoFile() {
-    //     try {
-    //         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("DanhSachNhanVien.txt", true));
-    
-    //         // Format the Date objects
-    //         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-    //         String ngaySinhStr = dateFormat.format(NgaySinh);
-    //         String ngayBatDauLamStr = dateFormat.format(NgayBatDauLam);
-    
-    //         // Append the formatted employee information to the file
-    //         bufferedWriter.write(UserName + "," + TenNhanVien + "," + MaNV + ","
-    //                 + ngaySinhStr + "," + GioiTinh + "," + ngayBatDauLamStr + "," + TrangThaiCongViec);
-    //         bufferedWriter.newLine(); // Move to the next line for the next entry
-    
-    //         bufferedWriter.close();
-    //         System.out.println("Luu du lieu nhan vien vao file thanh cong!");
-    //     } catch (IOException e) {
-    //         System.out.println("Co loi xay ra khi luu du lieu nhan vien vao file.");
-    //         e.printStackTrace();
-    //     }
-    // }
-    
-
-    // public void DocDuNhanVienTuFile(){
-    //     try {
-    //         BufferedReader bufferedReader = new BufferedReader(new FileReader("DanhSachNhanVien.txt"));
-    //         String line;
-    //         while ((line = bufferedReader.readLine()) != null) {
-    //             String[] parts = line.split(",");
-    //             if (parts.length == 7) {
-    //                 String username = parts[0].trim();
-    //                 String tenNhanVien = parts[1].trim();
-    //                 String maNV = parts[2].trim();
-    
-    //                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-    //                 Date ngaySinh = dateFormat.parse(parts[3].trim());
-    //                 String gioiTinh = parts[4].trim();
-    //                 Date ngayBatDauLam = dateFormat.parse(parts[5].trim());
-    //                 String trangThaiLamViec = parts[6].trim();
-    
-    //                 setUserName(username);
-    //                 setTenNhanVien(tenNhanVien);
-    //                 setMaNV(maNV);
-    //                 setNgaySinh(ngaySinh);
-    //                 setGioiTinh(gioiTinh);
-    //                 setNgayBatDauLam(ngayBatDauLam);
-    //                 setTrangThaiCongViec(trangThaiLamViec);
-    //             }
-    //         }
-    //         bufferedReader.close();
-    //         // System.out.println("Doc du lieu tu file thanh cong!");
-    //     } catch (IOException | ParseException e) {
-    //         System.out.println("Co loi xay ra khi doc du lieu tu file.");
-    //         e.printStackTrace();
-    //     }
-    // }
-
     public void LuuNhanVienVaoFile(List<NhanVien> dsNhanViens) {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("DanhSachNhanVien.txt"))) {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
+    
             for (NhanVien nv : dsNhanViens) {
                 String ngaySinhStr = dateFormat.format(nv.getNgaySinh());
                 String ngayBatDauLamStr = dateFormat.format(nv.getNgayBatDauLam());
-
+    
                 bufferedWriter.write(
                         nv.getUserName() + "," + nv.getTenNhanVien() + "," + nv.getMaNV() + ","
                                 + ngaySinhStr + "," + nv.getGioiTinh() + "," + ngayBatDauLamStr + ","
                                 + nv.getTrangThaiCongViec());
                 bufferedWriter.newLine();
             }
+    
             System.out.println("Luu du lieu nhan vien vao file thanh cong!");
         } catch (IOException e) {
             System.out.println("Co loi xay ra khi luu du lieu nhan vien vao file.");
