@@ -2,24 +2,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public abstract class QuyenQuanLy {
+public abstract class QuyenQuanLy extends QuyenNhanVien {
     List<Sach> danhSachSach = new ArrayList<>();
 
     public abstract String getRole();
 
     public void QuanLyThemTaiKhoan(DanhSachTK ds) {
         Scanner sc = new Scanner(System.in);
-        ds.docDuLieuTuFile("DanhSachTaiKhoan.txt");
-        System.out.println("Nhap ten tai khoan muon tao: ");
-        String UserName = sc.nextLine();
-        while (ds.timKiem(UserName)) {
-            System.out.println("Da co UserName nay, hay nhap UserName khac:");
-            UserName = sc.nextLine();
+        // ds.docDuLieuTuFile("DanhSachTaiKhoan.txt");
+    
+        System.out.println("Nhập tên tài khoản muốn tạo: ");
+        String userName = sc.nextLine();
+    
+        while (ds.timKiem(userName)) {
+            System.out.println("Tên tài khoản đã tồn tại. Vui lòng nhập tên khác: ");
+            userName = sc.nextLine();
         }
-        System.out.println("Nhap mat khau muon tao: ");
-        String Password = sc.nextLine();
+    
+        System.out.println("Nhập mật khẩu muốn tạo: ");
+        String password = sc.nextLine();
+    
         String role = getRole();
-        ds.themTaiKhoan(UserName, Password, role);
+    
+        // Thêm tài khoản mới vào danh sách
+        ds.themTaiKhoan(userName, password, role);
+    
+        // Lưu dữ liệu vào tệp
         ds.luuDuLieuVaoFile("DanhSachTaiKhoan.txt");
     }
     public abstract boolean CoTheXoa(String tenTaiKhoan,DanhSachTK ds);
@@ -30,6 +38,9 @@ public abstract class QuyenQuanLy {
         if(CoTheXoa(tenTaiKhoan,ds)==true){
             ds.xoaTaiKhoan(tenTaiKhoan);
             ds.luuDuLieuVaoFile("DanhSachTaiKhoan.txt");
+        }
+        else{
+            System.out.println("TAI KHOAN ADMIN KHONG DUOC PHEP XOA");
         }
     }
 

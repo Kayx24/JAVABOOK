@@ -98,7 +98,7 @@ public class QuanLy extends TaiKhoan {
             @Override
             public boolean CoTheXoa(String tenTaiKhoan, DanhSachTK ds) {
                 TaiKhoan tk = ds.layTaiKhoan(tenTaiKhoan);
-                if (tk != null && tk.getRole().equals("Admin")) {
+                if (tk != null && tk.getRole().equals("admin")) {
                     return false; // Account with role "Admin" cannot be deleted
                 }
                 return true; // Allow deletion for other roles

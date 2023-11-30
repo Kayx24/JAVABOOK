@@ -1,11 +1,5 @@
+admin,111,admin
 helo2,122,user
-helo3,123,user
 helo4,124,QuanLy
 helo1,121,NhanVien
 helo5,125,user
-helo2,122,user
-helo3,123,user
-helo4,124,QuanLy
-helo1,121,NhanVien
-helo5,125,user
-helo6,126,NhanVien

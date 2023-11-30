@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.File;
 
 public class TaiKhoan {
     // check tài khoản role nào
@@ -116,7 +117,6 @@ public void luuDuLieuVaoFile(String tenTepTin) {
         e.printStackTrace();
     }
 }
-
     public void docDuLieuTuFile(String tenTepTin) {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(tenTepTin));
@@ -138,5 +138,20 @@ public void luuDuLieuVaoFile(String tenTepTin) {
             e.printStackTrace();
         }
     }
+    public void xoaDuLieuTrongFile(String tenTepTin) {
+    try {
+        // Xóa nội dung của tệp tin
+        File file = new File(tenTepTin);
+        file.delete();
+
+        // Tạo lại tệp tin để có nội dung trống
+        file.createNewFile();
+
+        System.out.println("Đã xóa toàn bộ dữ liệu trong file!");
+    } catch (IOException e) {
+        System.out.println("Có lỗi xảy ra khi xóa dữ liệu trong file.");
+        e.printStackTrace();
+    }
+}
 }
 // có các hàm check,sửa,xóa ,thêm NẾU RẢNH

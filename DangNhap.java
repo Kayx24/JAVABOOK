@@ -12,9 +12,21 @@ public class DangNhap {
 
         System.out.println("[0] de dang ky");
         System.out.println("[1] de dang nhap");
-        int tieptuc = sc.nextInt();
-        sc.nextLine();
+        int tieptuc;
+        do {
+            while (!sc.hasNextInt()) {
+                System.out.println("GIA TRI KHONG HOP LE. VUI LONG NHAP LAI");
+                System.out.println("[0] de dang ky");
+                System.out.println("[1] de dang nhap");
+                sc.next();
+            }
+            tieptuc = sc.nextInt();
+            sc.nextLine();
 
+            if (tieptuc != 0 && tieptuc != 1) {
+                System.out.println("GIA TRI KHONG HOP LE. VUI LONG NHAP LAI");
+            }
+        } while (tieptuc != 0 && tieptuc != 1);
         if (tieptuc == 0) {
             QuyenUser.TaiKhoanUser(ds);
             DangNhap.DangNhaptaikhoan();
