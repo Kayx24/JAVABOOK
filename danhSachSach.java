@@ -22,6 +22,9 @@ public interface danhSachSach {
 
     int getNamXuatBan();
     void setNamXuatBan(int namXuatBan);
+
+    int getSoLuongSach();
+    void setSoLuongSach(int soLuongSach);
     
     String toString();
 }

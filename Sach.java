@@ -7,14 +7,14 @@ public class Sach implements danhSachSach {
     private int TaiBan; // số lần tái bản
     private String TenNhaXuatBan;
     private int NamXuatBan;
-    private static int soLuongSach;
+    private int soLuongSach;
 
     // Constructor
     public Sach() {
     }
 
     public Sach(int maSach, String tenSach, String tenLinhVuc, String tenLoaiSach, int giaBia,
-            int taiBan, String tenNhaXuatBan, int namXuatBan) {
+            int taiBan, String tenNhaXuatBan, int namXuatBan,int soLuongSach) {
         MaSach = maSach;
         TenSach = tenSach;
         TenLinhVuc = tenLinhVuc;
@@ -106,12 +106,14 @@ public class Sach implements danhSachSach {
     public void setNamXuatBan(int namXuatBan) {
         NamXuatBan = namXuatBan;
     }
-
-    public static int getSoLuongSach(){
+    
+    @Override
+    public int getSoLuongSach(){
         return soLuongSach;
     }
     
-    public static void setSoLuongSach(int soluong){
+    @Override
+    public void setSoLuongSach(int soluong){
         soLuongSach=soluong;
     }
 
@@ -120,8 +122,10 @@ public class Sach implements danhSachSach {
         StringBuilder sb = new StringBuilder();
         sb.append("Ten sach: ").append(getTenSach())
           .append(" Gia: ").append(getGiaBia())
-          .append(" Nha xuat ban:").append(getTenNhaXuatBan())
-          .append(" Nam xuat ban:").append(getNamXuatBan());
+          .append("Ten Nha xuat ban:").append(getTenNhaXuatBan())
+          .append(" Nam xuat ban:").append(getNamXuatBan())
+            .append("So luong:").append(getSoLuongSach());
+
         return sb.toString();
     }
 }

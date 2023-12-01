@@ -89,7 +89,8 @@ public class HoaDon {
                     int taiBan = Integer.parseInt(parts[5]);
                     String tenNhaXuatBan = parts[6];
                     int namXuatBan = Integer.parseInt(parts[7]);
-                    Sach sach = new Sach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan);
+                    int soLuongSach = Integer.parseInt(parts[8].trim());
+                    Sach sach = new Sach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan,soLuongSach);
                     danhSachSach.add(sach);
                 }
             }

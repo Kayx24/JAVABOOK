@@ -35,7 +35,7 @@ public class PhanLoai {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length == 8) {
+                if (parts.length == 9) {
                     int MaSach = Integer.parseInt(parts[0].trim());
                     String TenSach = parts[1];
                     String TenLinhVuc = parts[2];
@@ -44,8 +44,9 @@ public class PhanLoai {
                     int TaiBan = Integer.parseInt(parts[5].trim());
                     String TenNhaXuatBan = parts[6];
                     int NamXuatBan = Integer.parseInt(parts[7].trim());
+                    int soluongsach = Integer.parseInt(parts[8].trim());
                     Sach sach = new Sach(MaSach, TenSach, TenLinhVuc, TenLoaiSach, GiaBia, TaiBan, TenNhaXuatBan,
-                            NamXuatBan);
+                            NamXuatBan,soluongsach);
                     danhSachSach.add(sach);
                 }
             }

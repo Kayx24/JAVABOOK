@@ -32,8 +32,8 @@ public class QuyenSach {
     }
 
     public void themSach(int maSach, String tenSach,String tenLinhVuc, String tenLoaiSach, int giaBia, int taiBan,
-                         String tenNhaXuatBan, int namXuatBan) {
-        Sach sach = new Sach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan);
+                         String tenNhaXuatBan, int namXuatBan,int soLuongSach) {
+        Sach sach = new Sach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan,soLuongSach);
         danhSachSach.add(sach);
         ghiSachVaoFile(sach);
     }
@@ -60,8 +60,11 @@ public class QuyenSach {
         System.out.print("Nam xuat ban: ");
         int namXuatBan = sc.nextInt();
         sc.nextLine();
+        System.out.print("So luong sach: ");
+        int soLuongSach = sc.nextInt();
+        sc.nextLine();
 
-        themSach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan);
+        themSach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan,soLuongSach);
     }
 
     private void ghiSachVaoFile(Sach sach) {
@@ -121,29 +124,29 @@ public class QuyenSach {
         System.out.println("Khong tim thay sach co ma " + maSach);
     }
 
-    public void chinhSuaSoLuongSach() {
-        if (isAdmin) {
-            System.out.println("Nhap so luong sach moi: ");
-            int soLuongSachMoi = sc.nextInt();
-            Sach.setSoLuongSach(soLuongSachMoi);
-            System.out.println("Da chinh sua so luong sach");
-        } else {
-            System.out.println("Ban khong co quyen chinh sua so luong sach");
-        }
-        sc.nextLine(); // Đọc bỏ dòng new line
-    }
+    // public void chinhSuaSoLuongSach() {
+    //     if (isAdmin) {
+    //         System.out.println("Nhap so luong sach moi: ");
+    //         int soLuongSachMoi = sc.nextInt();
+    //         Sach.setSoLuongSach(soLuongSachMoi);
+    //         System.out.println("Da chinh sua so luong sach");
+    //     } else {
+    //         System.out.println("Ban khong co quyen chinh sua so luong sach");
+    //     }
+    //     sc.nextLine(); // Đọc bỏ dòng new line
+    // }
 
-    public boolean kiemTraSachConLai() {
-        return Sach.getSoLuongSach() > 0;
-    }
+    // public boolean kiemTraSachConLai() {
+    //     return Sach.getSoLuongSach() > 0;
+    // }
 
-    public void datMuaSach() {
-        if (kiemTraSachConLai()) {
-            System.out.println("Dat mua thanh cong.");
-        } else {
-            System.out.println("Xin loi! Da het sach.");
-        }
-    }
+    // public void datMuaSach() {
+    //     if (kiemTraSachConLai()) {
+    //         System.out.println("Dat mua thanh cong.");
+    //     } else {
+    //         System.out.println("Xin loi! Da het sach.");
+    //     }
+    // }
 
     public void xoaSach(int maSach) {
         Iterator<Sach> iterator = danhSachSach.iterator();
