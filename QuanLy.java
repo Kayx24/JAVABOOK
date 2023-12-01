@@ -104,24 +104,27 @@ public class QuanLy extends TaiKhoan {
                 return true; // Allow deletion for other roles
             }
         };
-        while (true) {
-            System.out.println("------------------------------------------------------------------------------------------------------------------");
-            System.out.println("Chuc nang Quanly");
-            System.out.println("[0] THOAT MENU");
-            System.out.println("[1] Lua chon cac chuc nang User");
-            System.out.println("[2] Lua chon cac chuc nang Nhan vien");
-            System.out.println("[3] Them sach");
-            System.out.println("[4] Sua Thong tin sach");
-            System.out.println("[5] Chinh sua nhan vien");
-            System.out.println("[6] Them Tai Khoan");
-            System.out.println("[7] Xoa Tai Khoan");
-            System.out.println("[8] In Danh Sach Tai Khoan");
-            System.out.print("Chon: ");
-            choice = sc.nextInt();
+         while (true) {
+        System.out.println("------------------------------------------------------------------------------------------------------------------");
+        System.out.println("Chuc nang Quanly");
+        System.out.println("[0] THOAT MENU");
+        System.out.println("[1] Lua chon cac chuc nang User");
+        System.out.println("[2] Lua chon cac chuc nang Nhan vien");
+        System.out.println("[3] Them sach");
+        System.out.println("[4] Sua Thong tin sach");
+        System.out.println("[5] Chinh sua nhan vien");
+        System.out.println("[6] Them Tai Khoan");
+        System.out.println("[7] Xoa Tai Khoan");
+        System.out.println("[8] In Danh Sach Tai Khoan");
+        System.out.print("Chon: ");
+
+        String input = sc.next();
+        if (isNumeric(input)) {
+            choice = Integer.parseInt(input);
             switch (choice) {
                 case 0:
-                DangNhap.DangNhaptaikhoan();
-                break;
+                    DangNhap.DangNhaptaikhoan();
+                    break;
                 case 1:
                     us.MenuUser(danhSachSach, hoaDonItems, ds, tenFile);
                     break;
@@ -135,8 +138,8 @@ public class QuanLy extends TaiKhoan {
                     quyenSach.chinhSuaThongTinSach();
                     break;
                 case 5:
-                    qnv.runQuyenNhanVien(ds,dNhanViens);
-                   break;
+                    qnv.runQuyenNhanVien(ds, dNhanViens);
+                    break;
                 case 6:
                     qql.QuanLyThemTaiKhoan(ds);
                     break;
@@ -146,9 +149,22 @@ public class QuanLy extends TaiKhoan {
                 case 8:
                     QuyenQuanLy.QuanLyInTaiKhoan(ds);
                     break;
+                default:
+                    System.out.println("Vui long nhap lua chon hop le.");
+                    break;
             }
+        } else {
+            System.out.println("Vui long nhap mot so.");
         }
     }
 }
-
-
+// Hàm kiểm tra xem một chuỗi có phải là số hay không
+public static boolean isNumeric(String str) {
+    try {
+        Integer.parseInt(str);
+        return true;
+    } catch (NumberFormatException e) {
+        return false;
+    }
+}
+}

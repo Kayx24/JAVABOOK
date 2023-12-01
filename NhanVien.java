@@ -276,12 +276,13 @@ public class NhanVien extends TaiKhoan {
                 + ", TrangThaiCongViec=" + TrangThaiCongViec + "]";
     }
 
-    public static void MenuNhanVien(List<Sach> danhSachSach, List<HoaDonItem> hoaDonItems, DanhSachTK ds,
+public static void MenuNhanVien(List<Sach> danhSachSach, List<HoaDonItem> hoaDonItems, DanhSachTK ds,
             String tenFile) {
         QuyenUser qus = new QuyenUser();
         PhanLoai.DocDuLieuTuFileSach("Sach.txt", danhSachSach);
         Scanner sc = new Scanner(System.in);
         int choice;
+
         while (true) {
             System.out.println(
                     "------------------------------------------------------------------------------------------------------------------");
@@ -292,39 +293,45 @@ public class NhanVien extends TaiKhoan {
             System.out.println("[3] Xem thong tin quyen sach.");
             System.out.println("[4] Xuat hoa don sach.");
             System.out.print("Chon de thuc hien chuc nang: ");
-            // boolean shouldExit = false;
-            choice = sc.nextInt();
-            switch (choice) {
-                case 1:
-                    System.out.println(
-                            "------------------------------------------------------------------------------------------------------------------");
-                    qus.Docsach();
-                    break;
-                case 2:
-                    PhanLoai.MenuPhanLoai(danhSachSach, hoaDonItems, ds);
-                    break;
 
-                case 3:
-                    QuyenUser.xemThongTinSach(danhSachSach, tenFile);
-                    break;
+            String input = sc.next();
 
-                case 4:
-                    ChiTietHoaDon.runChiTietHoaDon();
-                    break;
+            if (isNumeric(input)) {
+                choice = Integer.parseInt(input);
 
-                case 0:
-                    DangNhap.DangNhaptaikhoan();
-                    break;
+                switch (choice) {
+                    case 1:
+                        System.out.println(
+                                "------------------------------------------------------------------------------------------------------------------");
+                        qus.Docsach();
+                        break;
+                    case 2:
+                        PhanLoai.MenuPhanLoai(danhSachSach, hoaDonItems, ds);
+                        break;
+
+                    case 3:
+                        QuyenUser.xemThongTinSach(danhSachSach, tenFile);
+                        break;
+
+                    case 4:
+                        ChiTietHoaDon.runChiTietHoaDon();
+                        break;
+
+                    case 0:
+                        DangNhap.DangNhaptaikhoan();
+                        break;
+
+                    default:
+                        System.out.println("Vui long nhap lua chon hop le.");
+                        break;
+                }
+            } else {
+                System.out.println("Vui long nhap mot so.");
             }
         }
     }
-
-    // public static void main(String[] args) {
-    // NhanVien a = new NhanVien();
-    // a.NhapNhanVien();
-    // a.docDuLieuTuFileTaiKhoan();
-    // a.LuuNhanVienVaoFile();
-    // a.DocDuNhanVienTuFile();
-    // System.out.print(a.toString());
-    // }
+    
+    public static boolean isNumeric(String str) {
+        return str.matches("-?\\d+");
+    }
 }
