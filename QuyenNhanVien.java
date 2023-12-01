@@ -69,39 +69,38 @@ public class QuyenNhanVien {
         System.out.println("Nhan vien da duoc xoa.");
     }
 
-    public void runQuyenNhanVien(DanhSachTK ds,List<NhanVien> dsNhanViens) {
-        Scanner sc = new Scanner(System.in);
-        int choice;
-    
-        while (true) {
-            System.out.println("Chuc nang cua nhan vien: ");
-            System.out.println("[0] Thoat.");
-            System.out.println("[1] Them Nhan Vien.");
-            System.out.println("[2] Xoa Nhan Vien.");
+    // public void runQuyenNhanVien(DanhSachTK ds,List<NhanVien> dsNhanViens) {
+    //     Scanner sc = new Scanner(System.in);
+    //     int choice;
+    //     while (true) {
+    //         System.out.println("Chuc nang cua nhan vien: ");
+    //         System.out.println("[0] Thoat.");
+    //         System.out.println("[1] Them Nhan Vien.");
+    //         System.out.println("[2] Xoa Nhan Vien.");
             
-            System.out.print("Chon de thuc hien chuc nang: ");
-            boolean shouldExit = false;
-            choice = sc.nextInt();
+    //         System.out.print("Chon de thuc hien chuc nang: ");
+    //         boolean shouldExit = false;
+    //         choice = sc.nextInt();
     
-            switch (choice) {
-                case 0:
-                    shouldExit = true;
-                    break;
-                case 1:
-                    ThemNhanVien(ds,dsNhanViens);
-                    break;
+    //         switch (choice) {
+    //             case 0:
+    //                 shouldExit = true;
+    //                 break;
+    //             case 1:
+    //                 ThemNhanVien(ds,dsNhanViens);
+    //                 break;
     
-                case 2:
-                    XoaNhanVien(ds,dsNhanViens);
-                    break;
+    //             case 2:
+    //                 XoaNhanVien(ds,dsNhanViens);
+    //                 break;
     
                 
-            }
-            if (shouldExit) {
-                break; // Exit the loop only if shouldExit is true
-            }
-        }
-    }
+    //         }
+    //         if (shouldExit) {
+    //             break; // Exit the loop only if shouldExit is true
+    //         }
+    //     }
+    // }
 }
 
 //     public static void main(String[] args) {
