@@ -142,8 +142,10 @@ public class QuanLy extends TaiKhoan {
                     break;
                 case 7:
                     qql.QuanLyXoaTaiKhoan(ds);
+                    break;
                 case 8:
                     QuyenQuanLy.QuanLyInTaiKhoan(ds);
+                    break;
             }
         }
     }
