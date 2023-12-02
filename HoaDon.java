@@ -80,7 +80,7 @@ public class HoaDon {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length == 8) {
+                if (parts.length == 9) {
                     int maSach = Integer.parseInt(parts[0]);
                     String tenSach = parts[1];
                     String tenLinhVuc = parts[2];
@@ -89,7 +89,7 @@ public class HoaDon {
                     int taiBan = Integer.parseInt(parts[5]);
                     String tenNhaXuatBan = parts[6];
                     int namXuatBan = Integer.parseInt(parts[7]);
-                    int soLuongSach = Integer.parseInt(parts[8].trim());
+                    int soLuongSach = Integer.parseInt(parts[8]);
                     Sach sach = new Sach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan,soLuongSach);
                     danhSachSach.add(sach);
                 }
@@ -162,7 +162,8 @@ public class HoaDon {
         System.out.printf("| %98s |\n", "Tong so tien can thanh toan: " + tongTien + " VND");
         System.out.println("+----------------------------------------------------------------------------------------------------+");
     }
-
+// trong hàm thực hiện thanh toán , sẽ tiến hành trừ số sách còn lại với số sách nếu số sách còn lại =0 thì System.out là hết sách
+//còn nếu còn sách nhưng số sách mua > số sách còn lại thì System.out không đủ
     public static void thucHienThanhToan(List<HoaDonItem> hoaDonItems) {
         // Hiển thị tổng hóa đơn
         hienThiTatCaHoaDon(hoaDonItems);

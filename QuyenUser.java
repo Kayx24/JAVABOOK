@@ -37,6 +37,7 @@ public class QuyenUser {
                 System.out.println("So lan tai ban: " + sach.getTaiBan());
                 System.out.println("Ten nha xuat ban: " + sach.getTenNhaXuatBan());
                 System.out.println("Nam xuat ban: " + sach.getNamXuatBan());
+                System.out.println("So luong con lai:"+sach.getSoLuongSach());
                 System.out.println("------------------------");
             }
         } else {
