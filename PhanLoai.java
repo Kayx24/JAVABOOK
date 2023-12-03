@@ -46,7 +46,7 @@ public class PhanLoai {
                     int NamXuatBan = Integer.parseInt(parts[7].trim());
                     int soluongsach = Integer.parseInt(parts[8].trim());
                     Sach sach = new Sach(MaSach, TenSach, TenLinhVuc, TenLoaiSach, GiaBia, TaiBan, TenNhaXuatBan,
-                            NamXuatBan,soluongsach);
+                            NamXuatBan, soluongsach);
                     danhSachSach.add(sach);
                 }
             }
@@ -114,8 +114,10 @@ public class PhanLoai {
             System.out.println("[4] Nha xuat ban.");
             System.out.print("Chon de phan loai: ");
             boolean shouldExit = false;
-            choice = sc.nextInt();
-            switch (choice) {
+            String input = sc.next();
+            if(isNumeric(input)){
+                choice = Integer.parseInt(input);
+                switch (choice) {
                 case 1:
                     System.out.println(
                             "------------------------------------------------------------------------------------------------------------------");
@@ -138,9 +140,13 @@ public class PhanLoai {
                     System.out.println("[2] Linh vuc B ");
                     System.out.println("[3] Linh vuc C ");
                     System.out.println("[4] Linh vuc D ");
+                    System.out.println("[5] Linh vuc E ");
                     System.out.print("Chon linh vu muon phan loai: ");
-                    int choice1 = sc.nextInt();
-                    switch (choice1) {
+                    int choice1;
+                    String input2 = sc.next();
+                    if(isNumeric(input2)){
+                        choice1 = Integer.parseInt(input2);
+                        switch (choice1) {
                         case 1:
                             List<Sach> sachTheoLinhVuc = PhanLoai.phanLoaiTheoLinhVuc(danhSachSach, "Linh vuc A");
                             PhanLoai.inDanhSachSach(sachTheoLinhVuc); // In danh sách sách đã phân loại
@@ -157,12 +163,16 @@ public class PhanLoai {
                             List<Sach> sachTheoLinhVuc3 = PhanLoai.phanLoaiTheoLinhVuc(danhSachSach, "Linh vuc D");
                             PhanLoai.inDanhSachSach(sachTheoLinhVuc3); // In danh sách sách đã phân loại
                             break;
+                        case 5:
+                            List<Sach> sachTheoLinhVuc4 = PhanLoai.phanLoaiTheoLinhVuc(danhSachSach, "Linh vuc E");
+                            PhanLoai.inDanhSachSach(sachTheoLinhVuc4); // In danh sách sách đã phân loại
+                            break;
                         default:
                             shouldExit = true;
                             break;
                     }
                     break;
-
+                    }
                 case 3:
                     System.out.println(
                             "------------------------------------------------------------------------------------------------------------------");
@@ -171,8 +181,11 @@ public class PhanLoai {
                     System.out.println("[2] Vui ve ");
                     System.out.println("[3] Gia tuong ");
                     System.out.print("Chon linh vu muon phan loai: ");
-                    int choice2 = sc.nextInt();
-                    switch (choice2) {
+                    int choice2;
+                    String input3 = sc.next();
+                    if(isNumeric(input3)){
+                        choice2 = Integer.parseInt(input3);
+                        switch (choice2) {
                         case 1:
                             List<Sach> sachTheoLoaiSach = PhanLoai.phanLoaiTheoLoaiSach(danhSachSach, "Trinh tham");
                             PhanLoai.inDanhSachSach(sachTheoLoaiSach); // In danh sách sách đã phân loại
@@ -189,6 +202,7 @@ public class PhanLoai {
                             shouldExit = true;
                             break;
                     }
+                    }
                     break;
                 case 4:
                     System.out.println(
@@ -198,8 +212,11 @@ public class PhanLoai {
                     System.out.println("[3] Nha xuat ban C");
                     System.out.println("[4] Nha xuat ban Kim Dong");
                     System.out.print("Phan loai theo nha xuat ban: ");
-                    int choice3 = sc.nextInt();
-                    switch (choice3) {
+                    int choice3;
+                    String input4 = sc.next();
+                    if(isNumeric(input4)){
+                        choice3 = Integer.parseInt(input4);
+                        switch (choice3) {
                         case 1:
                             List<Sach> sachTheoNhaXuatBan = PhanLoai.phanLoaiNhaXuatBan(danhSachSach, "Nha xuat ban A");
                             PhanLoai.inDanhSachSach(sachTheoNhaXuatBan);
@@ -223,12 +240,13 @@ public class PhanLoai {
                             shouldExit = true;
                             break;
                     }
+                    }
                     break;
                 case 0:
                     shouldExit = true;
                     break;
             }
-
+            }
             if (shouldExit) {
                 break; // Exit the loop only if shouldExit is true
             }
@@ -246,10 +264,7 @@ public class PhanLoai {
         }
     }
 
-    // public static void main(String[] args) {
-    // List<Sach> danhSachSach = new ArrayList<>();
-    // List<HoaDonItem> hoaDonItems = new ArrayList<>();
-    // DanhSachTK ds = new DanhSachTK();
-    // NhanVien.MenuNhanVien(danhSachSach, hoaDonItems, ds);
-    // }
+    public static boolean isNumeric(String str) {
+        return str.matches("-?\\d+");
+    }
 }

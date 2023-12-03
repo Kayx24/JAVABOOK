@@ -3,11 +3,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
-
-
 public class QuyenNhanVien {
 
-    public QuyenNhanVien(){
+    public QuyenNhanVien() {
     }
 
     public void ThemNhanVien(DanhSachTK ds, List<NhanVien> dsNhanViens) {
@@ -30,14 +28,17 @@ public class QuyenNhanVien {
 
         // Set other information for NhanVien
         nv.NhapNhanVien();
-
+        nv.setUserName(userName);
+        nv.setPassword(password);
+        nv.setRole(role);
         // Add tai khoan to danh sach tai khoan
         ds.themTaiKhoan(userName, password, role);
         ds.luuDuLieuVaoFile("DanhSachTaiKhoan.txt");
         nv.docDuLieuTuFileTaiKhoan();
         // Add NhanVien to danh sach nhan vien
         dsNhanViens.add(nv);
-        nv.LuuNhanVienVaoFile(dsNhanViens);
+        //nv.LuuNhanVienVaoFile(dsNhanViens);
+        nv.LuuNhanVienVaoFile(nv);
         dsNhanViens.add(nv);
     }
 
@@ -69,7 +70,7 @@ public class QuyenNhanVien {
         System.out.println("Nhan vien da duoc xoa.");
     }
 
-    public void runQuyenNhanVien(DanhSachTK ds,List<NhanVien> dsNhanViens) {
+    public void runQuyenNhanVien(DanhSachTK ds, List<NhanVien> dsNhanViens) {
         Scanner sc = new Scanner(System.in);
         int choice;
         while (true) {
@@ -77,39 +78,35 @@ public class QuyenNhanVien {
             System.out.println("[0] Thoat.");
             System.out.println("[1] Them Nhan Vien.");
             System.out.println("[2] Xoa Nhan Vien.");
-            
+
             System.out.print("Chon de thuc hien chuc nang: ");
             boolean shouldExit = false;
-            choice = sc.nextInt();
-    
-            switch (choice) {
-                case 0:
-                    shouldExit = true;
-                    break;
-                case 1:
-                    ThemNhanVien(ds,dsNhanViens);
-                    break;
-    
-                case 2:
-                    XoaNhanVien(ds,dsNhanViens);
-                    break;
-    
-                
+            // choice = sc.nextInt();
+            String input = sc.next();
+
+            if (isNumeric(input)) {
+                choice = Integer.parseInt(input);
+                switch (choice) {
+                    case 0:
+                        shouldExit = true;
+                        break;
+                    case 1:
+                        ThemNhanVien(ds, dsNhanViens);
+                        break;
+
+                    case 2:
+                        XoaNhanVien(ds, dsNhanViens);
+                        break;
+
+                }
             }
             if (shouldExit) {
                 break; // Exit the loop only if shouldExit is true
             }
         }
     }
+
+    public static boolean isNumeric(String str) {
+        return str.matches("-?\\d+");
+    }
 }
-
-//     public static void main(String[] args) {
-//         DanhSachTK ds = new DanhSachTK();
-//         QuyenNhanVien qs = new QuyenNhanVien();
-//         List<NhanVien> dsNhanViens = new ArrayList<>();
-        
-//         qs.ThemNhanVien(ds, dsNhanViens);
-//         qs.XoaNhanVien(ds, dsNhanViens);
-//     }
-
-// }

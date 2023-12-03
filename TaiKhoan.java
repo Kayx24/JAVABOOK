@@ -105,7 +105,7 @@ class DanhSachTK {
 
 public void luuDuLieuVaoFile(String tenTepTin) {
     try {
-        FileWriter fileWriter = new FileWriter(tenTepTin, true); // Mở tệp tin với chế độ ghi mới (overwrite)
+        FileWriter fileWriter = new FileWriter(tenTepTin, false); // Mở tệp tin với chế độ ghi mới (overwrite)
         for (TaiKhoan taiKhoan : dstaikhoans) {
             String line = taiKhoan.getUserName() + "," + taiKhoan.getPassword() + "," + taiKhoan.getRole();
             fileWriter.write(line + "\n");
