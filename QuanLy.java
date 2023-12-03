@@ -76,6 +76,7 @@ public class QuanLy extends TaiKhoan {
         QuyenNhanVien qnv = new QuyenNhanVien();
         NhanVien nv = new NhanVien();
         User us = new User();
+        QuyenUser qus =new QuyenUser();
         ChiTietHoaDon cthd =new ChiTietHoaDon();
         QuyenQuanLy qql=new QuyenQuanLy() {
             @Override
@@ -108,14 +109,17 @@ public class QuanLy extends TaiKhoan {
         System.out.println("------------------------------------------------------------------------------------------------------------------");
         System.out.println("Chuc nang Quanly");
         System.out.println("[0] THOAT MENU");
-        System.out.println("[1] Lua chon cac chuc nang User");
-        System.out.println("[2] Lua chon cac chuc nang Nhan vien");
-        System.out.println("[3] Them sach");
-        System.out.println("[4] Sua Thong tin sach");
-        System.out.println("[5] Chinh sua nhan vien");
-        System.out.println("[6] Them Tai Khoan");
-        System.out.println("[7] Xoa Tai Khoan");
-        System.out.println("[8] In Danh Sach Tai Khoan");
+        System.out.println("[1] Xem danh sach sach.");
+        System.out.println("[2] Phan loai sach.");
+        System.out.println("[3] Xem thong tin quyen sach.");
+        System.out.println("[4] Them sach");
+        System.out.println("[5] Sua Thong tin sach");
+        System.out.println("[6] Chinh sua nhan vien");
+        System.out.println("[7] Them Tai Khoan");
+        System.out.println("[8] Xoa Tai Khoan");
+        System.out.println("[9] In Danh Sach Tai Khoan");
+        System.out.println("[10] Mua sach");
+        System.out.println("[11] Xuat hoa don");
         System.out.print("Chon: ");
 
         String input = sc.next();
@@ -125,29 +129,42 @@ public class QuanLy extends TaiKhoan {
                 case 0:
                     DangNhap.DangNhaptaikhoan();
                     break;
-                case 1:
-                    us.MenuUser(danhSachSach, hoaDonItems, ds, tenFile);
+                    case 1:
+                    System.out.println(
+                            "------------------------------------------------------------------------------------------------------------------");
+                    qus.Docsach();
                     break;
                 case 2:
-                    nv.MenuNhanVien(danhSachSach, hoaDonItems, ds, tenFile);
+                    PhanLoai.MenuPhanLoai(danhSachSach, hoaDonItems, ds);
                     break;
+
                 case 3:
+                    QuyenUser.xemThongTinSach(danhSachSach, tenFile);
+                    break;
+
+                case 4:
                     quyenSach.nhapThongTinSachMoi();
                     break;
-                case 4:
+                case 5:
                     quyenSach.chinhSuaThongTinSach();
                     break;
-                case 5:
+                case 6:
                     qnv.runQuyenNhanVien(ds, dNhanViens);
                     break;
-                case 6:
+                case 7:
                     qql.QuanLyThemTaiKhoan(ds);
                     break;
-                case 7:
+                case 8:
                     qql.QuanLyXoaTaiKhoan(ds);
                     break;
-                case 8:
+                case 9:
                     QuyenQuanLy.QuanLyInTaiKhoan(ds);
+                    break;
+                case 10:
+                    HoaDon.hoaDon(hoaDonItems);
+                    break;
+                case 11:
+                    ChiTietHoaDon.runChiTietHoaDon();
                     break;
                 default:
                     System.out.println("Vui long nhap lua chon hop le.");
