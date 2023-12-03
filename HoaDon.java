@@ -221,8 +221,20 @@ public class HoaDon {
                 return;
         }
 
-        System.out.print("Nhap so tai khoan ngan hang: ");
-        String soTaiKhoan = sc.nextLine();
+        String soTaiKhoan;
+
+        do {
+            System.out.print("Nhập số tài khoản (9 số): ");
+            soTaiKhoan = sc.nextLine();
+
+            // Kiểm tra xem soTaiKhoan chỉ chứa 9 số và không chứa chữ
+            if (soTaiKhoan.matches("\\d{9}") && !soTaiKhoan.matches(".*[a-zA-Z].*")) {
+                break; // Thoát khỏi vòng lặp nếu điều kiện đúng
+            } else {
+                System.out.println("Số tài khoản không hợp lệ. Vui lòng nhập lại.");
+            }
+        } while (true);
+
         System.out.println("Thanh toan thanh cong voi ngan hang " + tenNganHang + " tai khoan " + soTaiKhoan);
         luuHoaDonVaoTep(hoaDonItems);
     }
