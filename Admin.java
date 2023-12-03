@@ -4,9 +4,7 @@ import java.util.Scanner;
 public class Admin {
     public static void MenuAdmin(List<Sach> danhSachSach, List<HoaDonItem> hoaDonItems, DanhSachTK ds, List<NhanVien> dsNhanViens) {
         QuyenSach quyenSach = new QuyenSach();
-        quyenSach.kiemtraDangNhap();
-
-        if (quyenSach.isAdmin()) {
+       
             System.out.println("Chào mừng bạn đến với quyền của Admin!");
             Scanner sc = new Scanner(System.in);
             DanhSachTK danhSachTK = new DanhSachTK();
@@ -38,9 +36,6 @@ public class Admin {
                         break;
                 }
             } while (mainChoice != 0);
-        } else {
-            System.out.println("Bạn không có quyền truy cập vào quyền của Admin.");
-        }
     }
 
     private static void quanLySachMenu(Scanner sc, QuyenSach quyenSach, DanhSachTK danhSachTK) {
