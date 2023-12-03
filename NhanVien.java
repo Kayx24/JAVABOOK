@@ -277,9 +277,9 @@ public class NhanVien extends TaiKhoan {
             }
 
             Files.write(filePath, lines);
-            System.out.println("Tai khoan nhan vien da duoc xoa tu DanhSachNhanVien.txt.");
+            System.out.println("Tai khoan nhan vien da duoc xoa tu DanhSachNhanVien.");
         } catch (IOException e) {
-            System.out.println("Co loi xay ra khi xoá nhân viên tu file DanhSachNhanVien.txt.");
+            System.out.println("Co loi xay ra khi xoá nhân viên tu file DanhSachNhanVien.");
             e.printStackTrace();
         }
     }

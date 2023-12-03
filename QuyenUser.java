@@ -48,6 +48,7 @@ public class QuyenUser {
 
     public static void TaiKhoanUser(DanhSachTK ds) {
         Scanner sc = new Scanner(System.in);
+        TaiKhoan tk = new TaiKhoan();
         ds.docDuLieuTuFile("DanhSachTaiKhoan.txt");
         System.out.println("Nhap ten tai khoan muon tao: ");
         String UserName = sc.nextLine();
@@ -58,7 +59,10 @@ public class QuyenUser {
         System.out.println("Nhap mat khau muon tao: ");
         String Password = sc.nextLine();
         ds.themTaiKhoan(UserName, Password, "user");
-        ds.luuDuLieuVaoFile("DanhSachTaiKhoan.txt");
+        tk.setUserName(UserName);
+        tk.setPassword(Password);
+        tk.setRole("user");
+        ds.luuDuLieuVaoFile("DanhSachTaiKhoan.txt", tk);
     }
     public void Docsach(){
     danhSachSach = PhanLoai.DocDuLieuTuFileSach (tenFile,danhSachSach);
