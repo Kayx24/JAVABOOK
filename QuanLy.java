@@ -115,9 +115,6 @@ public class QuanLy extends TaiKhoan {
         System.out.println("[4] Them sach");
         System.out.println("[5] Sua Thong tin sach");
         System.out.println("[6] Quan ly tai khoan");
-        // System.out.println("[6] Them Tai Khoan");
-        // System.out.println("[7] Xoa Tai Khoan");
-        // System.out.println("[8] In Danh Sach Tai Khoan");
         System.out.println("[7] Mua sach");
         System.out.println("[8] Xuat hoa don");
         System.out.print("Chon: ");
@@ -151,15 +148,6 @@ public class QuanLy extends TaiKhoan {
                 case 6:
                     qql.MenuQuyenQuanLy(danhSachSach, ds);
                     break;
-                // case 6:
-                //     qql.QuanLyThemTaiKhoan(ds);
-                //     break;
-                // case 7:
-                //     qql.QuanLyXoaTaiKhoan(ds);
-                //     break;
-                // case 8:
-                //     QuyenQuanLy.QuanLyInTaiKhoan(ds);
-                //     break;
                 case 7:
                     HoaDon.hoaDon(hoaDonItems);
                     break;
