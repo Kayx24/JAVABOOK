@@ -20,7 +20,7 @@ public class QuyenUser {
         // Tim kiem cuon sach co ten gan dung la tenSach
         List<Sach> sachGanDung = new ArrayList<>();
         for (Sach sach : danhSachSach) {
-            if (sach.getTenSach().contains(tenSach)) {
+            if (sach.getTenSach().equalsIgnoreCase(tenSach)) {
                 sachGanDung.add(sach);
             }
         }
