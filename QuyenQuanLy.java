@@ -24,8 +24,9 @@ public abstract class QuyenQuanLy extends QuyenNhanVien {
         String password = sc.nextLine();
 
         String role = getRole();
+        TaiKhoan tk = new TaiKhoan(userName, password, role);
         ds.themTaiKhoan(userName, password, role);
-        ds.luuDuLieuVaoFile("DanhSachTaiKhoan.txt");
+        ds.luuDuLieuVaoFile("DanhSachTaiKhoan.txt", tk);
     }
 
     public abstract boolean CoTheXoa(String tenTaiKhoan, DanhSachTK ds);
@@ -35,7 +36,9 @@ public abstract class QuyenQuanLy extends QuyenNhanVien {
         System.out.print("Nhập tên tài khoản cần xóa: ");
         String tenTaiKhoan = sc.nextLine();
         if (CoTheXoa(tenTaiKhoan, ds) == true) {
+            //TaiKhoan tkToDelete = ds.layTaiKhoan(tenTaiKhoan);
             ds.xoaTaiKhoan(tenTaiKhoan);
+            //ds.xoaTaiKhoan(tenTaiKhoan);
             ds.luuDuLieuVaoFile("DanhSachTaiKhoan.txt");
         } else {
             System.out.println("TAI KHOAN ADMIN KHONG DUOC PHEP XOA");

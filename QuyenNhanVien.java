@@ -33,7 +33,8 @@ public class QuyenNhanVien {
         nv.setRole(role);
         // Add tai khoan to danh sach tai khoan
         ds.themTaiKhoan(userName, password, role);
-        ds.luuDuLieuVaoFile("DanhSachTaiKhoan.txt");
+        TaiKhoan tk = new TaiKhoan(userName, password, role);
+        ds.luuDuLieuVaoFile("DanhSachTaiKhoan.txt", tk);
         nv.docDuLieuTuFileTaiKhoan();
         // Add NhanVien to danh sach nhan vien
         dsNhanViens.add(nv);
@@ -58,6 +59,7 @@ public class QuyenNhanVien {
                 break;
             }
         }
+        
 
         // Remove the username from DanhSachTaiKhoan.txt
         ds.xoaTaiKhoan(userName);
