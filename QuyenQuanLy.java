@@ -9,6 +9,8 @@ public abstract class QuyenQuanLy extends QuyenNhanVien {
     public abstract String getRole();
 
     public void QuanLyThemTaiKhoan(DanhSachTK ds) {
+        List<NhanVien> dNhanViens = new ArrayList<>();
+        NhanVien nv = new NhanVien();
         Scanner sc = new Scanner(System.in);
         // ds.docDuLieuTuFile("DanhSachTaiKhoan.txt");
 
@@ -24,6 +26,13 @@ public abstract class QuyenQuanLy extends QuyenNhanVien {
         String password = sc.nextLine();
 
         String role = getRole();
+        if(role.equals("NhanVien")){
+            nv.setUserName(userName);
+            nv.setPassword(password);
+            nv.setRole(role);
+            QuyenNhanVien qnn = new QuyenNhanVien();
+            qnn.ThemNhanVien(ds, dNhanViens);
+        }
         TaiKhoan tk = new TaiKhoan(userName, password, role);
         ds.themTaiKhoan(userName, password, role);
         ds.luuDuLieuVaoFile("DanhSachTaiKhoan.txt", tk);
@@ -32,10 +41,13 @@ public abstract class QuyenQuanLy extends QuyenNhanVien {
     public abstract boolean CoTheXoa(String tenTaiKhoan, DanhSachTK ds);
 
     public void QuanLyXoaTaiKhoan(DanhSachTK ds) {
+        List<NhanVien> dsNhanViens = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ten tai khoan can xoa: ");
         String tenTaiKhoan = sc.nextLine();
+        QuyenNhanVien qnn = new QuyenNhanVien();
         if (CoTheXoa(tenTaiKhoan, ds) == true) {
+            qnn.XoaNhanVien(ds, dsNhanViens, tenTaiKhoan);
             //TaiKhoan tkToDelete = ds.layTaiKhoan(tenTaiKhoan);
             ds.xoaTaiKhoan(tenTaiKhoan);
             //ds.xoaTaiKhoan(tenTaiKhoan);
