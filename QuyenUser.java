@@ -12,6 +12,7 @@ public class QuyenUser {
 
    
     public static void xemThongTinSach(List<Sach> danhSachSach,String tenFile) {
+        danhSachSach.clear();
         Scanner sc = new Scanner(System.in);
         danhSachSach = PhanLoai.DocDuLieuTuFileSach (tenFile,danhSachSach);
         System.out.println("Nhap ten sach muon tim: ");
@@ -19,7 +20,7 @@ public class QuyenUser {
         // Tim kiem cuon sach co ten gan dung la tenSach
         List<Sach> sachGanDung = new ArrayList<>();
         for (Sach sach : danhSachSach) {
-            if (sach.getTenSach().equalsIgnoreCase(tenSach)) {
+            if (sach.getTenSach().contains(tenSach)) {
                 sachGanDung.add(sach);
             }
         }

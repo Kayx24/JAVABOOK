@@ -23,7 +23,7 @@ public class HoaDon {
                 break;
             if (tenSachMua.equals("1")) {
                 if (checkBuy) {
-                    thucHienThanhToan(hoaDonItems);
+                    thucHienThanhToan(hoaDonItems,danhSachSach);
                 } else {
                     System.out.println("Ban khong the thanh toan neu chua mua sach.");
                 }
@@ -102,6 +102,7 @@ public class HoaDon {
     }
 
     public static void luuHoaDonVaoTep(List<HoaDonItem> hoaDonItems) {
+
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter("hoadon.txt", true));
             bw.newLine();
@@ -164,9 +165,18 @@ public class HoaDon {
     }
 // trong hàm thực hiện thanh toán , sẽ tiến hành trừ số sách còn lại với số sách nếu số sách còn lại =0 thì System.out là hết sách
 //còn nếu còn sách nhưng số sách mua > số sách còn lại thì System.out không đủ
-    public static void thucHienThanhToan(List<HoaDonItem> hoaDonItems) {
+    public static void thucHienThanhToan(List<HoaDonItem> hoaDonItems,List<Sach> danhSachSach) {
         // Hiển thị tổng hóa đơn
         hienThiTatCaHoaDon(hoaDonItems);
+
+        for (HoaDonItem item : hoaDonItems) {
+            Sach sach = timSachTheoTen(danhSachSach, item.getTenSach());
+            if (sach != null && item.getSoLuongMua() > sach.getSoLuongSach()) {
+                System.out.println("So luong sach khong du hoac da het sach '" + item.getTenSach() + "'. Vui long quay lai sau.");
+                hoaDonItems.clear();
+                return; // Hủy thực hiện thanh toán
+            }
+        }
         Scanner sc = new Scanner(System.in);
         // Xử lý thanh toán
         System.out.println("Chon hinh thuc thanh toan:");
@@ -177,7 +187,7 @@ public class HoaDon {
 
         switch (choice) {
             case 1:
-                thanhToanNganHang(hoaDonItems);
+                thanhToanNganHang(hoaDonItems,danhSachSach);
                 break;
             case 2:
                 thanhToanMomo(hoaDonItems);
@@ -188,7 +198,7 @@ public class HoaDon {
         }
     }
 
-    public static void thanhToanNganHang(List<HoaDonItem> hoaDonItems) {
+    public static void thanhToanNganHang(List<HoaDonItem> hoaDonItems,List<Sach> danhSachSach) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Chon ngan hang thanh toan:");
         System.out.println("[1] BIDV");
@@ -224,26 +234,65 @@ public class HoaDon {
         String soTaiKhoan;
 
         do {
-            System.out.print("Nhập số tài khoản (9 số): ");
+            System.out.print("NHAP SO TAI KHOAN(9 S0) ");
             soTaiKhoan = sc.nextLine();
 
             // Kiểm tra xem soTaiKhoan chỉ chứa 9 số và không chứa chữ
             if (soTaiKhoan.matches("\\d{9}") && !soTaiKhoan.matches(".*[a-zA-Z].*")) {
                 break; // Thoát khỏi vòng lặp nếu điều kiện đúng
             } else {
-                System.out.println("Số tài khoản không hợp lệ. Vui lòng nhập lại.");
+                System.out.println("SO TAI KHOAN KHON HOP LE, VUI LONG NHAP LAI:");
             }
         } while (true);
 
         System.out.println("Thanh toan thanh cong voi ngan hang " + tenNganHang + " tai khoan " + soTaiKhoan);
+        for (HoaDonItem item : hoaDonItems) {
+            giamSoLuongSach(danhSachSach, item.getTenSach(), item.getSoLuongMua());
+        }
         luuHoaDonVaoTep(hoaDonItems);
+        QuyenSach.ghiDanhSachSachVaoFile("Sach.txt",danhSachSach);
     }
 
     public static void thanhToanMomo(List<HoaDonItem> hoaDonItems) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap so dien thoai Momo: ");
-        String soDienThoai = sc.nextLine();
+        String soDienThoai ;
+                do {
+            System.out.print("NHAP SO TAI KHOAN(9 S0) ");
+            soDienThoai = sc.nextLine();
+
+            // Kiểm tra xem soDienThoai chỉ chứa 9 số và không chứa chữ
+            if (soDienThoai.matches("\\d{10}") && !soDienThoai.matches(".*[a-zA-Z].*")) {
+                break; // Thoát khỏi vòng lặp nếu điều kiện đúng
+            } else {
+                System.out.println("SO TAI KHOAN KHON HOP LE, VUI LONG NHAP LAI:");
+            }
+        } while (true);
         System.out.println("Thanh toan thanh cong qua Momo voi so dien thoai " + soDienThoai);
         luuHoaDonVaoTep(hoaDonItems);
     }
+    private static void giamSoLuongSach(List<Sach> danhSachSach, String tenSach, int soLuongMua) {
+        for (Sach sach : danhSachSach) {
+            if (sach.getTenSach().equalsIgnoreCase(tenSach)) {
+                int soLuongConLai = sach.getSoLuongSach() - soLuongMua;
+                if (soLuongConLai >= 0) {
+                    sach.setSoLuongSach(soLuongConLai);
+                    System.out.println("Giam " + soLuongMua + " cuon sach '" + tenSach + "' thanh cong.");
+                } else {
+                    System.out.println("Khong du so luong sach '" + tenSach + "' de thuc hien thanh toan.");
+                }
+                break;
+            }
+        }
+    }
+
+    private static Sach timSachTheoTen(List<Sach> danhSachSach, String tenSach) {
+        for (Sach sach : danhSachSach) {
+            if (sach.getTenSach().equalsIgnoreCase(tenSach)) {
+                return sach;
+            }
+        }
+        return null;
+    }
+    
 }

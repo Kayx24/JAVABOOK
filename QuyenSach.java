@@ -2,6 +2,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -40,14 +41,22 @@ public class QuyenSach {
 
     public void nhapThongTinSachMoi() {
         System.out.println("Nhap thong tin sach moi:");
-        System.out.print("Ma sach: ");
-        int maSach = sc.nextInt();
+        int maSach ;
+        do {
+            System.out.print("Ma sach: ");
+            if (sc.hasNextInt()) {
+                maSach = sc.nextInt();
+                break; // Thoát khỏi vòng lặp nếu giá trị là số
+            } else {
+                System.out.println("Ma sach khong hop le, vui long nhap lai.");
+                sc.next(); // Đọc bỏ giá trị không hợp lệ khỏi bộ đệm đầu vào
+            }
+        } while (true);
         sc.nextLine();
         System.out.print("Ten sach: ");
         String tenSach = sc.nextLine();
-        System.out.print("Ma tac gia: ");
+        System.out.print("Linh vuc: ");
         String tenLinhVuc = sc.nextLine();
-        sc.nextLine();
         System.out.print("Ten loai sach: ");
         String tenLoaiSach = sc.nextLine();
         System.out.print("Gia bia: ");
@@ -67,14 +76,27 @@ public class QuyenSach {
         themSach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan,soLuongSach);
     }
 
-    private void ghiSachVaoFile(Sach sach) {
+    private static void ghiSachVaoFile(Sach sach) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("sach.txt", true))) {
-            writer.write(sach.toString());
+            writer.write(sach.toStringFirstTime());
             writer.newLine(); 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    public static void ghiDanhSachSachVaoFile(String tenFile, List<Sach> danhSachSach) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(tenFile))) {
+            for (Sach sach : danhSachSach) {
+                writer.write(sach.toString());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+
+    
 
     public void chinhSuaThongTinSach() {
         System.out.print("Nhap ma sach can sua: ");

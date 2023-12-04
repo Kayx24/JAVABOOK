@@ -68,7 +68,7 @@ public class Sach implements danhSachSach {
     }
 
     @Override
-    public double getGiaBia() {
+    public int getGiaBia() {
         return GiaBia;
     }
 
@@ -120,11 +120,29 @@ public class Sach implements danhSachSach {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(" Ten sach: ").append(getTenSach())
-        .append(" Gia: ").append(getGiaBia())
-        .append(" Ten Nha xuat ban:").append(getTenNhaXuatBan())
-        .append(" Nam xuat ban:").append(getNamXuatBan())
-        .append(" So luong:").append(getSoLuongSach());
+        sb.append(getMaSach())
+        .append(",").append(getTenSach())
+        .append(",").append(getTenLinhVuc())
+        .append(",").append(getTenLoaiSach())
+        .append(",").append(getGiaBia())
+        .append(",").append(getTaiBan())
+        .append(",").append(getTenNhaXuatBan())
+        .append(",").append(getNamXuatBan())
+        .append(",").append(getSoLuongSach());
+
+        return sb.toString();
+    }
+        public String toStringFirstTime() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getMaSach())
+        .append(",").append(getTenSach())
+        .append(",Linh vuc").append(getTenLinhVuc())
+        .append(",").append(getTenLoaiSach())
+        .append(",").append(getGiaBia())
+        .append(",").append(getTaiBan())
+        .append(",").append(getTenNhaXuatBan())
+        .append(",").append(getNamXuatBan())
+        .append(",").append(getSoLuongSach());
 
         return sb.toString();
     }

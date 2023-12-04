@@ -63,7 +63,7 @@ public class QuyenNhanVien {
 
         // Remove the username from DanhSachTaiKhoan.txt
         ds.xoaTaiKhoan(userName);
-        ds.luuDuLieuVaoFile("DanhSachTaiKhoan.txt");
+        ds.luuDuLieuVaoFileForDel("DanhSachTaiKhoan.txt");
 
         // Remove the username from DanhSachNhanVien.txt
         NhanVien nv = new NhanVien();

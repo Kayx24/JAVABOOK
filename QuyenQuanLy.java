@@ -12,15 +12,15 @@ public abstract class QuyenQuanLy extends QuyenNhanVien {
         Scanner sc = new Scanner(System.in);
         // ds.docDuLieuTuFile("DanhSachTaiKhoan.txt");
 
-        System.out.println("Nhập tên tài khoản muốn tạo: ");
+        System.out.println("Nhap ten tai khoan muon tao:");
         String userName = sc.nextLine();
 
         while (ds.timKiem(userName)) {
-            System.out.println("Tên tài khoản đã tồn tại. Vui lòng nhập tên khác: ");
+            System.out.println("Ten tai khoan da ton tai, vui long nhap ten khac ");
             userName = sc.nextLine();
         }
 
-        System.out.println("Nhập mật khẩu muốn tạo: ");
+        System.out.println("Nhap mat khau muon tao: ");
         String password = sc.nextLine();
 
         String role = getRole();
@@ -33,13 +33,13 @@ public abstract class QuyenQuanLy extends QuyenNhanVien {
 
     public void QuanLyXoaTaiKhoan(DanhSachTK ds) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhập tên tài khoản cần xóa: ");
+        System.out.print("Nhap ten tai khoan can xoa: ");
         String tenTaiKhoan = sc.nextLine();
         if (CoTheXoa(tenTaiKhoan, ds) == true) {
             //TaiKhoan tkToDelete = ds.layTaiKhoan(tenTaiKhoan);
             ds.xoaTaiKhoan(tenTaiKhoan);
             //ds.xoaTaiKhoan(tenTaiKhoan);
-            ds.luuDuLieuVaoFile("DanhSachTaiKhoan.txt");
+            ds.luuDuLieuVaoFileForDel("DanhSachTaiKhoan.txt");
         } else {
             System.out.println("TAI KHOAN ADMIN KHONG DUOC PHEP XOA");
         }

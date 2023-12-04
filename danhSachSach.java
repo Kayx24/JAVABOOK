@@ -11,7 +11,7 @@ public interface danhSachSach {
     String getTenLoaiSach();
     void setTenLoaiSach(String tenLoaiSach);
 
-    double getGiaBia();
+    int getGiaBia();
     void setGiaBia(double giaBia);
 
     int getTaiBan();

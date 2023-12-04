@@ -151,6 +151,20 @@ public void luuDuLieuVaoFile(String tenTepTin, TaiKhoan tk) {
             e.printStackTrace();
         }
     }
+    public void luuDuLieuVaoFileForDel(String tenTepTin) {
+    try {
+        FileWriter fileWriter = new FileWriter(tenTepTin, false); // Mở tệp tin với chế độ ghi mới (overwrite)
+        for (TaiKhoan taiKhoan : dstaikhoans) {
+            String line = taiKhoan.getUserName() + "," + taiKhoan.getPassword() + "," + taiKhoan.getRole();
+            fileWriter.write(line + "\n");
+        }
+        fileWriter.close();
+        System.out.println("Luu du lieu thanh cong!");
+    } catch (IOException e) {
+        System.out.println("Co loi xay ra khi luu du lieu vao file.");
+        e.printStackTrace();
+    }
+}
     public void xoaDuLieuTrongFile(String tenTepTin) {
     try {
         // Xóa nội dung của tệp tin
