@@ -79,6 +79,7 @@ public class Admin extends TaiKhoan {
 
     public static void MenuAdmin(List<Sach> danhSachSach, List<HoaDonItem> hoaDonItems, DanhSachTK ds, List<NhanVien> dsNhanViens) {
         QuyenSach quyenSach = new QuyenSach();
+        QuanLy ql = new QuanLy();
          QuyenQuanLy qql=new QuyenQuanLy() {
             @Override
             public String getRole() {
@@ -116,6 +117,7 @@ public class Admin extends TaiKhoan {
                 System.out.println("[1] Quan ly sach");
                 System.out.println("[2] Quan ly nhan vien");
                 System.out.println("[3] Quan ly tai khoan");
+                System.out.println("[4] Quan ly ");
 
                 System.out.print("Nhap lua chon cua ban: ");
                 String input = sc.next();
@@ -131,6 +133,9 @@ public class Admin extends TaiKhoan {
                     case 3:
                     qql.MenuQuyenQuanLy(danhSachSach, ds);
                         break;
+                    case 4:
+                    ql.MenuQuanly(danhSachSach, hoaDonItems, ds, dsNhanViens, input);
+                    break;
                     case 0:
                     DangNhap.DangNhaptaikhoan();
                     break;

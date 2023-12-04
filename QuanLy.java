@@ -114,11 +114,12 @@ public class QuanLy extends TaiKhoan {
         System.out.println("[3] Xem thong tin quyen sach.");
         System.out.println("[4] Them sach");
         System.out.println("[5] Sua Thong tin sach");
-        System.out.println("[6] Them Tai Khoan");
-        System.out.println("[7] Xoa Tai Khoan");
-        System.out.println("[8] In Danh Sach Tai Khoan");
-        System.out.println("[9] Mua sach");
-        System.out.println("[10] Xuat hoa don");
+        System.out.println("[6] Quan ly tai khoan");
+        // System.out.println("[6] Them Tai Khoan");
+        // System.out.println("[7] Xoa Tai Khoan");
+        // System.out.println("[8] In Danh Sach Tai Khoan");
+        System.out.println("[7] Mua sach");
+        System.out.println("[8] Xuat hoa don");
         System.out.print("Chon: ");
 
         String input = sc.next();
@@ -148,18 +149,21 @@ public class QuanLy extends TaiKhoan {
                     quyenSach.chinhSuaThongTinSach();
                     break;
                 case 6:
-                    qql.QuanLyThemTaiKhoan(ds);
+                    qql.MenuQuyenQuanLy(danhSachSach, ds);
                     break;
+                // case 6:
+                //     qql.QuanLyThemTaiKhoan(ds);
+                //     break;
+                // case 7:
+                //     qql.QuanLyXoaTaiKhoan(ds);
+                //     break;
+                // case 8:
+                //     QuyenQuanLy.QuanLyInTaiKhoan(ds);
+                //     break;
                 case 7:
-                    qql.QuanLyXoaTaiKhoan(ds);
-                    break;
-                case 8:
-                    QuyenQuanLy.QuanLyInTaiKhoan(ds);
-                    break;
-                case 9:
                     HoaDon.hoaDon(hoaDonItems);
                     break;
-                case 10:
+                case 8:
                     ChiTietHoaDon.runChiTietHoaDon();
                     break;
                 default:
