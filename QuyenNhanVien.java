@@ -50,6 +50,7 @@ public class QuyenNhanVien {
         //System.out.print("Ten tai khoan nhan vien muon xoa: ");
         //String userName = sc.nextLine();
 
+
         // Remove the corresponding NhanVien from dsNhanViens
         Iterator<NhanVien> iterator = dsNhanViens.iterator();
         while (iterator.hasNext()) {
@@ -59,16 +60,16 @@ public class QuyenNhanVien {
                 break;
             }
         }
-        
-
+    
         // Remove the username from DanhSachTaiKhoan.txt
         //ds.xoaTaiKhoan(userName);
         //ds.luuDuLieuVaoFileForDel("DanhSachTaiKhoan.txt");
 
+
         // Remove the username from DanhSachNhanVien.txt
         NhanVien nv = new NhanVien();
         nv.XoaNhanVienTuFile(userName, ds);
-
+    
         System.out.println("Nhan vien da duoc xoa.");
     }
 

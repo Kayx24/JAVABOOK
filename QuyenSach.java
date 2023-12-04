@@ -71,7 +71,6 @@ public class QuyenSach {
             }
         } while (true);
         sc.nextLine();
-        System.out.print("So lan tai ban: ");
         int taiBan;
                     do {
             System.out.print("So lan tai ban: ");
@@ -86,7 +85,6 @@ public class QuyenSach {
         sc.nextLine();
         System.out.print("Ten nha xuat ban: ");
         String tenNhaXuatBan = sc.nextLine();
-        System.out.print("Nam xuat ban: ");
         int namXuatBan;
             do {
             System.out.print("Nam tai ban: ");

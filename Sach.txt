@@ -1,5 +1,5 @@
-1,Conan,Linh vuc A,Trinh tham,10000,2,Nha xuat ban A,2023,86
-2,Doraemon,Linh vuc B,Vui ve,15000,3,Nha xuat ban B,2022,29
+1,Conan,Linh vuc A,Trinh tham,10000,2,Nha xuat ban A,2023,46
+2,Doraemon,Linh vuc B,Vui ve,15000,3,Nha xuat ban B,2022,30
 3,One Piece,Linh vuc C,Gia tuong,20000,4,Nha xuat ban C,2021,70
 4,Sharelock Homes,Linh vuc A,Trinh tham,25000,5,Nha xuat ban Kim Dong,2022,100
 5,Dac Nham Tam,Linh vuc D,khoa hoc,30000,5,Nha xuat ban Kim Dong,2022,50
@@ -15,3 +15,5 @@
 15,Hoc JAVA,Linh vuc E,khoa hoc,90000,1,Nha xuat ban truyen tre,2020,150
 16,Hoc UNIUX,Linh vuc E,khoa hoc,60000,4,Nha xuat ban truyen tre,2019,150
 17,Hoc Python,Linh vuc E,Khoa hoc,90000,5,Nha xuat ban truyen tre,2021,46
+
+

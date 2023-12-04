@@ -52,6 +52,7 @@ public abstract class QuyenQuanLy extends QuyenNhanVien {
             ds.xoaTaiKhoan(tenTaiKhoan);
             //ds.xoaTaiKhoan(tenTaiKhoan);
             ds.luuDuLieuVaoFileForDel("DanhSachTaiKhoan.txt");
+
         } else {
             System.out.println("TAI KHOAN ADMIN KHONG DUOC PHEP XOA");
         }

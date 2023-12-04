@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class HoaDon {
+
     public static void hoaDon(List<HoaDonItem> hoaDonItems) {
         List<Sach> danhSachSach = docDanhSachSachTuFile("Sach.txt");
         Scanner sc = new Scanner(System.in);
@@ -37,6 +38,7 @@ public class HoaDon {
                     break;
                 }
             }
+
     
             if (sachDaChon != null) {
                 // Kiểm tra số lượng sách còn đủ hay không
@@ -61,9 +63,11 @@ public class HoaDon {
                                 TaiKhoan taiKhoanDaDangNhap = danhSachTaiKhoanDaDangNhap.get(0); // Lấy tài khoản đầu tiên (có thể điều chỉnh)
                                 String maKhachHang = taiKhoanDaDangNhap.getUserName();
                                 hoaDonItems.add(new HoaDonItem(maKhachHang, ngayDatSach, tenSachMua, soLuongMua, giaSach, tongTienSach));
+
                                 hienThiTatCaHoaDon(hoaDonItems);
                             }
-break; // Exit the quantity input loop
+                            break; 
+
                         } else {
                             System.out.println("Xin loi so luong sach khong du!");
                         }
@@ -159,12 +163,13 @@ break; // Exit the quantity input loop
         System.out.println("+----------------------------------------------------------------------------------------------------+");
     }
 
+
     public static void thucHienThanhToan(List<HoaDonItem> hoaDonItems) {
+
         // Hiển thị tổng hóa đơn
         hienThiTatCaHoaDon(hoaDonItems);
         Scanner sc = new Scanner(System.in);
         int choice;
-    
         while (true) {
             System.out.println("Chon hinh thuc thanh toan:");
             System.out.println("[1] Thanh toan bang ngan hang");
@@ -199,24 +204,30 @@ break; // Exit the quantity input loop
 
     public static void thanhToanNganHang(List<HoaDonItem> hoaDonItems) {
         Scanner sc = new Scanner(System.in);
-if (hoaDonItems.isEmpty()) {
+
+        if (hoaDonItems.isEmpty()) {
+
+
+
             System.out.println("Khong co hoa don de thanh toan.");
             return;
         }
         hienThiTatCaHoaDon(hoaDonItems);
 
         // Chọn ngân hàng thanh toán
+        String tenNganHang = "";
+        int bankChoice = sc.nextInt();
+
+        do {
         System.out.println("Chon ngan hang thanh toan:");
         System.out.println("[1] BIDV");
         System.out.println("[2] Agribank");
         System.out.println("[3] MB Bank");
         System.out.println("[4] Viettinbank");
         System.out.println("[5] Vietcombank");
-        int bankChoice = sc.nextInt();
+        
         sc.nextLine();
-        String tenNganHang = "";
-
-        while (true) {
+        
             switch (bankChoice) {
                 case 1:
                     tenNganHang = "BIDV";
@@ -238,7 +249,7 @@ if (hoaDonItems.isEmpty()) {
                     continue;
             }
             break;
-        }
+        }while(bankChoice<1 || bankChoice>5);
 
         String soTaiKhoan;
 
@@ -268,11 +279,10 @@ if (hoaDonItems.isEmpty()) {
         } while (money != tongTienHoaDon);
 
         System.out.println("Thanh toan thanh cong " + money + "vnd voi ngan hang " + tenNganHang + " tai khoan " + soTaiKhoan);
+
         luuHoaDonVaoTep(hoaDonItems);
         hoaDonItems.clear();
     }
-
-
 
     public static void thanhToanMomo(List<HoaDonItem> hoaDonItems) {
         Scanner sc = new Scanner(System.in);
@@ -290,7 +300,9 @@ if (hoaDonItems.isEmpty()) {
             String soDienThoai = sc.nextLine();
         
             // Kiểm tra số điện thoại Momo
-if (soDienThoai.matches("\\d{10}")) {
+
+        if (soDienThoai.matches("\\d{10}")) {
+
                 double tongTienHoaDon = tinhTongTien(hoaDonItems);
                 System.out.println("Tong tien hoa don: " + tongTienHoaDon + " VND");
                 
@@ -314,6 +326,7 @@ if (soDienThoai.matches("\\d{10}")) {
                 System.out.println("So dien thoai Momo khong hop le. Vui long nhap lai.");
             }
         } while (!isValidPhoneNumber);
+
     }
 
     public static void capNhatSoLuongSachTrongFile(String tenSach, int soLuongMua) {
@@ -327,6 +340,7 @@ if (soDienThoai.matches("\\d{10}")) {
         }
         luuDanhSachSachVaoFile(danhSachSach, "Sach.txt");
     }
+
     public static void luuDanhSachSachVaoFile(List<Sach> danhSachSach, String file) {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(file));
@@ -342,7 +356,4 @@ if (soDienThoai.matches("\\d{10}")) {
             e.printStackTrace();
         }
     }
-
-    
-
 }

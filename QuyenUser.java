@@ -65,10 +65,18 @@ public class QuyenUser {
         tk.setRole("user");
         ds.luuDuLieuVaoFile("DanhSachTaiKhoan.txt", tk);
     }
-    public void Docsach(){
-    danhSachSach = PhanLoai.DocDuLieuTuFileSach (tenFile,danhSachSach);
-    for (Sach sach : danhSachSach) {
-            System.out.println(sach.toString());
+    public void Docsach() {
+        danhSachSach = PhanLoai.DocDuLieuTuFileSach(tenFile, danhSachSach);
+        
+        // In tiêu đề bảng
+        System.out.printf("%-6s%-30s%-20s%-20s%-12s%-8s%-25s%-8s%-12s%n",
+                "ID", "Ten Sach", "Linh Vuc", "Loai Sach", "Gia Bia", "Tai Ban", "Nha Xuat Ban", "Nam XB", "So Luong");
+
+        for (Sach sach : danhSachSach) {
+            System.out.printf("%-6s%-30s%-20s%-20s%-12s%-8s%-25s%-8s%-12s%n",
+                    sach.getMaSach(), sach.getTenSach(), sach.getTenLinhVuc(), sach.getTenLoaiSach(),
+                    sach.getGiaBia(), sach.getTaiBan(), sach.getTenNhaXuatBan(), sach.getNamXuatBan(),
+                    sach.getSoLuongSach());
         }
     }
 }

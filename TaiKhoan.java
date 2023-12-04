@@ -120,7 +120,7 @@ class DanhSachTK {
 
 public void luuDuLieuVaoFile(String tenTepTin, TaiKhoan tk) {
     try {
-        FileWriter fileWriter = new FileWriter(tenTepTin, true); // Append mode
+        FileWriter fileWriter = new FileWriter(tenTepTin, true);
         String line = tk.getUserName() + "," + tk.getPassword() + "," + tk.getRole();
         fileWriter.write(line + "\n");
         fileWriter.close();

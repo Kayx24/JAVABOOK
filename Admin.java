@@ -212,9 +212,9 @@ public class Admin extends TaiKhoan {
             public boolean CoTheXoa(String tenTaiKhoan, DanhSachTK ds) {
                 TaiKhoan tk = ds.layTaiKhoan(tenTaiKhoan);
                 if (tk != null && tk.getRole().equals("admin")) {
-                    return false; // Account with role "Admin" cannot be deleted
+                    return false; 
                 }
-                return true; // Allow deletion for other roles
+                return true; 
             }
         };
         int choice;
