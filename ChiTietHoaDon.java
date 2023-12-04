@@ -18,6 +18,7 @@ public class ChiTietHoaDon {
         List<List<HoaDonItem>> danhSachHoaDon = HoaDonFromFile("hoadon.txt");
 
         int choice;
+        while (true) {
         do {
             System.out.println("Menu:");
             System.out.println("1. In toan bo hoa don");
@@ -38,8 +39,17 @@ public class ChiTietHoaDon {
                     timHoaDonTheoMaKhachHang(danhSachHoaDon, maKhachHang);
                     break;
                 case 3:
-                    System.out.print("Nhap so hoa don can xoa: ");
-                    int soHoaDon = sc.nextInt();
+                    int soHoaDon;
+                    do {
+                        System.out.print("Nhap so hoa don can xoa: ");
+                        if (sc.hasNextInt()) {
+                            soHoaDon = sc.nextInt();
+                            break;
+                        } else {
+                            System.out.println("So hoa don khong hop le, vui long nhap lai.");
+                            sc.next();
+                        }
+                    } while (true);
                     xoaHoaDonTheoSoHoaDon(danhSachHoaDon, soHoaDon,"hoadon.txt");
                     break;
                 case 0:
@@ -50,6 +60,7 @@ public class ChiTietHoaDon {
             }
         } while (choice != 0);
     }
+}
 
 
     public static List<List<HoaDonItem>> HoaDonFromFile(String File) {

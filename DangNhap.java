@@ -24,7 +24,7 @@ public class DangNhap {
             sc.nextLine();
 
             if (tieptuc != 0 && tieptuc != 1) {
-                System.out.println("GIA TRI KHONG HOP LE. VUI LONG NHAP LAI");
+                System.out.println("GIA TRI KHONG HOP LE. VUI LONG NHAP LAI");  
             }
         } while (tieptuc != 0 && tieptuc != 1);
         if (tieptuc == 0) {

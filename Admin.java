@@ -108,7 +108,7 @@ public class Admin extends TaiKhoan {
             }
         };
        
-            System.out.println("Chao mung ban đen voi quyen cua Admin!");
+            System.out.println("Chao mung ban den voi quyen cua Admin!");
             Scanner sc = new Scanner(System.in);
             DanhSachTK danhSachTK = new DanhSachTK();
             int choice;
