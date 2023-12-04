@@ -60,14 +60,45 @@ public class QuyenSach {
         System.out.print("Ten loai sach: ");
         String tenLoaiSach = sc.nextLine();
         System.out.print("Gia bia: ");
-        int giaBia = sc.nextInt();
+        int giaBia;
+                do {
+            System.out.print("Gia bia: ");
+            if (sc.hasNextInt()) {
+                giaBia = sc.nextInt();
+                break;
+            } else {
+                System.out.println("Gia bia khong hop le, vui long nhap lai.");
+                sc.next();
+            }
+        } while (true);
+        sc.nextLine();
         System.out.print("So lan tai ban: ");
-        int taiBan = sc.nextInt();
+        int taiBan;
+                    do {
+            System.out.print("So lan tai ban: ");
+            if (sc.hasNextInt()) {
+                taiBan = sc.nextInt();
+                break;
+            } else {
+                System.out.println("Tai ban khong hop le, vui long nhap lai.");
+                sc.next();
+            }
+        } while (true);
         sc.nextLine();
         System.out.print("Ten nha xuat ban: ");
         String tenNhaXuatBan = sc.nextLine();
         System.out.print("Nam xuat ban: ");
-        int namXuatBan = sc.nextInt();
+        int namXuatBan;
+            do {
+            System.out.print("Nam tai ban: ");
+            if (sc.hasNextInt()) {
+                namXuatBan = sc.nextInt();
+                break;
+            } else {
+                System.out.println("Nam tai ban khong hop le, vui long nhap lai.");
+                sc.next();
+            }
+        } while (true);   
         sc.nextLine();
         System.out.print("So luong sach: ");
         int soLuongSach = sc.nextInt();
@@ -139,36 +170,18 @@ public class QuyenSach {
                 sc.nextLine();
                 sach.setNamXuatBan(namXuatBan);
 
+                System.out.println("Nam xuat ban hien tai: " + sach.getNamXuatBan());
+                System.out.print("Nhap nam xuat ban moi: ");
+                int soluongsach = sc.nextInt();
+                sc.nextLine();
+                sach.setSoLuongSach(soluongsach);
+
                 System.out.println("Da sua thong tin sach.");
                 return;
             }
         }
         System.out.println("Khong tim thay sach co ma " + maSach);
     }
-
-    // public void chinhSuaSoLuongSach() {
-    //     if (isAdmin) {
-    //         System.out.println("Nhap so luong sach moi: ");
-    //         int soLuongSachMoi = sc.nextInt();
-    //         Sach.setSoLuongSach(soLuongSachMoi);
-    //         System.out.println("Da chinh sua so luong sach");
-    //     } else {
-    //         System.out.println("Ban khong co quyen chinh sua so luong sach");
-    //     }
-    //     sc.nextLine(); // Đọc bỏ dòng new line
-    // }
-
-    // public boolean kiemTraSachConLai() {
-    //     return Sach.getSoLuongSach() > 0;
-    // }
-
-    // public void datMuaSach() {
-    //     if (kiemTraSachConLai()) {
-    //         System.out.println("Dat mua thanh cong.");
-    //     } else {
-    //         System.out.println("Xin loi! Da het sach.");
-    //     }
-    // }
 
     public void xoaSach(int maSach) {
         Iterator<Sach> iterator = danhSachSach.iterator();

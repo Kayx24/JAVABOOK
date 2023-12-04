@@ -185,6 +185,33 @@ public class Admin extends TaiKhoan {
 
     private static void MenuNhanVien(Scanner sc, QuyenSach quyenSach, DanhSachTK danhSachTK,List<Sach> danhSachSach, List<HoaDonItem> hoaDonItems, DanhSachTK ds, List<NhanVien> dsNhanViens) {
         QuyenNhanVien qnv = new QuyenNhanVien();
+         QuyenQuanLy qql=new QuyenQuanLy() {
+            @Override
+            public String getRole() {
+                Scanner sc = new Scanner(System.in);
+                System.out.println("Chon vai tro cho tai khoan");
+                System.out.println("[1]: user");
+                System.out.println("[2] NhanVien");
+                System.out.println("[0] Thoat");
+                int choose = sc.nextInt();
+                switch (choose) {
+                    case 1:
+                        return "user";
+                    case 2:
+                        return "NhanVien";
+                    default:
+                        return "";
+                }
+            };
+            @Override
+            public boolean CoTheXoa(String tenTaiKhoan, DanhSachTK ds) {
+                TaiKhoan tk = ds.layTaiKhoan(tenTaiKhoan);
+                if (tk != null && tk.getRole().equals("admin")) {
+                    return false; // Account with role "Admin" cannot be deleted
+                }
+                return true; // Allow deletion for other roles
+            }
+        };
         int choice;
         while (true) {
           
@@ -204,7 +231,8 @@ public class Admin extends TaiKhoan {
                     qnv.ThemNhanVien(ds, dsNhanViens);
                     break;
                 case 2:
-                    qnv.XoaNhanVien(ds, dsNhanViens);
+                    qql.QuanLyXoaTaiKhoan(ds);
+                    break;
                 default:
                     System.out.println("Lua chon khong hop le. Vui long nhap lai.");
                     break;
@@ -215,7 +243,6 @@ public class Admin extends TaiKhoan {
     }
 }
     
-
 
     public static boolean isNumeric(String str) {
         try {

@@ -114,7 +114,6 @@ public class QuanLy extends TaiKhoan {
         System.out.println("[3] Xem thong tin quyen sach.");
         System.out.println("[4] Them sach");
         System.out.println("[5] Sua Thong tin sach");
-        //System.out.println("[6] Chinh sua nhan vien");
         System.out.println("[6] Them Tai Khoan");
         System.out.println("[7] Xoa Tai Khoan");
         System.out.println("[8] In Danh Sach Tai Khoan");
@@ -148,9 +147,6 @@ public class QuanLy extends TaiKhoan {
                 case 5:
                     quyenSach.chinhSuaThongTinSach();
                     break;
-                // case 6:
-                //     qnv.runQuyenNhanVien(ds, dNhanViens);
-                //     break;
                 case 6:
                     qql.QuanLyThemTaiKhoan(ds);
                     break;

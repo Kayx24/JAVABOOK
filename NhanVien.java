@@ -299,7 +299,6 @@ public class NhanVien extends TaiKhoan {
 public static void MenuNhanVien(List<Sach> danhSachSach, List<HoaDonItem> hoaDonItems, DanhSachTK ds,
             String tenFile) {
         QuyenUser qus = new QuyenUser();
-        PhanLoai.DocDuLieuTuFileSach("Sach.txt", danhSachSach);
         Scanner sc = new Scanner(System.in);
         int choice;
 
