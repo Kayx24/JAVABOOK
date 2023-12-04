@@ -185,7 +185,6 @@ public class HoaDon {
                     for (HoaDonItem item : hoaDonItems) {
                         capNhatSoLuongSachTrongFile(item.getTenSach(), item.getSoLuongMua());
                     }
-                    hoaDonItems.clear();
                     break;
                 case 2:
                     thanhToanMomo(hoaDonItems);
@@ -193,7 +192,6 @@ public class HoaDon {
                     for (HoaDonItem item : hoaDonItems) {
                         capNhatSoLuongSachTrongFile(item.getTenSach(), item.getSoLuongMua());
                     }
-                    hoaDonItems.clear();
                     break;
                 default:
                     System.out.println("Lua chon khong hop le.");
@@ -206,15 +204,16 @@ public class HoaDon {
 
     public static void thanhToanNganHang(List<HoaDonItem> hoaDonItems) {
         Scanner sc = new Scanner(System.in);
+
         if (hoaDonItems.isEmpty()) {
+
+
+
             System.out.println("Khong co hoa don de thanh toan.");
             return;
         }
         hienThiTatCaHoaDon(hoaDonItems);
-        int bankChoice;
-        String tenNganHang = "";
 
-        do{
         // Chọn ngân hàng thanh toán
         String tenNganHang = "";
         int bankChoice = sc.nextInt();
@@ -279,10 +278,10 @@ public class HoaDon {
             }
         } while (money != tongTienHoaDon);
 
-      
         System.out.println("Thanh toan thanh cong " + money + "vnd voi ngan hang " + tenNganHang + " tai khoan " + soTaiKhoan);
 
         luuHoaDonVaoTep(hoaDonItems);
+        hoaDonItems.clear();
     }
 
     public static void thanhToanMomo(List<HoaDonItem> hoaDonItems) {
@@ -317,6 +316,7 @@ public class HoaDon {
                     if (money == tongTienHoaDon) {
                         System.out.println("Thanh toan thanh cong " + money + "đ qua Momo voi so dien thoai " + soDienThoai);
                         luuHoaDonVaoTep(hoaDonItems);
+                        hoaDonItems.clear();
                         isValidPhoneNumber = true;
                     } else {
                         System.out.println("So tien thanh toan khong dung. Vui long nhap lai.");

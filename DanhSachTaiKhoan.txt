@@ -3,3 +3,4 @@ helo2,122,user
 helo4,124,QuanLy
 helo5,125,user
 helo1,121,NhanVien
+0,0,user
