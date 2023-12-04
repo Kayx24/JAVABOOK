@@ -110,48 +110,54 @@ public class Admin extends TaiKhoan {
             System.out.println("Chao mung ban đen voi quyen cua Admin!");
             Scanner sc = new Scanner(System.in);
             DanhSachTK danhSachTK = new DanhSachTK();
-            int mainChoice;
-            do {
-                System.out.println("0. Thoot");
-                System.out.println("1. Quan ly sach");
-                System.out.println("2. Quản ly nhan vien");
-                System.out.println("3. Quản ly tai khoan");
+            int choice;
+            while (true) {
+                System.out.println("[0] Thoat");
+                System.out.println("[1] Quan ly sach");
+                System.out.println("[2] Quan ly nhan vien");
+                System.out.println("[3] Quan ly tai khoan");
 
                 System.out.print("Nhap lua chon cua ban: ");
-                mainChoice = sc.nextInt();
-
-                switch (mainChoice) {
+                String input = sc.next();
+        if (isNumeric(input)) {
+            choice = Integer.parseInt(input);
+            switch (choice) {
                     case 1:
-                        quanLySachMenu(sc, quyenSach, danhSachTK);
+                        quanLySachMenu(sc, quyenSach, danhSachTK,danhSachSach, hoaDonItems, ds,dsNhanViens);
                         break;
                     case 2:
-                        MenuNhanVien(sc, ds, dsNhanViens);
+                        MenuNhanVien(sc, quyenSach, danhSachTK, danhSachSach, hoaDonItems, ds, dsNhanViens);
                         break;
                     case 3:
                     qql.MenuQuyenQuanLy(danhSachSach, ds);
                         break;
                     case 0:
-                        System.out.println("Đa thoat chuong trinh.");
-                        break;
+                    DangNhap.DangNhaptaikhoan();
+                    break;
                     default:
                         System.out.println("Lua chon khong hop le. Vui long nhap lai.");
                         break;
                 }
-            } while (mainChoice != 0);
+            } else {
+                System.out.println("Vui long nhap mot so.");
+            }
+        }
     }
 
-    private static void quanLySachMenu(Scanner sc, QuyenSach quyenSach, DanhSachTK danhSachTK) {
+    private static void quanLySachMenu(Scanner sc, QuyenSach quyenSach, DanhSachTK danhSachTK,List<Sach> danhSachSach, List<HoaDonItem> hoaDonItems, DanhSachTK ds, List<NhanVien> dsNhanViens) {
         int choice;
-        do {
-            System.out.println("1. Them sach moi");
-            System.out.println("2. Chinh sua thong tin sach");
-            System.out.println("3. Xoa sach");
-            System.out.println("0. Quay lai");
+        while (true) {
+      
+            System.out.println("[1] Them sach moi");
+            System.out.println("[2] Chinh sua thong tin sach");
+            System.out.println("[3] Xoa sach");
+            System.out.println("[0] Quay lai");
 
             System.out.print("Nhap lua chon cua ban: ");
-            choice = sc.nextInt();
-
-            switch (choice) {
+            String input = sc.next();
+            if (isNumeric(input)) {
+                choice = Integer.parseInt(input);
+                switch (choice) {
                 case 1:
                     quyenSach.nhapThongTinSachMoi();
                     break;
@@ -164,91 +170,60 @@ public class Admin extends TaiKhoan {
                     quyenSach.xoaSach(maSachXoa);
                     break;
                 case 0:
-                    break;
+               MenuAdmin(danhSachSach, hoaDonItems, ds, dsNhanViens);
+                break;
                 default:
                     System.out.println("Lua chon khong hop le. Vui long nhap lai.");
                     break;
             }
-        } while (choice != 0);
+        } else {
+            System.out.println("Vui long nhap mot so.");
+        }
     }
 
-    private static void MenuNhanVien(Scanner sc, DanhSachTK ds, List<NhanVien> dsNhanViens) {
+}
+
+    private static void MenuNhanVien(Scanner sc, QuyenSach quyenSach, DanhSachTK danhSachTK,List<Sach> danhSachSach, List<HoaDonItem> hoaDonItems, DanhSachTK ds, List<NhanVien> dsNhanViens) {
         QuyenNhanVien qnv = new QuyenNhanVien();
         int choice;
-        do {
-            System.out.println("1. Them nhan vien");
-            System.out.println("2. Xoa nhan vien");
-            //System.out.println("3. Xem thong tin ");
-            System.out.println("0. Quay lai");
+        while (true) {
+          
+            System.out.println("[1] Them nhan vien");
+            System.out.println("[2] Xoa nhan vien");
+            System.out.println("[0] Quay lai");
 
             System.out.print("Nhap lua chon cua ban: ");
-            choice = sc.nextInt();
-
-            switch (choice) {
+            String input = sc.next();
+            if (isNumeric(input)) {
+                choice = Integer.parseInt(input);
+                switch (choice) {
+                  case 0:
+              MenuAdmin(danhSachSach, hoaDonItems, ds, dsNhanViens);
+                break;
                 case 1:
                     qnv.ThemNhanVien(ds, dsNhanViens);
                     break;
                 case 2:
                     qnv.XoaNhanVien(ds, dsNhanViens);
-                    break;
-                // case 3:
-                //     System.out.print("Nhập mã sách cần xóa: ");
-                //     int maSachXoa = sc.nextInt();
-                //     quyenSach.xoaSach(maSachXoa);
-                //     break;
-                case 0:
-                    break;
                 default:
                     System.out.println("Lua chon khong hop le. Vui long nhap lai.");
                     break;
             }
-        } while (choice != 0);
+        } else {
+            System.out.println("Vui long nhap mot so.");
+        }
     }
-    private static void Men(Scanner sc, QuyenSach quyenSach, DanhSachTK ds,List<Sach> danhSachSach) {
-        int choice;
-        QuyenQuanLy qql=new QuyenQuanLy() {
-            @Override
-            public String getRole() {
-                Scanner sc = new Scanner(System.in);
-                System.out.println("Chon vai tro cho tai khoan");
-                System.out.println("[1]: user");
-                System.out.println("[2] NhanVien");
-                System.out.println("[0] Thoat");
-                int choose = sc.nextInt();
-                switch (choose) {
-                    case 1:
-                        return "user";
-                    case 2:
-                        return "NhanVien";
-                    default:
-                        return "";
-                }
-            };
-            @Override
-            public boolean CoTheXoa(String tenTaiKhoan, DanhSachTK ds) {
-                TaiKhoan tk = ds.layTaiKhoan(tenTaiKhoan);
-                if (tk != null && tk.getRole().equals("admin")) {
-                    return false; // Account with role "Admin" cannot be deleted
-                }
-                return true; // Allow deletion for other roles
-            }
-        };
-        
-        do {
-            System.out.println("[0] Thoat phan loai .");
-            System.out.println("[1]lua chon cac quyen Tai khoan");
-            choice = sc.nextInt();
+}
+    
 
-            switch (choice) {
-                case 1:
-               qql.MenuQuyenQuanLy(danhSachSach, ds);
-                break;
 
-                default:
-                    System.out.println("Lua chon khong hop le. Vui long nhap lai.");
-                    break;
-            }
-        } while (choice != 0);
+    public static boolean isNumeric(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
    
