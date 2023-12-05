@@ -15,7 +15,8 @@ public class THONGKE {
         // MenuThongKe(danhSachHoaDon);
     // }
 
-    public static void MenuThongKe(List<List<HoaDonItem>> danhSachHoaDon) {
+    public static void MenuThongKe(List<List<HoaDonItem>> danhSachHoaDon, List<Sach> danhSachSach,List<HoaDonItem> hoaDonItems,DanhSachTK ds,List<NhanVien> dNhanViens,String tenFile) {
+       
         System.out.println("[1] Thong ke theo thoi gian");
         System.out.println("[2] Tim san pham ban chay nhat");
         System.out.println("[3] Tim san pham co thoi gian mua cu nhat");
@@ -33,18 +34,18 @@ public class THONGKE {
                     break;
                 case 2:
                     timSanPhamBanChayNhat(danhSachHoaDon);
-                    MenuThongKe(danhSachHoaDon);
+                   MenuThongKe(danhSachHoaDon, danhSachSach, hoaDonItems, ds, dNhanViens, tenFile);
                     break;
                 case 3:
                     timSanPhamCoThoiGianMuaCuNhat(danhSachHoaDon);
+                    MenuThongKe(danhSachHoaDon, danhSachSach, hoaDonItems, ds, dNhanViens, tenFile);
                     break;
                 case 4:
                     timSanPhamCoThoiGianMuaMoiNhat(danhSachHoaDon);
+                    MenuThongKe(danhSachHoaDon, danhSachSach, hoaDonItems, ds, dNhanViens, tenFile);
                     break;
-                case 0:
-                    System.out.println("Thoat chuong trinh");
-                    System.exit(0);
-                    break;
+               case 0:
+                 
                 default:
                     System.out.println("Vui long chon lua hop le");
                     break;
@@ -82,9 +83,9 @@ public class THONGKE {
 
         if (count == 0) {
             System.out.println("Khong co sach nao duoc ban trong khoang thoi gian da nhap.");
-            MenuThongKe(danhSachHoaDon);
+           MenuThongKe(danhSachHoaDon, null, null, null, null, endStr);
         }else{
-            MenuThongKe(danhSachHoaDon);
+           MenuThongKe(danhSachHoaDon, null, null, null, null, endStr);
         }
 
     } catch (ParseException e) {

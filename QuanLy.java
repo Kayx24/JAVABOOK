@@ -72,6 +72,7 @@ public class QuanLy extends TaiKhoan {
  public static void MenuQuanly(List<List<HoaDonItem>> danhSachHoaDon,List<Sach> danhSachSach,List<HoaDonItem> hoaDonItems,DanhSachTK ds,List<NhanVien> dNhanViens,String tenFile){
         Scanner sc = new Scanner(System.in);
         int choice;
+        THONGKE tke = new THONGKE();
         QuyenSach quyenSach = new QuyenSach();
         QuyenNhanVien qnv = new QuyenNhanVien();
         NhanVien nv = new NhanVien();
@@ -155,7 +156,8 @@ public class QuanLy extends TaiKhoan {
                     ChiTietHoaDon.runChiTietHoaDon();
                     break;
                 case 9: 
-                   THONGKE.MenuThongKe(danhSachHoaDon);
+                  tke.MenuThongKe(danhSachHoaDon, danhSachSach, hoaDonItems, ds, dNhanViens, tenFile);
+                  break;
                 default:
                     System.out.println("Vui long nhap lua chon hop le.");
                     break;
