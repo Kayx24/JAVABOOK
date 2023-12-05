@@ -78,6 +78,7 @@ public class QuanLy extends TaiKhoan {
         User us = new User();
         QuyenUser qus =new QuyenUser();
         ChiTietHoaDon cthd =new ChiTietHoaDon();
+        List<List<HoaDonItem>> danhSachHoaDon = ChiTietHoaDon.HoaDonFromFile("hoadon.txt");
         QuyenQuanLy qql=new QuyenQuanLy() {
             @Override
             public String getRole() {
@@ -117,6 +118,7 @@ public class QuanLy extends TaiKhoan {
         System.out.println("[6] Quan ly tai khoan");
         System.out.println("[7] Mua sach");
         System.out.println("[8] Xuat hoa don");
+        System.out.println("[9] Thong ke");
         System.out.print("Chon: ");
 
         String input = sc.next();
@@ -154,10 +156,15 @@ public class QuanLy extends TaiKhoan {
                 case 8:
                     ChiTietHoaDon.runChiTietHoaDon();
                     break;
+                case 9: 
+                    THONGKE.MenuThongKe(danhSachHoaDon);
+                    sc.nextLine();
+                    break;
                 default:
                     System.out.println("Vui long nhap lua chon hop le.");
                     break;
             }
+            break;
         } else {
             System.out.println("Vui long nhap mot so.");
         }

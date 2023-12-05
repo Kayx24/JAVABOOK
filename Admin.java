@@ -121,6 +121,7 @@ public class Admin extends TaiKhoan {
 
                 System.out.print("Nhap lua chon cua ban: ");
                 String input = sc.next();
+        
         if (isNumeric(input)) {
             choice = Integer.parseInt(input);
             switch (choice) {
@@ -131,11 +132,11 @@ public class Admin extends TaiKhoan {
                         MenuNhanVien(sc, quyenSach, danhSachTK, danhSachSach, hoaDonItems, ds, dsNhanViens);
                         break;
                     case 3:
-                    qql.MenuQuyenQuanLy(danhSachSach, ds);
+                        qql.MenuQuyenQuanLy(danhSachSach, ds);
                         break;
                     case 4:
-                    MenuQuanly(danhSachSach, hoaDonItems, ds, dsNhanViens, input);
-                    break;
+                        MenuQuanly(danhSachSach, hoaDonItems, ds, dsNhanViens, input);
+                        break;
                     case 0:
                     DangNhap.DangNhaptaikhoan();
                     break;
@@ -160,6 +161,7 @@ public class Admin extends TaiKhoan {
 
             System.out.print("Nhap lua chon cua ban: ");
             String input = sc.next();
+    
             if (isNumeric(input)) {
                 choice = Integer.parseInt(input);
                 switch (choice) {
@@ -226,11 +228,12 @@ public class Admin extends TaiKhoan {
 
             System.out.print("Nhap lua chon cua ban: ");
             String input = sc.next();
+    
             if (isNumeric(input)) {
                 choice = Integer.parseInt(input);
                 switch (choice) {
                   case 0:
-              MenuAdmin(danhSachSach, hoaDonItems, ds, dsNhanViens);
+                    MenuAdmin(danhSachSach, hoaDonItems, ds, dsNhanViens);
                 break;
                 case 1:
                     qnv.ThemNhanVien(ds, dsNhanViens);
@@ -256,6 +259,7 @@ public static void MenuQuanly(List<Sach> danhSachSach,List<HoaDonItem> hoaDonIte
     User us = new User();
     QuyenUser qus =new QuyenUser();
     ChiTietHoaDon cthd =new ChiTietHoaDon();
+    List<List<HoaDonItem>> danhSachHoaDon = ChiTietHoaDon.HoaDonFromFile("hoadon.txt");
     QuyenQuanLy qql=new QuyenQuanLy() {
         @Override
         public String getRole() {
@@ -295,6 +299,7 @@ public static void MenuQuanly(List<Sach> danhSachSach,List<HoaDonItem> hoaDonIte
     System.out.println("[6] Quan ly tai khoan");
     System.out.println("[7] Mua sach");
     System.out.println("[8] Xuat hoa don");
+    System.out.println("[9] Thong ke");
     System.out.print("Chon: ");
 
     String input = sc.next();
@@ -305,44 +310,44 @@ public static void MenuQuanly(List<Sach> danhSachSach,List<HoaDonItem> hoaDonIte
                 MenuAdmin(danhSachSach, hoaDonItems, ds, dNhanViens);
                 break;
                 case 1:
-                System.out.println(
-                        "------------------------------------------------------------------------------------------------------------------");
-                qus.Docsach();
-                break;
-            case 2:
-                PhanLoai.MenuPhanLoai(danhSachSach, hoaDonItems, ds);
-                break;
-
-            case 3:
-                QuyenUser.xemThongTinSach(danhSachSach, tenFile);
-                break;
-
-            case 4:
-                quyenSach.nhapThongTinSachMoi();
-                break;
-            case 5:
-                quyenSach.chinhSuaThongTinSach();
-                break;
-            case 6:
-                qql.MenuQuyenQuanLy(danhSachSach, ds);
-                break;
-            case 7:
-                HoaDon.hoaDon(hoaDonItems);
-                break;
-            case 8:
-                ChiTietHoaDon.runChiTietHoaDon();
-                break;
-            default:
-                System.out.println("Vui long nhap lua chon hop le.");
-                break;
+                    System.out.println(
+                            "------------------------------------------------------------------------------------------------------------------");
+                    qus.Docsach();
+                    break;
+                case 2:
+                    PhanLoai.MenuPhanLoai(danhSachSach, hoaDonItems, ds);
+                    break;
+                case 3:
+                    QuyenUser.xemThongTinSach(danhSachSach, tenFile);
+                    break;
+                case 4:
+                    quyenSach.nhapThongTinSachMoi();
+                    break;
+                case 5:
+                    quyenSach.chinhSuaThongTinSach();
+                    break;
+                case 6:
+                    qql.MenuQuyenQuanLy(danhSachSach, ds);
+                    break;
+                case 7:
+                    HoaDon.hoaDon(hoaDonItems);
+                    break;
+                case 8:
+                    ChiTietHoaDon.runChiTietHoaDon();
+                    break;
+                case 9:
+                    THONGKE.MenuThongKe(danhSachHoaDon);
+                    break;
+                default:
+                    System.out.println("Vui long nhap lua chon hop le.");
+                    break;
+                }
+            } else {
+                System.out.println("Vui long nhap mot so.");
+            }
         }
-    } else {
-        System.out.println("Vui long nhap mot so.");
     }
-}
-}
     
-
     public static boolean isNumeric(String str) {
         try {
             Integer.parseInt(str);
@@ -351,7 +356,4 @@ public static void MenuQuanly(List<Sach> danhSachSach,List<HoaDonItem> hoaDonIte
             return false;
         }
     }
-
-   
-    
 }
