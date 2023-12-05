@@ -42,6 +42,7 @@ public class DangNhap {
         
         List<HoaDonItem> hoaDonItems = new ArrayList<>();
         List<NhanVien> dNhanViens = new ArrayList<>();
+        List<List<HoaDonItem>> danhSachHoaDon = ChiTietHoaDon.HoaDonFromFile("hoadon.txt");
         // List<List<HoaDonItem>> danhSachHoaDon = new ArrayList<>();
         ds.docDuLieuTuFile("DanhSachTaiKhoan.txt");
 
@@ -61,7 +62,7 @@ public class DangNhap {
                     } else if (taiKhoanTimThay.getRole().equals("admin")) {
                         Admin.MenuAdmin(danhSachSach,hoaDonItems,ds, dNhanViens);
                     } else if (taiKhoanTimThay.getRole().equals("QuanLy")) {
-                         QuanLy.MenuQuanly(danhSachSach, hoaDonItems,ds, dNhanViens, tenFile);
+                         QuanLy.MenuQuanly(danhSachHoaDon,danhSachSach, hoaDonItems,ds, dNhanViens, tenFile);
                     } else if (taiKhoanTimThay.getRole().equals("NhanVien")) {
                         NhanVien.MenuNhanVien(danhSachSach, hoaDonItems, ds,tenFile);
                     }

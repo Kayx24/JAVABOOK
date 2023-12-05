@@ -1,16 +1,19 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class THONGKE {
     public static Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    // public static void main(String[] args) {
         List<List<HoaDonItem>> danhSachHoaDon = ChiTietHoaDon.HoaDonFromFile("hoadon.txt");
-        MenuThongKe(danhSachHoaDon);
-    }
+        // MenuThongKe(danhSachHoaDon);
+    // }
 
     public static void MenuThongKe(List<List<HoaDonItem>> danhSachHoaDon) {
         System.out.println("[1] Thong ke theo thoi gian");
@@ -30,6 +33,7 @@ public class THONGKE {
                     break;
                 case 2:
                     timSanPhamBanChayNhat(danhSachHoaDon);
+                    MenuThongKe(danhSachHoaDon);
                     break;
                 case 3:
                     timSanPhamCoThoiGianMuaCuNhat(danhSachHoaDon);
@@ -50,96 +54,133 @@ public class THONGKE {
         }
     }
 
-    public static void thongKeTheoThoiGian(List<List<HoaDonItem>> danhSachHoaDon) {
-        try {
-            System.out.print("Nhap thoi gian bat dau (dd-MM-yyyy): ");
-            String startStr = sc.nextLine();
-            if (!isValidDateFormat(startStr)) {
-                System.out.println("Ngay thang nhap khong hop le.");
-                return;
-            }
-            Date startTime = new SimpleDateFormat("dd-MM-yyyy").parse(startStr);
+  public static void thongKeTheoThoiGian(List<List<HoaDonItem>> danhSachHoaDon) {
+    try {
+        Scanner sc = new Scanner(System.in);
 
-            System.out.print("Nhap thoi gian ket thuc (dd-MM-yyyy): ");
-            String endStr = sc.nextLine();
-            if (!isValidDateFormat(endStr)) {
-                System.out.println("Ngay thang nhap khong hop le.");
-                return;
-            }
-            Date endTime = new SimpleDateFormat("dd-MM-yyyy").parse(endStr);
+        System.out.print("Nhap thoi gian bat dau (dd-MM-yyyy): ");
+        String startStr = sc.nextLine();
+        Date startTime = parseDate(startStr);
 
-            for (List<HoaDonItem> hoaDonItems : danhSachHoaDon) {
-                for (HoaDonItem item : hoaDonItems) {
-                    Date ngayDatSach = item.getNgayDatSach();
-                    if (ngayDatSach.after(startTime) && ngayDatSach.before(endTime)) {
-                        System.out.println("Ten truyen: " + item.getTenSach() +
-                                ", So luong: " + item.getSoLuongMua() +
-                                ", Tong gia: " + item.getTongTien());
-                    }
+        System.out.print("Nhap thoi gian ket thuc (dd-MM-yyyy): ");
+        String endStr = sc.nextLine();
+        Date endTime = parseDate(endStr);
+
+        int count = 0; // Biến đếm số sách được bán trong khoảng thời gian
+
+        for (List<HoaDonItem> hoaDonItems : danhSachHoaDon) {
+            for (HoaDonItem item : hoaDonItems) {
+                Date ngayDatSach = item.getNgayDatSach();
+                if (ngayDatSach.after(startTime) && ngayDatSach.before(endTime)) {
+                    System.out.println("Ten truyen: " + item.getTenSach() +
+                            ", So luong: " + item.getSoLuongMua() +
+                            ", Tong gia: " + item.getTongTien());
+                    count++;
                 }
             }
+        }
+
+        if (count == 0) {
+            System.out.println("Khong co sach nao duoc ban trong khoang thoi gian da nhap.");
+            MenuThongKe(danhSachHoaDon);
+        }else{
+            MenuThongKe(danhSachHoaDon);
+        }
+
+    } catch (ParseException e) {
+        e.printStackTrace();
+    }
+}
+
+private static Date parseDate(String dateStr) throws ParseException {
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    dateFormat.setLenient(false); // Tắt tính linh hoạt của định dạng ngày tháng
+    Date date = null;
+
+    while (date == null) {
+        try {
+            date = dateFormat.parse(dateStr);
         } catch (ParseException e) {
-            e.printStackTrace();
+            System.out.println("Ngay thang nhap khong hop le. Vui long nhap lai.");
+            System.out.print("Nhap lai thoi gian (dd-MM-yyyy): ");
+            dateStr = sc.nextLine();
         }
     }
 
+    return date;
+}
     public static boolean isValidDateFormat(String str) {
         // Định dạng dd-MM-yyyy
         String regex = "^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(\\d{4})$";
         return str.matches(regex);
     }
 
-    public static void timSanPhamBanChayNhat(List<List<HoaDonItem>> danhSachHoaDon) {
-        int maxQuantity = 0;
-        String bestProductName = "";
+   public static void timSanPhamBanChayNhat(List<List<HoaDonItem>> danhSachHoaDon) {
+    System.out.println("San pham ban chay nhat la :");
+    Map<String, Integer> sanPhamVaSoLuong = new HashMap<>();
 
-        for (List<HoaDonItem> hoaDonItems : danhSachHoaDon) {
-            for (HoaDonItem item : hoaDonItems) {
-                int currentQuantity = item.getSoLuongMua();
-                if (currentQuantity > maxQuantity) {
-                    maxQuantity = currentQuantity;
-                    bestProductName = item.getTenSach();
-                } else if (currentQuantity == maxQuantity) {
-                    // Nếu có sản phẩm trùng số lượng, cộng số lượng lại
-                    maxQuantity += currentQuantity;
-                }
+    for (List<HoaDonItem> hoaDonItems : danhSachHoaDon) {
+        for (HoaDonItem item : hoaDonItems) {
+            String tenSanPham = item.getTenSach();
+            int soLuong = item.getSoLuongMua();
+
+            // Kiểm tra xem sản phẩm đã tồn tại trong Map hay chưa
+            if (sanPhamVaSoLuong.containsKey(tenSanPham)) {
+                // Nếu đã tồn tại, cộng số lượng đã bán vào số lượng hiện tại
+                int tongSoLuong = sanPhamVaSoLuong.get(tenSanPham) + soLuong;
+                sanPhamVaSoLuong.put(tenSanPham, tongSoLuong);
+            } else {
+                // Nếu chưa tồn tại, thêm sản phẩm vào Map
+                sanPhamVaSoLuong.put(tenSanPham, soLuong);
+                
             }
         }
-
-        System.out.println("San pham ban chay nhat: " + bestProductName +
-                ", Tong so luong da mua: " + maxQuantity);
     }
 
-    public static void timSanPhamCoThoiGianMuaCuNhat(List<List<HoaDonItem>> danhSachHoaDon) {
-        Date oldestDate = new Date();
+    List<Map.Entry<String, Integer>> danhSachSanPham = new ArrayList<>(sanPhamVaSoLuong.entrySet());
 
-        for (List<HoaDonItem> hoaDonItems : danhSachHoaDon) {
-            for (HoaDonItem item : hoaDonItems) {
-                Date ngayDatSach = item.getNgayDatSach();
-                if (ngayDatSach.before(oldestDate)) {
-                    oldestDate = ngayDatSach;
-                }
+    // Sắp xếp danh sách sản phẩm theo số lượng đã bán từ cao đến thấp
+    danhSachSanPham.sort((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
+
+    // In ra danh sách sản phẩm theo thứ tự từ bán chạy nhất đến thấp nhất
+    for (Map.Entry<String, Integer> entry : danhSachSanPham) {
+        System.out.println("San pham: " + entry.getKey() +
+                ", Tong so luong da mua: " + entry.getValue());
+    }
+}
+public static void timSanPhamCoThoiGianMuaCuNhat(List<List<HoaDonItem>> danhSachHoaDon) {
+    Date oldestDate = new Date();
+    String productName = "";
+
+    for (List<HoaDonItem> hoaDonItems : danhSachHoaDon) {
+        for (HoaDonItem item : hoaDonItems) {
+            Date ngayDatSach = item.getNgayDatSach();
+            if (ngayDatSach.before(oldestDate)) {
+                oldestDate = ngayDatSach;
+                productName = item.getTenSach();
             }
         }
-
-        System.out.println("San pham co thoi gian mua cu nhat: " + oldestDate);
     }
 
-    public static void timSanPhamCoThoiGianMuaMoiNhat(List<List<HoaDonItem>> danhSachHoaDon) {
-        Date newestDate = new Date(0);
+    System.out.println("San pham co thoi gian mua cu nhat: " + productName + ", Ngay mua: " + oldestDate);
+}
 
-        for (List<HoaDonItem> hoaDonItems : danhSachHoaDon) {
-            for (HoaDonItem item : hoaDonItems) {
-                Date ngayDatSach = item.getNgayDatSach();
-                if (ngayDatSach.after(newestDate)) {
-                    newestDate = ngayDatSach;
-                }
+public static void timSanPhamCoThoiGianMuaMoiNhat(List<List<HoaDonItem>> danhSachHoaDon) {
+    Date newestDate = new Date(0);
+    String productName = "";
+
+    for (List<HoaDonItem> hoaDonItems : danhSachHoaDon) {
+        for (HoaDonItem item : hoaDonItems) {
+            Date ngayDatSach = item.getNgayDatSach();
+            if (ngayDatSach.after(newestDate)) {
+                newestDate = ngayDatSach;
+                productName = item.getTenSach();
             }
         }
-
-        System.out.println("San pham co thoi gian mua moi nhat: " + newestDate);
     }
 
+    System.out.println("San pham co thoi gian mua moi nhat: " + productName + ", Ngay mua: " + newestDate);
+}
     public static boolean isNumeric(String str) {
     try {
         Integer.parseInt(str);
