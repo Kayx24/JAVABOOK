@@ -22,9 +22,8 @@ public class THONGKE {
 
         String input = sc.nextLine();
 
-        if (input.matches("\\d+")) {
+        if (isNumeric(input)) {
             int choice = Integer.parseInt(input);
-
             switch (choice) {
                 case 1:
                     thongKeTheoThoiGian(danhSachHoaDon);
@@ -43,7 +42,7 @@ public class THONGKE {
                     System.exit(0);
                     break;
                 default:
-                    // System.out.println("Vui long chon lua hop le");
+                    System.out.println("Vui long chon lua hop le");
                     break;
             }
         } else {

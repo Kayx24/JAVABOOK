@@ -21,12 +21,12 @@ public class ChiTietHoaDon {
         while (true) {
         do {
             System.out.println("Menu:");
-            System.out.println("1. In toan bo hoa don");
-            System.out.println("2. Tim hoa don theo ma khach hang");
-            System.out.println("3. Xoa hoa don theo so hoa don");
-            System.out.println("0. Thoat");
+            System.out.println("[1] In toan bo hoa don");
+            System.out.println("[2] Tim hoa don theo ma khach hang");
+            System.out.println("[3] Xoa hoa don theo so hoa don");
+            System.out.println("[0] Thoat");
             System.out.print("Nhap lua chon cua ban: ");
-            choice = sc.nextInt();
+            choice = nextIntWithErrorCheck();
             sc.nextLine(); 
 
             switch (choice) {
@@ -46,7 +46,7 @@ public class ChiTietHoaDon {
                             soHoaDon = sc.nextInt();
                             break;
                         } else {
-                            System.out.println("So hoa don khong hop le, vui long nhap lai.");
+                            System.out.println("So hoa don khong hop le, vui long nhap lai so.");
                             sc.next();
                         }
                     } while (true);
@@ -212,6 +212,18 @@ public class ChiTietHoaDon {
             e.printStackTrace();
         }
     }
+
+    public static int nextIntWithErrorCheck() {
+        while (true) {
+            try {
+                return sc.nextInt();
+            } catch (Exception e) {
+                System.out.println("Nhap khong hop le. Vui long nhap lai mot so.");
+                sc.nextLine();
+            }
+        }
+    }
+    
 }
 
 
