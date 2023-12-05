@@ -54,10 +54,18 @@ public class THONGKE {
         try {
             System.out.print("Nhap thoi gian bat dau (dd-MM-yyyy): ");
             String startStr = sc.nextLine();
+            if (!isValidDateFormat(startStr)) {
+                System.out.println("Ngay thang nhap khong hop le.");
+                return;
+            }
             Date startTime = new SimpleDateFormat("dd-MM-yyyy").parse(startStr);
 
             System.out.print("Nhap thoi gian ket thuc (dd-MM-yyyy): ");
             String endStr = sc.nextLine();
+            if (!isValidDateFormat(endStr)) {
+                System.out.println("Ngay thang nhap khong hop le.");
+                return;
+            }
             Date endTime = new SimpleDateFormat("dd-MM-yyyy").parse(endStr);
 
             for (List<HoaDonItem> hoaDonItems : danhSachHoaDon) {
@@ -73,6 +81,12 @@ public class THONGKE {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+    }
+
+    public static boolean isValidDateFormat(String str) {
+        // Định dạng dd-MM-yyyy
+        String regex = "^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(\\d{4})$";
+        return str.matches(regex);
     }
 
     public static void timSanPhamBanChayNhat(List<List<HoaDonItem>> danhSachHoaDon) {
@@ -132,6 +146,6 @@ public class THONGKE {
         return true;
     } catch (NumberFormatException e) {
         return false;
+        }
     }
-}
 }
