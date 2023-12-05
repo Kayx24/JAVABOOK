@@ -54,7 +54,6 @@ public class PhanLoai {
             System.out.println("Co loi trong qua trinh doc file");
             e.printStackTrace();
         }
-        // System.out.println("Doc du lieu thanh cong.");
         return danhSachSach;
     }
 

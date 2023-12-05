@@ -1,7 +1,11 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class THONGKE {
@@ -11,43 +15,49 @@ public class THONGKE {
         List<List<HoaDonItem>> danhSachHoaDon = ChiTietHoaDon.HoaDonFromFile("hoadon.txt");
         MenuThongKe(danhSachHoaDon);
     }
+    
 
     public static void MenuThongKe(List<List<HoaDonItem>> danhSachHoaDon) {
-        System.out.println("[1] Thong ke theo thoi gian");
-        System.out.println("[2] Tim san pham ban chay nhat");
-        System.out.println("[3] Tim san pham co thoi gian mua cu nhat");
-        System.out.println("[4] Tìm san pham co thoi gian mua moi nhat");
-        System.out.println("[0] Thoat");
-        System.out.print("Chon: ");
+        int choice;
 
-        String input = sc.nextLine();
-
-        if (isNumeric(input)) {
-            int choice = Integer.parseInt(input);
-            switch (choice) {
-                case 1:
-                    thongKeTheoThoiGian(danhSachHoaDon);
-                    break;
-                case 2:
-                    timSanPhamBanChayNhat(danhSachHoaDon);
-                    break;
-                case 3:
-                    timSanPhamCoThoiGianMuaCuNhat(danhSachHoaDon);
-                    break;
-                case 4:
-                    timSanPhamCoThoiGianMuaMoiNhat(danhSachHoaDon);
-                    break;
-                case 0:
-                    System.out.println("Thoat chuong trinh");
-                    System.exit(0);
-                    break;
-                default:
-                    System.out.println("Vui long chon lua hop le");
-                    break;
+        do {
+            System.out.println("[1] Thong ke theo thoi gian");
+            System.out.println("[2] Tim san pham ban chay nhat");
+            System.out.println("[3] Tim san pham co thoi gian mua cu nhat");
+            System.out.println("[4] Tìm san pham co thoi gian mua moi nhat");
+            System.out.println("[0] Thoat");
+            System.out.print("Chon: ");
+    
+            String input = sc.nextLine();
+    
+            if (isNumeric(input)) {
+                choice = Integer.parseInt(input);
+    
+                switch (choice) {
+                    case 1:
+                        thongKeTheoThoiGian(danhSachHoaDon);
+                        break;
+                    case 2:
+                        timSanPhamBanChayNhat(danhSachHoaDon);
+                        break;
+                    case 3:
+                        timSanPhamCoThoiGianMuaCuNhat(danhSachHoaDon);
+                        break;
+                    case 4:
+                        timSanPhamCoThoiGianMuaMoiNhat(danhSachHoaDon);
+                        break;
+                    case 0:
+                        System.out.println("Thoat chuong trinh");
+                        break;
+                    default:
+                        System.out.println("Vui long chon lua hop le");
+                        break;
+                }
+            } else {
+                System.out.println("Vui long nhap so");
+                choice = -1; 
             }
-        } else {
-            System.out.println("Vui long nhap so");
-        }
+        } while (choice != 0);
     }
 
     public static void thongKeTheoThoiGian(List<List<HoaDonItem>> danhSachHoaDon) {
@@ -72,10 +82,13 @@ public class THONGKE {
                 for (HoaDonItem item : hoaDonItems) {
                     Date ngayDatSach = item.getNgayDatSach();
                     if (ngayDatSach.after(startTime) && ngayDatSach.before(endTime)) {
-                        System.out.println("Ten truyen: " + item.getTenSach() +
+                        System.out.println("Ten Sach: " + item.getTenSach() +
                                 ", So luong: " + item.getSoLuongMua() +
                                 ", Tong gia: " + item.getTongTien());
                     }
+                    // else{
+                    //     System.out.println("khong co don hang trong khoang thoi gian nay");
+                    // }
                 }
             }
         } catch (ParseException e) {
@@ -89,26 +102,30 @@ public class THONGKE {
         return str.matches(regex);
     }
 
+    
     public static void timSanPhamBanChayNhat(List<List<HoaDonItem>> danhSachHoaDon) {
-        int maxQuantity = 0;
-        String bestProductName = "";
-
+        Map<String, Integer> quantitySoldMap = new HashMap<>();
         for (List<HoaDonItem> hoaDonItems : danhSachHoaDon) {
             for (HoaDonItem item : hoaDonItems) {
+                String tenSach = item.getTenSach();
                 int currentQuantity = item.getSoLuongMua();
-                if (currentQuantity > maxQuantity) {
-                    maxQuantity = currentQuantity;
-                    bestProductName = item.getTenSach();
-                } else if (currentQuantity == maxQuantity) {
-                    // Nếu có sản phẩm trùng số lượng, cộng số lượng lại
-                    maxQuantity += currentQuantity;
-                }
+                quantitySoldMap.put(tenSach, quantitySoldMap.getOrDefault(tenSach, 0) + currentQuantity);
             }
         }
 
-        System.out.println("San pham ban chay nhat: " + bestProductName +
-                ", Tong so luong da mua: " + maxQuantity);
+        List<Map.Entry<String, Integer>> sortedList = new ArrayList<>(quantitySoldMap.entrySet());
+        sortedList.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
+        System.out.println("Danh sach san pham ban chay:");
+
+        for (Map.Entry<String, Integer> entry : sortedList) {
+            String tenSach = entry.getKey();
+            int totalQuantity = entry.getValue();
+
+            System.out.println("Ten Sach: " + tenSach + ", Tong so luong da ban: " + totalQuantity);
+        }
     }
+
+
 
     public static void timSanPhamCoThoiGianMuaCuNhat(List<List<HoaDonItem>> danhSachHoaDon) {
         Date oldestDate = new Date();

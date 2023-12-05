@@ -10,7 +10,7 @@ public class HoaDon {
     public static void hoaDon(List<HoaDonItem> hoaDonItems) {
         List<Sach> danhSachSach = docDanhSachSachTuFile("Sach.txt");
         Scanner sc = new Scanner(System.in);
-        boolean checkBuy = false; // Biến để kiểm tra xem khách hàng có mua sách hay không
+        boolean checkBuy = false;
     
         while (true) {
             System.out.println("[1] Thanh toan: ");
@@ -80,7 +80,7 @@ public class HoaDon {
                 System.out.println("Khong tim thay sach trong he thong.");
             }
         }
-        //======nho kt lai====
+        //======nho kt lai======
         // luuHoaDonVaoTep(hoaDonItems);
     }
     
@@ -102,15 +102,15 @@ public class HoaDon {
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length == 9) {
-                    int maSach = Integer.parseInt(parts[0]);
-                    String tenSach = parts[1];
-                    String tenLinhVuc = parts[2];
-                    String tenLoaiSach = parts[3];
-                    int giaBia = Integer.parseInt(parts[4]);
-                    int taiBan = Integer.parseInt(parts[5]);
-                    String tenNhaXuatBan = parts[6];
-                    int namXuatBan = Integer.parseInt(parts[7]);
-                    int soLuongSach = Integer.parseInt(parts[8]);
+                    int maSach = Integer.parseInt(parts[0].trim());
+                    String tenSach = parts[1].trim();
+                    String tenLinhVuc = parts[2].trim();
+                    String tenLoaiSach = parts[3].trim();
+                    int giaBia = Integer.parseInt(parts[4].trim());
+                    int taiBan = Integer.parseInt(parts[5].trim());
+                    String tenNhaXuatBan = parts[6].trim();
+                    int namXuatBan = Integer.parseInt(parts[7].trim());
+                    int soLuongSach = Integer.parseInt(parts[8].trim());
                     Sach sach = new Sach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan,soLuongSach);
                     danhSachSach.add(sach);
                 }

@@ -23,7 +23,7 @@ public class User extends TaiKhoan {
         int choice;
 
         while (true) {
-            System.out.println("------------------------------------------------------------------------------------------------------------------");
+            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
             System.out.println("Chuc nang User");
             System.out.println("[0] THOAT MENU");
             System.out.println("[1] Xem danh sach sach");
