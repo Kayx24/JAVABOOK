@@ -11,21 +11,6 @@ public class QuyenSach {
     private Scanner sc;
     private boolean isAdmin;
 
-    public void kiemtraDangNhap() {
-        System.out.print("Nhap ten dang nhap: ");
-        String tenDangNhap = sc.nextLine();
-        System.out.print("Nhap mat khau: ");
-        String matKhau = sc.nextLine();
-
-        if (tenDangNhap.equals("admin") && matKhau.equals("121")) {
-            isAdmin = true;
-            System.out.println("Dang nhap thanh cong vao tai khoan admin ");
-        } else {
-            isAdmin = false;
-            System.out.println("Dang nhap vao quyen khac ");
-        }
-    }
-
     public QuyenSach() {
         this.sc = new Scanner(System.in);
         this.isAdmin = false;

@@ -336,7 +336,7 @@ public static void MenuQuanly(List<Sach> danhSachSach,List<HoaDonItem> hoaDonIte
                     ChiTietHoaDon.runChiTietHoaDon();
                     break;
                 case 9:
-                    THONGKE.MenuThongKe(danhSachHoaDon);
+                    THONGKE.MenuThongKe(danhSachHoaDon, danhSachSach, hoaDonItems, ds, dNhanViens, input);
                     break;
                 default:
                     System.out.println("Vui long nhap lua chon hop le.");
