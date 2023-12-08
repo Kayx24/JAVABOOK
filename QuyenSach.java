@@ -1,4 +1,6 @@
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -165,17 +167,53 @@ public class QuyenSach {
         System.out.println("Khong tim thay sach co ma " + maSach);
     }
 
-    public void xoaSach(int maSach) {
-        Iterator<Sach> iterator = danhSachSach.iterator();
-        while (iterator.hasNext()) {
-            Sach sach = iterator.next();
-            if (sach.getMaSach() == maSach) {
-                iterator.remove();
-                System.out.println("Da xoa sach co ma " + maSach);
-                return;
+    public void xoaSach(int maSachXoa) {
+        List<Sach> danhSachSach = docDanhSachSachTuFile("sach.txt");
+        int index = -1;
+
+        for (int i = 0; i < danhSachSach.size(); i++) {
+            Sach sach = danhSachSach.get(i);
+            if (sach.getMaSach() == maSachXoa) {
+                index = i;
+                break;
             }
         }
-        System.out.println("Khong tim thay sach co ma " + maSach);
+
+        if (index != -1) {
+            danhSachSach.remove(index);
+            ghiDanhSachSachVaoFile("Sach.txt", danhSachSach); // Ghi lại danh sách sau khi xóa vào tệp
+            System.out.println("Da xoa sach co ma " + maSachXoa);
+        } else {
+            System.out.println("Khong tim thay sach co ma " + maSachXoa);
+        }
+    }
+
+    public static List<Sach> docDanhSachSachTuFile(String File) {
+        List<Sach> danhSachSach = new ArrayList<>();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(File));
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 9) {
+                    int maSach = Integer.parseInt(parts[0].trim());
+                    String tenSach = parts[1].trim();
+                    String tenLinhVuc = parts[2].trim();
+                    String tenLoaiSach = parts[3].trim();
+                    int giaBia = Integer.parseInt(parts[4].trim());
+                    int taiBan = Integer.parseInt(parts[5].trim());
+                    String tenNhaXuatBan = parts[6].trim();
+                    int namXuatBan = Integer.parseInt(parts[7].trim());
+                    int soLuongSach = Integer.parseInt(parts[8].trim());
+                    Sach sach = new Sach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan,soLuongSach);
+                    danhSachSach.add(sach);
+                }
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return danhSachSach;
     }
 
     public List<Sach> getDanhSachSach() {

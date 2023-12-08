@@ -15,5 +15,5 @@
 15,Hoc JAVA,Linh vuc E,khoa hoc,90000,1,Nha xuat ban truyen tre,2020,150
 16,Hoc UNIUX,Linh vuc E,khoa hoc,60000,4,Nha xuat ban truyen tre,2019,150
 17,Hoc Python,Linh vuc E,Khoa hoc,90000,5,Nha xuat ban truyen tre,2021,46
-
-
+18,HOC,Linh vucA,A,2000,2,n,2001,21
+19,asd,Linh vuc asd,asd,2,2,2001,2901,2

@@ -1,6 +1,3 @@
-
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 public class QuanLy extends TaiKhoan {
@@ -74,11 +71,7 @@ public class QuanLy extends TaiKhoan {
         int choice;
         THONGKE tke = new THONGKE();
         QuyenSach quyenSach = new QuyenSach();
-        QuyenNhanVien qnv = new QuyenNhanVien();
-        NhanVien nv = new NhanVien();
-        User us = new User();
         QuyenUser qus =new QuyenUser();
-        ChiTietHoaDon cthd =new ChiTietHoaDon();
         QuyenQuanLy qql=new QuyenQuanLy() {
             @Override
             public String getRole() {
