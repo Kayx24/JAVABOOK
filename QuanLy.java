@@ -1,11 +1,9 @@
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
-import javax.lang.model.type.NullType;
 public class QuanLy extends TaiKhoan {
+    private static int maSachXoa;
     private  String UserName;
     private  String Password;
     private  String role;
@@ -75,11 +73,7 @@ public class QuanLy extends TaiKhoan {
         Scanner sc = new Scanner(System.in);
         int choice;
         QuyenSach quyenSach = new QuyenSach();
-        QuyenNhanVien qnv = new QuyenNhanVien();
-        NhanVien nv = new NhanVien();
-        User us = new User();
         QuyenUser qus =new QuyenUser();
-        ChiTietHoaDon cthd =new ChiTietHoaDon();
         List<List<HoaDonItem>> danhSachHoaDon = ChiTietHoaDon.HoaDonFromFile("hoadon.txt");
         QuyenQuanLy qql = new QuyenQuanLy() {
             @Override
@@ -134,10 +128,11 @@ public class QuanLy extends TaiKhoan {
         System.out.println("[3] Xem thong tin quyen sach.");
         System.out.println("[4] Them sach");
         System.out.println("[5] Sua Thong tin sach");
-        System.out.println("[6] Quan ly tai khoan");
-        System.out.println("[7] Mua sach");
-        System.out.println("[8] Xuat hoa don");
-        System.out.println("[9] Thong ke");
+        System.out.println("[6] Xoa sach");
+        System.out.println("[7] Quan ly tai khoan");
+        System.out.println("[8] Mua sach");
+        System.out.println("[9] Xuat hoa don");
+        System.out.println("[10] Thong ke");
         System.out.print("Chon: ");
 
         String input = sc.next();
@@ -166,16 +161,29 @@ public class QuanLy extends TaiKhoan {
                 case 5:
                     quyenSach.chinhSuaThongTinSach();
                     break;
+
                 case 6:
-                    qql.MenuQuyenQuanLy(danhSachSach, ds);
+                    System.out.print("Nhap ma sach can xoa: ");
+                    String inputMaSachXoa = sc.next();
+                
+                    
+                    if (isNumeric(inputMaSachXoa)) {
+                        maSachXoa = Integer.parseInt(inputMaSachXoa);
+                        quyenSach.xoaSach(maSachXoa);
+                    } else {
+                        System.out.println("Vui long nhap mot so.");
+                    }
                     break;
                 case 7:
-                    HoaDon.hoaDon(hoaDonItems);
+                    qql.MenuQuyenQuanLy(danhSachSach, ds);
                     break;
                 case 8:
+                    HoaDon.hoaDon(hoaDonItems);
+                    break;
+                case 9:
                     ChiTietHoaDon.runChiTietHoaDon();
                     break;
-                case 9: 
+                case 10: 
                     THONGKE.MenuThongKe(danhSachHoaDon);
                     sc.nextLine();
                     break;

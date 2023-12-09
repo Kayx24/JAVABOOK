@@ -182,7 +182,7 @@ public class QuyenSach {
         }
 
         public void xoaSach(int maSachXoa) {
-danhSachSach = docDanhSachSachTuFile("Sach.txt");
+            danhSachSach = docDanhSachSachTuFile("Sach.txt");
     
             int index = -1;
     
@@ -190,7 +190,7 @@ danhSachSach = docDanhSachSachTuFile("Sach.txt");
                 Sach sach = danhSachSach[i];
                 if (sach != null && sach.getMaSach() == maSachXoa) {
                     index = i;
-System.out.println("Tim thay sach co ma " + maSachXoa);
+                    System.out.println("Tim thay sach co ma " + maSachXoa);
                     break;
                 }
             }
