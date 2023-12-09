@@ -110,13 +110,15 @@ public class QuyenSach {
         }
     }
     
-
     
 
+    
     public void chinhSuaThongTinSach() {
         System.out.print("Nhap ma sach can sua: ");
         int maSach = sc.nextInt();
         sc.nextLine();
+
+        danhSachSach = docDanhSachSachTuFile("sach.txt");
 
         for (Sach sach : danhSachSach) {
             if (sach.getMaSach() == maSach) {
@@ -154,12 +156,13 @@ public class QuyenSach {
                 sc.nextLine();
                 sach.setNamXuatBan(namXuatBan);
 
-                System.out.println("Nam xuat ban hien tai: " + sach.getNamXuatBan());
-                System.out.print("Nhap nam xuat ban moi: ");
+                System.out.println("So luong hien tai: " + sach.getSoLuongSach());
+                System.out.print("Nhap So luong moi: ");
                 int soluongsach = sc.nextInt();
                 sc.nextLine();
                 sach.setSoLuongSach(soluongsach);
 
+                ghiDanhSachSachVaoFile("sach.txt", danhSachSach);
                 System.out.println("Da sua thong tin sach.");
                 return;
             }
@@ -181,7 +184,7 @@ public class QuyenSach {
 
         if (index != -1) {
             danhSachSach.remove(index);
-            ghiDanhSachSachVaoFile("Sach.txt", danhSachSach); // Ghi lại danh sách sau khi xóa vào tệp
+            ghiDanhSachSachVaoFile("Sach.txt", danhSachSach); 
             System.out.println("Da xoa sach co ma " + maSachXoa);
         } else {
             System.out.println("Khong tim thay sach co ma " + maSachXoa);

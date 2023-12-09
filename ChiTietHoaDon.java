@@ -1,4 +1,3 @@
-// ko có xóa sửa, chỉ có hủy hóa đơn
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
