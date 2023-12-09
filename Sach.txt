@@ -13,5 +13,5 @@
 15,Hoc JAVA,Linh vuc E,khoa hoc,90000,1,Nha xuat ban moi,2020,150
 16,Hoc UNIUX,Linh vuc E,khoa hoc,60000,4,Nha xuat ban moi,2019,150
 17,Hoc Python,Linh vuc E,Khoa hoc,90000,5,Nha xuat ban moi,2021,4611
-13,Hoc UNITY,Linh vucE,Khoa hoc,85000,3,Nha xuat ban moi,2022,35
-19,Huy3,Linh vucLinh vuc e,Khoa hoc,57999,5,Nha xuat ban 1,2022,40
+13,Hoc UNITY,Linh vuc E,Khoa hoc,85000,3,Nha xuat ban moi,2022,35
+19,Huy3,Linh vuc e,Khoa hoc,57999,5,Nha xuat ban 1,2022,40

@@ -15,6 +15,8 @@ public class QuyenSach {
     public QuyenSach() {
         this.sc = new Scanner(System.in);
         this.isAdmin = false;
+        this.danhSachSach = docDanhSachSachTuFile("sach.txt");
+        this.soLuongSach = danhSachSach.length;
     }
 
     public void themSach(int maSach, String tenSach, String tenLinhVuc, String tenLoaiSach, int giaBia, int taiBan,
@@ -30,20 +32,34 @@ public class QuyenSach {
     }
 
 
+    private boolean kiemTraMaSachTonTai(int maSach) {
+        for (int i = 0; i < soLuongSach; i++) {
+            if (danhSachSach[i] != null && danhSachSach[i].getMaSach() == maSach) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void nhapThongTinSachMoi() {
         System.out.println("Nhap thong tin sach moi:");
-        int maSach ;
+        int maSach;
         do {
             System.out.print("Ma sach: ");
             if (sc.hasNextInt()) {
                 maSach = sc.nextInt();
-                break; // Thoát khỏi vòng lặp nếu giá trị là số
+                if (kiemTraMaSachTonTai(maSach)) {
+                    System.out.println("Ma sach da ton tai. Vui long nhap lai.");
+                } else {
+                    break;
+                }
             } else {
                 System.out.println("Ma sach khong hop le, vui long nhap lai.");
-                sc.next(); // Đọc bỏ giá trị không hợp lệ khỏi bộ đệm đầu vào
+                sc.next();
             }
         } while (true);
         sc.nextLine();
+
         System.out.print("Ten sach: ");
         String tenSach = sc.nextLine();
         System.out.print("Linh vuc: ");
@@ -51,7 +67,7 @@ public class QuyenSach {
         System.out.print("Ten loai sach: ");
         String tenLoaiSach = sc.nextLine();
         int giaBia;
-                do {
+        do {
             System.out.print("Gia bia: ");
             if (sc.hasNextInt()) {
                 giaBia = sc.nextInt();
@@ -63,7 +79,7 @@ public class QuyenSach {
         } while (true);
         sc.nextLine();
         int taiBan;
-                    do {
+        do {
             System.out.print("So lan tai ban: ");
             if (sc.hasNextInt()) {
                 taiBan = sc.nextInt();
@@ -77,7 +93,7 @@ public class QuyenSach {
         System.out.print("Ten nha xuat ban: ");
         String tenNhaXuatBan = sc.nextLine();
         int namXuatBan;
-            do {
+        do {
             System.out.print("Nam tai ban: ");
             if (sc.hasNextInt()) {
                 namXuatBan = sc.nextInt();
@@ -86,11 +102,11 @@ public class QuyenSach {
                 System.out.println("Nam tai ban khong hop le, vui long nhap lai.");
                 sc.next();
             }
-        } while (true);   
+        } while (true);
         sc.nextLine();
-        
+
         int soLuongSach;
-            do {
+        do {
             System.out.print("So luong sach: ");
             if (sc.hasNextInt()) {
                 soLuongSach = sc.nextInt();
@@ -100,7 +116,7 @@ public class QuyenSach {
                 sc.next();
             }
         } while (true);
-        themSach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan,soLuongSach);
+        themSach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan, soLuongSach);
     }
 
     private static void ghiSachVaoFile(Sach sach) {
@@ -146,14 +162,30 @@ public class QuyenSach {
     
                     System.out.println("Gia sach hien tai: " + sach.getGiaBia());
                     System.out.print("Nhap gia sach moi: ");
-                    int giaBia = sc.nextInt();
-                    sc.nextLine();
+                    int giaBia;
+                    do {
+                        if (sc.hasNextInt()) {
+                            giaBia = sc.nextInt();
+                            break;
+                        } else {
+                            System.out.println("Gia bia khong hop le, vui long nhap lai.");
+                            sc.next();
+                        }
+                    } while (true);
                     sach.setGiaBia(giaBia);
     
                     System.out.println("So lan tai ban hien tai: " + sach.getTaiBan());
                     System.out.print("Nhap so lan tai ban moi: ");
-                    int taiBan = sc.nextInt();
-                    sc.nextLine();
+                    int taiBan;
+                    do {
+                        if (sc.hasNextInt()) {
+                            taiBan = sc.nextInt();
+                            break;
+                        } else {
+                            System.out.println("Tai ban khong hop le, vui long nhap lai.");
+                            sc.next();
+                        }
+                    } while (true);
                     sach.setTaiBan(taiBan);
     
                     System.out.println("Ten nha xuat ban hien tai: " + sach.getTenNhaXuatBan());
@@ -163,14 +195,31 @@ public class QuyenSach {
     
                     System.out.println("Nam xuat ban hien tai: " + sach.getNamXuatBan());
                     System.out.print("Nhap nam xuat ban moi: ");
-                    int namXuatBan = sc.nextInt();
+                    int namXuatBan;
+                    do {
+                        if (sc.hasNextInt()) {
+                            namXuatBan = sc.nextInt();
+                            break;
+                        } else {
+                            System.out.println("Gia bia khong hop le, vui long nhap lai.");
+                            sc.next();
+                        }
+                    } while (true);
                     sc.nextLine();
                     sach.setNamXuatBan(namXuatBan);
     
-                    System.out.println("Nam xuat ban hien tai: " + sach.getNamXuatBan());
-                    System.out.print("Nhap nam xuat ban moi: ");
-                    int soluongsach = sc.nextInt();
-                    sc.nextLine();
+                    System.out.println("So luong sach hien tai: " + sach.getSoLuongSach());
+                    System.out.print("So luong sach moi: ");
+                    int soluongsach;
+                    do {
+                        if (sc.hasNextInt()) {
+                            soluongsach = sc.nextInt();
+                            break;
+                        } else {
+                            System.out.println("Gia bia khong hop le, vui long nhap lai.");
+                            sc.next();
+                        }
+                    } while (true);
                     sach.setSoLuongSach(soluongsach);
     
                     System.out.println("Da sua thong tin sach.");
