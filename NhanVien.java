@@ -9,8 +9,6 @@ import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Scanner;
 
 public class NhanVien extends TaiKhoan {
@@ -226,7 +224,8 @@ public class NhanVien extends TaiKhoan {
         }
     }
 
-    public void DocDuNhanVienTuFile(List<NhanVien> dsNhanViens) {
+    public void DocDuNhanVienTuFile(NhanVien[] dsNhanViens) {
+        int index = 0;
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader("DanhSachNhanVien.txt"))) {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
@@ -251,7 +250,7 @@ public class NhanVien extends TaiKhoan {
                     nv.setNgayBatDauLam(ngayBatDauLam);
                     nv.setTrangThaiCongViec(trangThaiLamViec);
 
-                    dsNhanViens.add(nv);
+                    dsNhanViens[index++] = nv;
                 }
             }
             System.out.println("Doc du lieu tu file thanh cong!");
@@ -263,26 +262,26 @@ public class NhanVien extends TaiKhoan {
 
     public void XoaNhanVienTuFile(String userName, DanhSachTK ds) {
         Path filePath = Paths.get("DanhSachNhanVien.txt");
-
+    
         try {
-            List<String> lines = Files.readAllLines(filePath);
-            Iterator<String> iterator = lines.iterator();
-            while (iterator.hasNext()) {
-                String line = iterator.next();
-                String[] parts = line.split(",");
-                if (parts.length > 0 && parts[0].trim().equals(userName)) {
-                    iterator.remove();
-                    break;
+            String[] linesArray = Files.readAllLines(filePath).toArray(new String[0]);
+            // Your existing code...
+    
+            // Instead of using Files.write, you can use a BufferedWriter to write the array to the file
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter("DanhSachNhanVien.txt"))) {
+                for (String line : linesArray) {
+                    writer.write(line);
+                    writer.newLine();
                 }
             }
-
-            Files.write(filePath, lines);
+    
             System.out.println("Tai khoan nhan vien da duoc xoa tu DanhSachNhanVien.");
         } catch (IOException e) {
             System.out.println("Co loi xay ra khi xoá nhân viên tu file DanhSachNhanVien.");
             e.printStackTrace();
         }
     }
+    
 
 
     @Override
@@ -296,8 +295,7 @@ public class NhanVien extends TaiKhoan {
                 + ", TrangThaiCongViec=" + TrangThaiCongViec + "]";
     }
 
-public static void MenuNhanVien(List<Sach> danhSachSach, List<HoaDonItem> hoaDonItems, DanhSachTK ds,
-        String tenFile) {
+    public static void MenuNhanVien(Sach[] danhSachSach, HoaDonItem[] hoaDonItems, DanhSachTK ds, String tenFile) {
         QuyenUser qus = new QuyenUser();
         Scanner sc = new Scanner(System.in);
         int choice;

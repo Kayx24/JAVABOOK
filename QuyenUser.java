@@ -7,12 +7,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class QuyenUser {
-    List<Sach> danhSachSach = new ArrayList<>();
+    Sach[] danhSachSach;
     String tenFile = "Sach.txt";
 
    
-    public static void xemThongTinSach(List<Sach> danhSachSach,String tenFile) {
-        danhSachSach.clear();
+    public static void xemThongTinSach(Sach[] danhSachSach,String tenFile) {
         Scanner sc = new Scanner(System.in);
         danhSachSach = PhanLoai.DocDuLieuTuFileSach (tenFile,danhSachSach);
         System.out.println("Nhap ten sach muon tim: ");

@@ -8,11 +8,10 @@
 8,Truong thanh,Linh vuc B,Vui ve,20000,8,Nha xuat ban Nhi Dong,2023,30
 9,Cosmos,linh vuc E,khoa hoc,30000,10,Nha xuat ban Kim Dong,2023,50
 10,Ve Truyen,linh vuc B,Vui ve,50000,4,Nha xuat ban Kim Khanh,2021,30
-11,Chien tranh lanh,linh vuc E,Gia tuong,60000,3,Nha xuat ban Kim Dong,2009,70
 12,Hoc Code,Linh vuc A,khoa hoc,70000,5,Nha xuat ban truyen tre,2020,150
 13,Hoc C++,Linh vuc E,khoa hoc,80000,7,Nha xuat ban truyen tre,2021,150
 14,Hoc C#,Linh vuc E,khoa hoc,50000,4,Nha xuat ban truyen tre,2022,150
 15,Hoc JAVA,Linh vuc E,khoa hoc,90000,1,Nha xuat ban truyen tre,2020,150
 16,Hoc UNIUX,Linh vuc E,khoa hoc,60000,4,Nha xuat ban truyen tre,2019,150
-17,Hoc Python,Linh vuc E,Khoa hoc,90000,5,Nha xuat ban truyen tre,2021,46
-18,HOC,Linh vucA,A,2000,2,n,2001,21
+17,Hoc Python,Linh vuc E,Khoa hoc,90000,5,Nha xuat ban truyen tre,2021,4611
+18,Huy2,Linh vucLinh vuc a,TEST,30333,23,Huy2,2022,12

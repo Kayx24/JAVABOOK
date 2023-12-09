@@ -8,7 +8,8 @@ public class QuyenNhanVien {
     public QuyenNhanVien() {
     }
 
-    public void ThemNhanVien(DanhSachTK ds, List<NhanVien> dsNhanViens) {
+    public void ThemNhanVien(DanhSachTK ds, NhanVien[] dsNhanViens) {
+        int index=0;
         NhanVien nv = new NhanVien();
         Scanner sc = new Scanner(System.in);
         //ds.docDuLieuTuFile("DanhSachTaiKhoan.txt");
@@ -37,7 +38,7 @@ public class QuyenNhanVien {
         //ds.luuDuLieuVaoFile("DanhSachTaiKhoan.txt", tk);
         nv.docDuLieuTuFileTaiKhoan();
         // Add NhanVien to danh sach nhan vien
-        dsNhanViens.add(nv);
+        dsNhanViens[index++]=nv;
         //nv.LuuNhanVienVaoFile(dsNhanViens);
         nv.LuuNhanVienVaoFile(nv);
         //dsNhanViens.add(nv);

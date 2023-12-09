@@ -136,7 +136,7 @@ public class Sach implements danhSachSach {
         StringBuilder sb = new StringBuilder();
         sb.append(getMaSach())
         .append(",").append(getTenSach())
-        .append(",Linh vuc ").append(getTenLinhVuc())
+        .append(",Linh vuc").append(getTenLinhVuc())
         .append(",").append(getTenLoaiSach())
         .append(",").append(getGiaBia())
         .append(",").append(getTaiBan())

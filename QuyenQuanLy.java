@@ -9,7 +9,7 @@ public abstract class QuyenQuanLy extends QuyenNhanVien {
     public abstract String getRole();
 
     public void QuanLyThemTaiKhoan(DanhSachTK ds) {
-        List<NhanVien> dNhanViens = new ArrayList<>();
+        NhanVien[] dNhanViens = new NhanVien[1000];
         NhanVien nv = new NhanVien();
         Scanner sc = new Scanner(System.in);
         // ds.docDuLieuTuFile("DanhSachTaiKhoan.txt");
@@ -62,7 +62,7 @@ public abstract class QuyenQuanLy extends QuyenNhanVien {
         ds.inTaiKhoan();
     }
 
-    public void MenuQuyenQuanLy(List<Sach> danhSachSach, DanhSachTK ds) {
+    public void MenuQuyenQuanLy(Sach[] danhSachSach, DanhSachTK ds) {
         Scanner sc = new Scanner(System.in);
         int choice;
         while (true) {

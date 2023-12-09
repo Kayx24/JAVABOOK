@@ -1,5 +1,10 @@
+
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+
+import javax.lang.model.type.NullType;
 public class QuanLy extends TaiKhoan {
     private  String UserName;
     private  String Password;
@@ -7,7 +12,6 @@ public class QuanLy extends TaiKhoan {
     private String MaQL;
     private String TenQL;
     private String Duoi;
-
 
     public QuanLy (){
 
@@ -66,53 +70,71 @@ public class QuanLy extends TaiKhoan {
         Duoi = duoi;
     }
 
- public static void MenuQuanly(List<List<HoaDonItem>> danhSachHoaDon,List<Sach> danhSachSach,List<HoaDonItem> hoaDonItems,DanhSachTK ds,List<NhanVien> dNhanViens,String tenFile){
+
+ public static void MenuQuanly(Sach[] danhSachSach,HoaDonItem[] hoaDonItems,DanhSachTK ds,NhanVien[] dNhanViens,String tenFile){
         Scanner sc = new Scanner(System.in);
         int choice;
-        THONGKE tke = new THONGKE();
         QuyenSach quyenSach = new QuyenSach();
+        QuyenNhanVien qnv = new QuyenNhanVien();
+        NhanVien nv = new NhanVien();
+        User us = new User();
         QuyenUser qus =new QuyenUser();
+        ChiTietHoaDon cthd =new ChiTietHoaDon();
+        List<List<HoaDonItem>> danhSachHoaDon = ChiTietHoaDon.HoaDonFromFile("hoadon.txt");
         QuyenQuanLy qql=new QuyenQuanLy() {
             @Override
             public String getRole() {
-                Scanner sc = new Scanner(System.in);
-                System.out.println("Chon vai tro cho tai khoan");
-                System.out.println("[1]: user");
-                System.out.println("[2] NhanVien");
-                System.out.println("[0] Thoat");
-                int choose = sc.nextInt();
-                switch (choose) {
-                    case 1:
-                        return "user";
-                    case 2:
-                        return "NhanVien";
-                    default:
-                        return "";
+                int tieptuc;
+                do {
+                    while (!sc.hasNextInt()) {
+                        Scanner sc = new Scanner(System.in);
+                        System.out.println("Chon vai tro cho tai khoan");
+                        System.out.println("[1] user");
+                        System.out.println("[2] NhanVien");
+                        System.out.println("[0] Thoat");
+                        sc.next();
+                    }
+                    tieptuc = sc.nextInt();
+                    sc.nextLine();
+        
+                    if (tieptuc != 0 && tieptuc != 1 && tieptuc != 2) {
+                        System.out.println("GIA TRI KHONG HOP LE. VUI LONG NHAP LAI");
+                    }
+                } while (tieptuc != 0 && tieptuc != 1 && tieptuc != 2);
+        
+                if (tieptuc == 1) {
+                    return "user";
+                } else if (tieptuc == 2) {
+                    return "NhanVien";
+                } else {
+                    System.out.println("GIA TRI KHONG HOP LE. VUI LONG NHAP LAI");
+                    return getRole();
                 }
-            };
+            }
             @Override
             public boolean CoTheXoa(String tenTaiKhoan, DanhSachTK ds) {
                 TaiKhoan tk = ds.layTaiKhoan(tenTaiKhoan);
                 if (tk != null && tk.getRole().equals("admin")) {
                     return false; // Account with role "Admin" cannot be deleted
                 }
-                return true; // Allow deletion for other roles
+                return true; 
             }
         };
-         while (true) {
-            System.out.println("------------------------------------------------------------------------------------------------------------------");
-            System.out.println("Chuc nang Quanly");
-            System.out.println("[0] THOAT MENU");
-            System.out.println("[1] Xem danh sach sach.");
-            System.out.println("[2] Phan loai sach.");
-            System.out.println("[3] Xem thong tin quyen sach.");
-            System.out.println("[4] Them sach");
-            System.out.println("[5] Sua Thong tin sach");
-            System.out.println("[6] Quan ly tai khoan");
-            System.out.println("[7] Mua sach");
-            System.out.println("[8] Xuat hoa don");
-            System.out.println("[9] Thong ke");
-            System.out.print("Chon: ");
+        while (true) {
+        System.out.println("------------------------------------------------------------------------------------------------------------------");
+        System.out.println("Chuc nang Quanly");
+        System.out.println("[0] THOAT MENU");
+        System.out.println("[1] Xem danh sach sach.");
+        System.out.println("[2] Phan loai sach.");
+        System.out.println("[3] Xem thong tin quyen sach.");
+        System.out.println("[4] Them sach");
+        System.out.println("[5] Sua Thong tin sach");
+        System.out.println("[6] Quan ly tai khoan");
+        System.out.println("[7] Mua sach");
+        System.out.println("[8] Xuat hoa don");
+        System.out.println("[9] Thong ke");
+        System.out.print("Chon: ");
+
         String input = sc.next();
         if (isNumeric(input)) {
             choice = Integer.parseInt(input);
@@ -149,8 +171,9 @@ public class QuanLy extends TaiKhoan {
                     ChiTietHoaDon.runChiTietHoaDon();
                     break;
                 case 9: 
-                  tke.MenuThongKe(danhSachHoaDon, danhSachSach, hoaDonItems, ds, dNhanViens, tenFile);
-                  break;
+                    THONGKE.MenuThongKe(danhSachHoaDon);
+                    sc.nextLine();
+                    break;
                 default:
                     System.out.println("Vui long nhap lua chon hop le.");
                     break;

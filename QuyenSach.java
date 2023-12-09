@@ -3,13 +3,12 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class QuyenSach {
-    private List<Sach> danhSachSach = new ArrayList<>();
+    private Sach[] danhSachSach = new Sach[1000];
+    private int soLuongSach;
     private Scanner sc;
     private boolean isAdmin;
 
@@ -18,12 +17,18 @@ public class QuyenSach {
         this.isAdmin = false;
     }
 
-    public void themSach(int maSach, String tenSach,String tenLinhVuc, String tenLoaiSach, int giaBia, int taiBan,
-                         String tenNhaXuatBan, int namXuatBan,int soLuongSach) {
-        Sach sach = new Sach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan,soLuongSach);
-        danhSachSach.add(sach);
-        ghiSachVaoFile(sach);
+    public void themSach(int maSach, String tenSach, String tenLinhVuc, String tenLoaiSach, int giaBia, int taiBan,
+                         String tenNhaXuatBan, int namXuatBan, int soLuongSach) {
+        if (soLuongSach < 1000) {
+            Sach sach = new Sach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan, soLuongSach);
+            danhSachSach[soLuongSach] = sach;
+            soLuongSach++;
+            ghiSachVaoFile(sach);
+        } else {
+            System.out.println("Danh sach sach da dat toi gioi han (1000 phan tu). Khong the them moi.");
+        }
     }
+
 
     public void nhapThongTinSachMoi() {
         System.out.println("Nhap thong tin sach moi:");
@@ -45,7 +50,6 @@ public class QuyenSach {
         String tenLinhVuc = sc.nextLine();
         System.out.print("Ten loai sach: ");
         String tenLoaiSach = sc.nextLine();
-        System.out.print("Gia bia: ");
         int giaBia;
                 do {
             System.out.print("Gia bia: ");
@@ -84,10 +88,18 @@ public class QuyenSach {
             }
         } while (true);   
         sc.nextLine();
-        System.out.print("So luong sach: ");
-        int soLuongSach = sc.nextInt();
-        sc.nextLine();
-
+        
+        int soLuongSach;
+            do {
+            System.out.print("So luong sach: ");
+            if (sc.hasNextInt()) {
+                soLuongSach = sc.nextInt();
+                break;
+            } else {
+                System.out.println("so luong khong hop le, vui long nhap lai.");
+                sc.next();
+            }
+        } while (true);
         themSach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan,soLuongSach);
     }
 
@@ -99,29 +111,36 @@ public class QuyenSach {
             e.printStackTrace();
         }
     }
-    public static void ghiDanhSachSachVaoFile(String tenFile, List<Sach> danhSachSach) {
+
+    public Sach[] toArray() {
+        return Arrays.copyOf(danhSachSach, soLuongSach);
+    }
+
+    private void ghiDanhSachSachVaoFile(String tenFile) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(tenFile))) {
-            for (Sach sach : danhSachSach) {
-                writer.write(sach.toString());
-                writer.newLine();
+            Sach[] sachArray = toArray();
+            for (Sach sach : sachArray) {
+                if (sach != null) {
+                    writer.write(sach.toString());
+                    writer.newLine();
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
     
-    
 
     
+
     public void chinhSuaThongTinSach() {
+        danhSachSach = docDanhSachSachTuFile("sach.txt");
         System.out.print("Nhap ma sach can sua: ");
         int maSach = sc.nextInt();
         sc.nextLine();
 
-        danhSachSach = docDanhSachSachTuFile("sach.txt");
-
         for (Sach sach : danhSachSach) {
-            if (sach.getMaSach() == maSach) {
+            if (sach != null && sach.getMaSach() == maSach) {
                 System.out.println("Thong tin sach can sua:");
                 System.out.println("Ten sach hien tai: " + sach.getTenSach());
                 System.out.print("Nhap ten sach moi: ");
@@ -156,45 +175,54 @@ public class QuyenSach {
                 sc.nextLine();
                 sach.setNamXuatBan(namXuatBan);
 
-                System.out.println("So luong hien tai: " + sach.getSoLuongSach());
-                System.out.print("Nhap So luong moi: ");
+                System.out.println("Nam xuat ban hien tai: " + sach.getNamXuatBan());
+                System.out.print("Nhap nam xuat ban moi: ");
                 int soluongsach = sc.nextInt();
                 sc.nextLine();
                 sach.setSoLuongSach(soluongsach);
 
-                ghiDanhSachSachVaoFile("sach.txt", danhSachSach);
                 System.out.println("Da sua thong tin sach.");
+                ghiDanhSachSachVaoFile("Sach.txt");
                 return;
             }
         }
         System.out.println("Khong tim thay sach co ma " + maSach);
     }
-
+    
     public void xoaSach(int maSachXoa) {
-        List<Sach> danhSachSach = docDanhSachSachTuFile("sach.txt");
+        danhSachSach = docDanhSachSachTuFile("Sach.txt");
+    
         int index = -1;
 
-        for (int i = 0; i < danhSachSach.size(); i++) {
-            Sach sach = danhSachSach.get(i);
-            if (sach.getMaSach() == maSachXoa) {
+        for (int i = 0; i < soLuongSach; i++) {
+            Sach sach = danhSachSach[i];
+            if (sach != null && sach.getMaSach() == maSachXoa) {
                 index = i;
+                System.out.println("Tim thay sach co ma " + maSachXoa);
                 break;
             }
         }
-
+    
         if (index != -1) {
-            danhSachSach.remove(index);
-            ghiDanhSachSachVaoFile("Sach.txt", danhSachSach); 
+
+            for (int i = index; i < soLuongSach - 1; i++) {
+                danhSachSach[i] = danhSachSach[i + 1];
+            }
+            danhSachSach[soLuongSach - 1] = null;
+            soLuongSach--;
+            ghiDanhSachSachVaoFile("Sach.txt");
             System.out.println("Da xoa sach co ma " + maSachXoa);
         } else {
             System.out.println("Khong tim thay sach co ma " + maSachXoa);
         }
     }
+    
 
-    public static List<Sach> docDanhSachSachTuFile(String File) {
-        List<Sach> danhSachSach = new ArrayList<>();
+    private Sach[] docDanhSachSachTuFile(String file) {
+        Sach[] danhSachSach = new Sach[1000];
+        int soLuong = 0;
         try {
-            BufferedReader br = new BufferedReader(new FileReader(File));
+            BufferedReader br = new BufferedReader(new FileReader(file));
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split(",");
@@ -208,20 +236,25 @@ public class QuyenSach {
                     String tenNhaXuatBan = parts[6].trim();
                     int namXuatBan = Integer.parseInt(parts[7].trim());
                     int soLuongSach = Integer.parseInt(parts[8].trim());
-                    Sach sach = new Sach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan,soLuongSach);
-                    danhSachSach.add(sach);
+                    Sach sach = new Sach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan, soLuongSach);
+    
+                    if (soLuong < 1000) {
+                        danhSachSach[soLuong] = sach;
+                        soLuong++;
+                    } else {
+                        System.out.println("Danh sach sach da dat toi gioi han (1000 phan tu). Khong the doc them.");
+                        break;
+                    }
                 }
             }
             br.close();
+            this.soLuongSach = soLuong;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return danhSachSach;
+        return Arrays.copyOf(danhSachSach, soLuong);
     }
-
-    public List<Sach> getDanhSachSach() {
-        return danhSachSach;
-    }
+    
 
     public boolean isAdmin() {
         return isAdmin;

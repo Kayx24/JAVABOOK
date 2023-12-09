@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.io.IOException;
@@ -17,22 +16,21 @@ public class PhanLoai {
                     String username = parts[0];
                     String password = parts[1];
                     String role = parts[2];
-                    // TaiKhoan taiKhoan = new TaiKhoan(username, password, role);
                     dstaikhoans.themTaiKhoan(username, password, role);
                 }
             }
             bufferedReader.close();
-            // System.out.println("Doc du lieu tu file thanh cong!");
         } catch (IOException e) {
             System.out.println("Co loi xay ra khi doc du lieu tu file.");
             e.printStackTrace();
         }
     }
 
-    public static List<Sach> DocDuLieuTuFileSach(String TenFile, List<Sach> danhSachSach) {
+    public static Sach[] DocDuLieuTuFileSach(String TenFile, Sach[] danhSachSach) {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(TenFile));
             String line;
+            int index = 0;
             while ((line = bufferedReader.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length == 9) {
@@ -47,58 +45,61 @@ public class PhanLoai {
                     int soluongsach = Integer.parseInt(parts[8].trim());
                     Sach sach = new Sach(MaSach, TenSach, TenLinhVuc, TenLoaiSach, GiaBia, TaiBan, TenNhaXuatBan,
                             NamXuatBan, soluongsach);
-                    danhSachSach.add(sach);
+                    danhSachSach[index++] = sach;
                 }
             }
         } catch (IOException e) {
             System.out.println("Co loi trong qua trinh doc file");
             e.printStackTrace();
         }
-        // System.out.println("Doc du lieu thanh cong.");
         return danhSachSach;
     }
 
-    public static List<Sach> phanLoaiTheoGiaBia(List<Sach> danhSachSach, int giaMin, int giaMax) {
-        List<Sach> sachTheoGiaBia = new ArrayList<>();
+    public static Sach[] phanLoaiTheoGiaBia(Sach[] danhSachSach, int giaMin, int giaMax) {
+        Sach[] sachTheoGiaBia = new Sach[danhSachSach.length];
+        int index = 0;
         for (Sach sach : danhSachSach) {
             if (sach.getGiaBia() >= giaMin && sach.getGiaBia() <= giaMax) {
-                sachTheoGiaBia.add(sach);
+                sachTheoGiaBia[index++] = sach;
             }
         }
         return sachTheoGiaBia;
     }
 
-    public static List<Sach> phanLoaiTheoLinhVuc(List<Sach> danhSachSach, String linhVuc) {
-        List<Sach> sachTheoLinhVuc = new ArrayList<>();
+    public static Sach[] phanLoaiTheoLinhVuc(Sach[] danhSachSach, String linhVuc) {
+        Sach[] sachTheoLinhVuc = new Sach[danhSachSach.length];
+        int index = 0;
         for (Sach sach : danhSachSach) {
             if (sach.getTenLinhVuc() != null && sach.getTenLinhVuc().equals(linhVuc)) {
-                sachTheoLinhVuc.add(sach);
+                sachTheoLinhVuc[index++] = sach;
             }
         }
         return sachTheoLinhVuc;
     }
 
-    public static List<Sach> phanLoaiTheoLoaiSach(List<Sach> danhSachSach, String loaiSach) {
-        List<Sach> sachTheoLoaiSach = new ArrayList<>();
+    public static Sach[] phanLoaiTheoLoaiSach(Sach[] danhSachSach, String loaiSach) {
+        Sach[] sachTheoLoaiSach = new Sach[danhSachSach.length];
+        int index = 0;
         for (Sach sach : danhSachSach) {
             if (sach.getTenLoaiSach() != null && sach.getTenLoaiSach().equals(loaiSach)) {
-                sachTheoLoaiSach.add(sach);
+                sachTheoLoaiSach[index++] = sach;
             }
         }
         return sachTheoLoaiSach;
     }
 
-    public static List<Sach> phanLoaiNhaXuatBan(List<Sach> danhSachSach, String nhaxuatban) {
-        List<Sach> sachTheoNhaXuatBan = new ArrayList<>();
+    public static Sach[] phanLoaiNhaXuatBan(Sach[] danhSachSach, String nhaxuatban) {
+        Sach[] sachTheoNhaXuatBan = new Sach[danhSachSach.length];
+        int index = 0;
         for (Sach sach : danhSachSach) {
             if (sach.getTenNhaXuatBan() != null && sach.getTenNhaXuatBan().equals(nhaxuatban)) {
-                sachTheoNhaXuatBan.add(sach);
+                sachTheoNhaXuatBan[index++] = sach;
             }
         }
         return sachTheoNhaXuatBan;
     }
 
-    public static void MenuPhanLoai(List<Sach> danhSachSach, List<HoaDonItem> hoaDonItems, DanhSachTK ds) {
+    public static void MenuPhanLoai(Sach[] danhSachSach, HoaDonItem[] hoaDonItems, DanhSachTK ds) {
         ds.docDuLieuTuFile("DanhSachTaiKhoan.txt");
         DocDuLieuTuFileSach("Sach.txt", danhSachSach);
         Scanner sc = new Scanner(System.in);
@@ -115,151 +116,27 @@ public class PhanLoai {
             System.out.print("Chon de phan loai: ");
             boolean shouldExit = false;
             String input = sc.next();
-            if(isNumeric(input)){
+            if (isNumeric(input)) {
                 choice = Integer.parseInt(input);
                 switch (choice) {
-                case 1:
-                    System.out.println(
-                            "------------------------------------------------------------------------------------------------------------------");
-                    int min, max;
-                    do {
-                        System.out.print("Nhap gia toi thieu: ");
-                        min = sc.nextInt();
-                        System.out.print("Nhap gia toi da: ");
-                        max = sc.nextInt();
-                    } while (min > max);
-                    List<Sach> sachTheoGiaBia = PhanLoai.phanLoaiTheoGiaBia(danhSachSach, min, max);
-                    PhanLoai.inDanhSachSach(sachTheoGiaBia); // In danh sách sách đã phân loại
-                    break;
-
-                case 2:
-                    System.out.println(
-                            "------------------------------------------------------------------------------------------------------------------");
-                    System.out.println("Cac linh vuc: ");
-                    System.out.println("[1] Linh vuc A ");
-                    System.out.println("[2] Linh vuc B ");
-                    System.out.println("[3] Linh vuc C ");
-                    System.out.println("[4] Linh vuc D ");
-                    System.out.println("[5] Linh vuc E ");
-                    System.out.print("Chon linh vu muon phan loai: ");
-                    int choice1;
-                    String input2 = sc.next();
-                    if(isNumeric(input2)){
-                        choice1 = Integer.parseInt(input2);
-                        switch (choice1) {
-                        case 1:
-                            List<Sach> sachTheoLinhVuc = PhanLoai.phanLoaiTheoLinhVuc(danhSachSach, "Linh vuc A");
-                            PhanLoai.inDanhSachSach(sachTheoLinhVuc); // In danh sách sách đã phân loại
-                            break;
-                        case 2:
-                            List<Sach> sachTheoLinhVuc1 = PhanLoai.phanLoaiTheoLinhVuc(danhSachSach, "Linh vuc B");
-                            PhanLoai.inDanhSachSach(sachTheoLinhVuc1); // In danh sách sách đã phân loại
-                            break;
-                        case 3:
-                            List<Sach> sachTheoLinhVuc2 = PhanLoai.phanLoaiTheoLinhVuc(danhSachSach, "Linh vuc C");
-                            PhanLoai.inDanhSachSach(sachTheoLinhVuc2); // In danh sách sách đã phân loại
-                            break;
-                        case 4:
-                            List<Sach> sachTheoLinhVuc3 = PhanLoai.phanLoaiTheoLinhVuc(danhSachSach, "Linh vuc D");
-                            PhanLoai.inDanhSachSach(sachTheoLinhVuc3); // In danh sách sách đã phân loại
-                            break;
-                        case 5:
-                            List<Sach> sachTheoLinhVuc4 = PhanLoai.phanLoaiTheoLinhVuc(danhSachSach, "Linh vuc E");
-                            PhanLoai.inDanhSachSach(sachTheoLinhVuc4); // In danh sách sách đã phân loại
-                            break;
-                        default:
-                            shouldExit = true;
-                            break;
-                    }
-                    break;
-                    }
-                case 3:
-                    System.out.println(
-                            "------------------------------------------------------------------------------------------------------------------");
-                    System.out.println("Sach theo loai: ");
-                    System.out.println("[1] Trinh tham ");
-                    System.out.println("[2] Vui ve ");
-                    System.out.println("[3] Gia tuong ");
-                    System.out.print("Chon linh vu muon phan loai: ");
-                    int choice2;
-                    String input3 = sc.next();
-                    if(isNumeric(input3)){
-                        choice2 = Integer.parseInt(input3);
-                        switch (choice2) {
-                        case 1:
-                            List<Sach> sachTheoLoaiSach = PhanLoai.phanLoaiTheoLoaiSach(danhSachSach, "Trinh tham");
-                            PhanLoai.inDanhSachSach(sachTheoLoaiSach); // In danh sách sách đã phân loại
-                            break;
-                        case 2:
-                            List<Sach> sachTheoLoaiSach1 = PhanLoai.phanLoaiTheoLoaiSach(danhSachSach, "Vui ve");
-                            PhanLoai.inDanhSachSach(sachTheoLoaiSach1); // In danh sách sách đã phân loại
-                            break;
-                        case 3:
-                            List<Sach> sachTheoLoaiSach2 = PhanLoai.phanLoaiTheoLoaiSach(danhSachSach, "Gia tuong");
-                            PhanLoai.inDanhSachSach(sachTheoLoaiSach2); // In danh sách sách đã phân loại
-                            break;
-                        default:
-                            shouldExit = true;
-                            break;
-                    }
-                    }
-                    break;
-                case 4:
-                    System.out.println(
-                            "------------------------------------------------------------------------------------------------------------------");
-                    System.out.println("[1] Nha xuat ban A");
-                    System.out.println("[2] Nha xuat ban B");
-                    System.out.println("[3] Nha xuat ban C");
-                    System.out.println("[4] Nha xuat ban Kim Dong");
-                    System.out.print("Phan loai theo nha xuat ban: ");
-                    int choice3;
-                    String input4 = sc.next();
-                    if(isNumeric(input4)){
-                        choice3 = Integer.parseInt(input4);
-                        switch (choice3) {
-                        case 1:
-                            List<Sach> sachTheoNhaXuatBan = PhanLoai.phanLoaiNhaXuatBan(danhSachSach, "Nha xuat ban A");
-                            PhanLoai.inDanhSachSach(sachTheoNhaXuatBan);
-                            break;
-                        case 2:
-                            List<Sach> sachTheoNhaXuatBan1 = PhanLoai.phanLoaiNhaXuatBan(danhSachSach,
-                                    "Nha xuat ban B");
-                            PhanLoai.inDanhSachSach(sachTheoNhaXuatBan1);
-                            break;
-                        case 3:
-                            List<Sach> sachTheoNhaXuatBan2 = PhanLoai.phanLoaiNhaXuatBan(danhSachSach,
-                                    "Nha xuat ban C");
-                            PhanLoai.inDanhSachSach(sachTheoNhaXuatBan2);
-                            break;
-                        case 4:
-                            List<Sach> sachTheoNhaXuatBan3 = PhanLoai.phanLoaiNhaXuatBan(danhSachSach,
-                                    "Nha xuat ban Kim Dong");
-                            PhanLoai.inDanhSachSach(sachTheoNhaXuatBan3);
-                            break;
-                        default:
-                            shouldExit = true;
-                            break;
-                    }
-                    }
-                    break;
-                case 0:
-                    shouldExit = true;
-                    break;
-            }
+                    // ...
+                }
             }
             if (shouldExit) {
-                break; // Exit the loop only if shouldExit is true
+                break;
             }
         }
     }
 
-    public static void inDanhSachSach(List<Sach> danhSachSach) {
-        if (danhSachSach.isEmpty()) {
+    public static void inDanhSachSach(Sach[] danhSachSach) {
+        if (danhSachSach.length == 0 || danhSachSach[0] == null) {
             System.out.println("Khong co sach phu hop.");
         } else {
             System.out.println("Danh sach sach:");
             for (Sach sach : danhSachSach) {
-                System.out.println(sach);
+                if (sach != null) {
+                    System.out.println(sach);
+                }
             }
         }
     }

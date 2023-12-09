@@ -75,7 +75,7 @@ public class Admin extends TaiKhoan {
 
 
 
-    public static void MenuAdmin(List<Sach> danhSachSach, List<HoaDonItem> hoaDonItems, DanhSachTK ds, List<NhanVien> dsNhanViens) {
+    public static void MenuAdmin(Sach[] danhSachSach, HoaDonItem[] hoaDonItems, DanhSachTK ds, NhanVien[] dsNhanViens) {
         QuyenSach quyenSach = new QuyenSach();
         QuanLy ql = new QuanLy();
          QuyenQuanLy qql=new QuyenQuanLy() {
@@ -148,7 +148,7 @@ public class Admin extends TaiKhoan {
         }
     }
 
-    private static void quanLySachMenu(Scanner sc, QuyenSach quyenSach, DanhSachTK danhSachTK,List<Sach> danhSachSach, List<HoaDonItem> hoaDonItems, DanhSachTK ds, List<NhanVien> dsNhanViens) {
+    private static void quanLySachMenu(Scanner sc, QuyenSach quyenSach, DanhSachTK danhSachTK,Sach[] danhSachSach, HoaDonItem[] hoaDonItems, DanhSachTK ds, NhanVien[] dsNhanViens) {
         int choice;
         while (true) {
       
@@ -188,7 +188,7 @@ public class Admin extends TaiKhoan {
 
 }
 
-    private static void MenuNhanVien(Scanner sc, QuyenSach quyenSach, DanhSachTK danhSachTK,List<Sach> danhSachSach, List<HoaDonItem> hoaDonItems, DanhSachTK ds, List<NhanVien> dsNhanViens) {
+    private static void MenuNhanVien(Scanner sc, QuyenSach quyenSach, DanhSachTK danhSachTK,Sach[] danhSachSach, HoaDonItem[] hoaDonItems, DanhSachTK ds, NhanVien[] dsNhanViens) {
         QuyenNhanVien qnv = new QuyenNhanVien();
          QuyenQuanLy qql=new QuyenQuanLy() {
             @Override
@@ -248,7 +248,7 @@ public class Admin extends TaiKhoan {
         }
     }
 }
-public static void MenuQuanly(List<Sach> danhSachSach,List<HoaDonItem> hoaDonItems,DanhSachTK ds,List<NhanVien> dNhanViens,String tenFile){
+public static void MenuQuanly(Sach[] danhSachSach,HoaDonItem[] hoaDonItems,DanhSachTK ds,NhanVien[] dNhanViens,String tenFile){
     Scanner sc = new Scanner(System.in);
     int choice;
     QuyenSach quyenSach = new QuyenSach();
@@ -334,7 +334,7 @@ public static void MenuQuanly(List<Sach> danhSachSach,List<HoaDonItem> hoaDonIte
                     ChiTietHoaDon.runChiTietHoaDon();
                     break;
                 case 9:
-                    THONGKE.MenuThongKe(danhSachHoaDon, danhSachSach, hoaDonItems, ds, dNhanViens, input);
+                    THONGKE.MenuThongKe(danhSachHoaDon);
                     break;
                 default:
                     System.out.println("Vui long nhap lua chon hop le.");

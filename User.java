@@ -17,13 +17,13 @@ public class User extends TaiKhoan {
         return msUser;
     }
 
-    public static void MenuUser(List<Sach> danhSachSach, List<HoaDonItem> hoaDonItems, DanhSachTK ds, String tenFile) {
+    public static void MenuUser(Sach[] danhSachSach,HoaDonItem[] hoaDonItems, DanhSachTK ds, String tenFile) {
         Scanner sc = new Scanner(System.in);
         QuyenUser qus = new QuyenUser();
         int choice;
 
         while (true) {
-            System.out.println("------------------------------------------------------------------------------------------------------------------");
+            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
             System.out.println("Chuc nang User");
             System.out.println("[0] THOAT MENU");
             System.out.println("[1] Xem danh sach sach");
