@@ -111,19 +111,11 @@ public class QuyenSach {
             e.printStackTrace();
         }
     }
-
-    public Sach[] toArray() {
-        return Arrays.copyOf(danhSachSach, soLuongSach);
-    }
-
-    private void ghiDanhSachSachVaoFile(String tenFile) {
+    public void ghiDanhSachSachVaoFile(String tenFile) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(tenFile))) {
-            Sach[] sachArray = toArray();
-            for (Sach sach : sachArray) {
-                if (sach != null) {
-                    writer.write(sach.toString());
-                    writer.newLine();
-                }
+            for (int i = 0; i < soLuongSach; i++) {
+                writer.write(danhSachSach[i].toString());
+                writer.newLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -141,81 +133,80 @@ public class QuyenSach {
 
         for (Sach sach : danhSachSach) {
             if (sach != null && sach.getMaSach() == maSach) {
-                System.out.println("Thong tin sach can sua:");
-                System.out.println("Ten sach hien tai: " + sach.getTenSach());
-                System.out.print("Nhap ten sach moi: ");
-                String tenSach = sc.nextLine();
-                sach.setTenSach(tenSach);
+                    System.out.println("Thong tin sach can sua:");
+                    System.out.println("Ten sach hien tai: " + sach.getTenSach());
+                    System.out.print("Nhap ten sach moi: ");
+                    String tenSach = sc.nextLine();
+                    sach.setTenSach(tenSach);
+    
+                    System.out.println("Ten loai sach hien tai: " + sach.getTenLoaiSach());
+                    System.out.print("Nhap ten loai sach moi: ");
+                    String tenLoaiSach = sc.nextLine();
+                    sach.setTenLoaiSach(tenLoaiSach);
+    
+                    System.out.println("Gia sach hien tai: " + sach.getGiaBia());
+                    System.out.print("Nhap gia sach moi: ");
+                    int giaBia = sc.nextInt();
+                    sc.nextLine();
+                    sach.setGiaBia(giaBia);
+    
+                    System.out.println("So lan tai ban hien tai: " + sach.getTaiBan());
+                    System.out.print("Nhap so lan tai ban moi: ");
+                    int taiBan = sc.nextInt();
+                    sc.nextLine();
+                    sach.setTaiBan(taiBan);
+    
+                    System.out.println("Ten nha xuat ban hien tai: " + sach.getTenNhaXuatBan());
+                    System.out.print("Nhap ten nha xuat ban moi: ");
+                    String tenNhaXuatBan = sc.nextLine();
+                    sach.setTenNhaXuatBan(tenNhaXuatBan);
+    
+                    System.out.println("Nam xuat ban hien tai: " + sach.getNamXuatBan());
+                    System.out.print("Nhap nam xuat ban moi: ");
+                    int namXuatBan = sc.nextInt();
+                    sc.nextLine();
+                    sach.setNamXuatBan(namXuatBan);
+    
+                    System.out.println("Nam xuat ban hien tai: " + sach.getNamXuatBan());
+                    System.out.print("Nhap nam xuat ban moi: ");
+                    int soluongsach = sc.nextInt();
+                    sc.nextLine();
+                    sach.setSoLuongSach(soluongsach);
+    
+                    System.out.println("Da sua thong tin sach.");
+                    ghiDanhSachSachVaoFile("Sach.txt");
+                    return;
+                }
+            }
+            System.out.println("Khong tim thay sach co ma " + maSach);
+        }
 
-                System.out.println("Ten loai sach hien tai: " + sach.getTenLoaiSach());
-                System.out.print("Nhap ten loai sach moi: ");
-                String tenLoaiSach = sc.nextLine();
-                sach.setTenLoaiSach(tenLoaiSach);
-
-                System.out.println("Gia sach hien tai: " + sach.getGiaBia());
-                System.out.print("Nhap gia sach moi: ");
-                int giaBia = sc.nextInt();
-                sc.nextLine();
-                sach.setGiaBia(giaBia);
-
-                System.out.println("So lan tai ban hien tai: " + sach.getTaiBan());
-                System.out.print("Nhap so lan tai ban moi: ");
-                int taiBan = sc.nextInt();
-                sc.nextLine();
-                sach.setTaiBan(taiBan);
-
-                System.out.println("Ten nha xuat ban hien tai: " + sach.getTenNhaXuatBan());
-                System.out.print("Nhap ten nha xuat ban moi: ");
-                String tenNhaXuatBan = sc.nextLine();
-                sach.setTenNhaXuatBan(tenNhaXuatBan);
-
-                System.out.println("Nam xuat ban hien tai: " + sach.getNamXuatBan());
-                System.out.print("Nhap nam xuat ban moi: ");
-                int namXuatBan = sc.nextInt();
-                sc.nextLine();
-                sach.setNamXuatBan(namXuatBan);
-
-                System.out.println("Nam xuat ban hien tai: " + sach.getNamXuatBan());
-                System.out.print("Nhap nam xuat ban moi: ");
-                int soluongsach = sc.nextInt();
-                sc.nextLine();
-                sach.setSoLuongSach(soluongsach);
-
-                System.out.println("Da sua thong tin sach.");
+        public void xoaSach(int maSachXoa) {
+danhSachSach = docDanhSachSachTuFile("Sach.txt");
+    
+            int index = -1;
+    
+            for (int i = 0; i < soLuongSach; i++) {
+                Sach sach = danhSachSach[i];
+                if (sach != null && sach.getMaSach() == maSachXoa) {
+                    index = i;
+System.out.println("Tim thay sach co ma " + maSachXoa);
+                    break;
+                }
+            }
+    
+            if (index != -1) {
+                for (int i = index; i < soLuongSach - 1; i++) {
+                    danhSachSach[i] = danhSachSach[i + 1];
+                }
+                danhSachSach[soLuongSach - 1] = null;
+                soLuongSach--;
                 ghiDanhSachSachVaoFile("Sach.txt");
-                return;
+                System.out.println("Da xoa sach co ma " + maSachXoa);
+            } else {
+                System.out.println("Khong tim thay sach co ma " + maSachXoa);
             }
         }
-        System.out.println("Khong tim thay sach co ma " + maSach);
-    }
-    
-    public void xoaSach(int maSachXoa) {
-        danhSachSach = docDanhSachSachTuFile("Sach.txt");
-    
-        int index = -1;
-
-        for (int i = 0; i < soLuongSach; i++) {
-            Sach sach = danhSachSach[i];
-            if (sach != null && sach.getMaSach() == maSachXoa) {
-                index = i;
-                System.out.println("Tim thay sach co ma " + maSachXoa);
-                break;
-            }
-        }
-    
-        if (index != -1) {
-
-            for (int i = index; i < soLuongSach - 1; i++) {
-                danhSachSach[i] = danhSachSach[i + 1];
-            }
-            danhSachSach[soLuongSach - 1] = null;
-            soLuongSach--;
-            ghiDanhSachSachVaoFile("Sach.txt");
-            System.out.println("Da xoa sach co ma " + maSachXoa);
-        } else {
-            System.out.println("Khong tim thay sach co ma " + maSachXoa);
-        }
-    }
     
 
     private Sach[] docDanhSachSachTuFile(String file) {
@@ -237,7 +228,7 @@ public class QuyenSach {
                     int namXuatBan = Integer.parseInt(parts[7].trim());
                     int soLuongSach = Integer.parseInt(parts[8].trim());
                     Sach sach = new Sach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan, soLuongSach);
-    
+                    
                     if (soLuong < 1000) {
                         danhSachSach[soLuong] = sach;
                         soLuong++;
@@ -254,7 +245,7 @@ public class QuyenSach {
         }
         return Arrays.copyOf(danhSachSach, soLuong);
     }
-    
+
 
     public boolean isAdmin() {
         return isAdmin;

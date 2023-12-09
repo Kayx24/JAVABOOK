@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public abstract class QuyenQuanLy extends QuyenNhanVien {
 
-    List<Sach> danhSachSach = new ArrayList<>();
+    Sach[] danhSachSach = new Sach[1000];
 
     public abstract String getRole();
 
@@ -41,7 +41,7 @@ public abstract class QuyenQuanLy extends QuyenNhanVien {
     public abstract boolean CoTheXoa(String tenTaiKhoan, DanhSachTK ds);
 
     public void QuanLyXoaTaiKhoan(DanhSachTK ds) {
-        List<NhanVien> dsNhanViens = new ArrayList<>();
+        NhanVien[] dsNhanViens = new NhanVien[1000];
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ten tai khoan can xoa: ");
         String tenTaiKhoan = sc.nextLine();
@@ -84,13 +84,14 @@ public abstract class QuyenQuanLy extends QuyenNhanVien {
                         break;
 
                     case 2:
+                        sc.nextLine();
                         System.out.print("Nhap ten tai khoan can kiem tra: ");
                         String tenTaiKhoanKT = sc.nextLine();
                         boolean coTheXoa = CoTheXoa(tenTaiKhoanKT, ds);
                         if (coTheXoa) {
                             System.out.println("Tai khoan co the xoa.");
                         } else {
-                            System.out.println("TAI KHOAN ADMIN KHONG DUOC PHEP XOA");
+                            System.out.println("TAI KHOAN KHONG DUOC PHEP XOA");
                         }
                         break;
 

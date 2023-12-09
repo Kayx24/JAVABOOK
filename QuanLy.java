@@ -81,27 +81,30 @@ public class QuanLy extends TaiKhoan {
         QuyenUser qus =new QuyenUser();
         ChiTietHoaDon cthd =new ChiTietHoaDon();
         List<List<HoaDonItem>> danhSachHoaDon = ChiTietHoaDon.HoaDonFromFile("hoadon.txt");
-        QuyenQuanLy qql=new QuyenQuanLy() {
+        QuyenQuanLy qql = new QuyenQuanLy() {
             @Override
             public String getRole() {
                 int tieptuc;
+                Scanner sc = new Scanner(System.in); // Initialize scanner
+            
                 do {
+                    System.out.println("Chon vai tro cho tai khoan");
+                    System.out.println("[1] user");
+                    System.out.println("[2] NhanVien");
+                    System.out.println("[0] Thoat");
+            
                     while (!sc.hasNextInt()) {
-                        Scanner sc = new Scanner(System.in);
-                        System.out.println("Chon vai tro cho tai khoan");
-                        System.out.println("[1] user");
-                        System.out.println("[2] NhanVien");
-                        System.out.println("[0] Thoat");
-                        sc.next();
+                        System.out.println("GIA TRI KHONG HOP LE. VUI LONG NHAP LAI");
+                        sc.next(); // Consume the invalid input
                     }
+            
                     tieptuc = sc.nextInt();
-                    sc.nextLine();
-        
+                    sc.nextLine(); // Consume the newline character
+            
                     if (tieptuc != 0 && tieptuc != 1 && tieptuc != 2) {
                         System.out.println("GIA TRI KHONG HOP LE. VUI LONG NHAP LAI");
                     }
-                } while (tieptuc != 0 && tieptuc != 1 && tieptuc != 2);
-        
+                } while (tieptuc != 0 && tieptuc != 1 && tieptuc != 2);    
                 if (tieptuc == 1) {
                     return "user";
                 } else if (tieptuc == 2) {
@@ -111,10 +114,12 @@ public class QuanLy extends TaiKhoan {
                     return getRole();
                 }
             }
+            
+        
             @Override
             public boolean CoTheXoa(String tenTaiKhoan, DanhSachTK ds) {
                 TaiKhoan tk = ds.layTaiKhoan(tenTaiKhoan);
-                if (tk != null && tk.getRole().equals("admin")) {
+                if (tk != null &&( tk.getRole().equals("admin") ||tk.getRole().equals("QuanLy"))) {
                     return false; // Account with role "Admin" cannot be deleted
                 }
                 return true; 

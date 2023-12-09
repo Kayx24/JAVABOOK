@@ -169,32 +169,42 @@ public static void hienThiTatCaHoaDon(HoaDonItem[] hoaDonItems, int hoaDonItemCo
     System.out.println("+----------------------------------------------------------------------------------------------------+");
 }
 
-public static void thucHienThanhToan(HoaDonItem[] hoaDonItems,int hoaDonItemCount) {
+public static void thucHienThanhToan(HoaDonItem[] hoaDonItems, int hoaDonItemCount) {
     // Hiển thị tổng hóa đơn
-    hienThiTatCaHoaDon(hoaDonItems,hoaDonItemCount);
+    hienThiTatCaHoaDon(hoaDonItems, hoaDonItemCount);
     Scanner sc = new Scanner(System.in);
     int choice;
+
     while (true) {
         System.out.println("Chon hinh thuc thanh toan:");
         System.out.println("[1] Thanh toan bang ngan hang");
         System.out.println("[2] Thanh toan bang Momo");
 
+        while (!sc.hasNextInt()) {
+            System.out.println("GIA TRI KHONG HOP LE. VUI LONG NHAP LAI");
+            sc.next(); // consume the non-integer input
+        }
+
         choice = sc.nextInt();
-        sc.nextLine();  // Consume the newline character
+        sc.nextLine(); // Consume the newline character
 
         switch (choice) {
             case 1:
-                thanhToanNganHang(hoaDonItems,hoaDonItemCount);
+                thanhToanNganHang(hoaDonItems, hoaDonItemCount);
                 // After successful payment, update the quantity in the file
                 for (HoaDonItem item : hoaDonItems) {
-                    capNhatSoLuongSachTrongFile(item.getTenSach(), item.getSoLuongMua());
+                    if(item!=null){
+                        capNhatSoLuongSachTrongFile(item.getTenSach(), item.getSoLuongMua());
+                    }
                 }
                 break;
             case 2:
-                thanhToanMomo(hoaDonItems,hoaDonItemCount);
+                thanhToanMomo(hoaDonItems, hoaDonItemCount);
                 // After successful payment, update the quantity in the file
                 for (HoaDonItem item : hoaDonItems) {
-                    capNhatSoLuongSachTrongFile(item.getTenSach(), item.getSoLuongMua());
+                    if(item!=null){
+                        capNhatSoLuongSachTrongFile(item.getTenSach(), item.getSoLuongMua());
+                    }
                 }
                 break;
             default:
@@ -204,6 +214,7 @@ public static void thucHienThanhToan(HoaDonItem[] hoaDonItems,int hoaDonItemCoun
         break;
     }
 }
+
 
 public static void thanhToanNganHang(HoaDonItem[] hoaDonItems,int hoaDonItemCount) {
     Scanner sc = new Scanner(System.in);
@@ -218,7 +229,7 @@ public static void thanhToanNganHang(HoaDonItem[] hoaDonItems,int hoaDonItemCoun
     String tenNganHang = "";
     int bankChoice;
     
-    do {
+    while (true) {
         System.out.println("Chon ngan hang thanh toan:");
         System.out.println("[1] BIDV");
         System.out.println("[2] Agribank");
@@ -226,31 +237,37 @@ public static void thanhToanNganHang(HoaDonItem[] hoaDonItems,int hoaDonItemCoun
         System.out.println("[4] Viettinbank");
         System.out.println("[5] Vietcombank");
 
-        bankChoice = sc.nextInt();
-        sc.nextLine();
+        if (sc.hasNextInt()) {
+            bankChoice = sc.nextInt();
+            sc.nextLine();
 
-        switch (bankChoice) {
-            case 1:
-                tenNganHang = "BIDV";
-                break;
-            case 2:
-                tenNganHang = "Agribank";
-                break;
-            case 3:
-                tenNganHang = "MB Bank";
-                break;
-            case 4:
-                tenNganHang = "Viettinbank";
-                break;
-            case 5:
-                tenNganHang = "Vietcombank";
-                break;
-            default:
+            if (bankChoice >= 1 && bankChoice <= 5) {
+                switch (bankChoice) {
+                    case 1:
+                        tenNganHang = "BIDV";
+                        break;
+                    case 2:
+                        tenNganHang = "Agribank";
+                        break;
+                    case 3:
+                        tenNganHang = "MB Bank";
+                        break;
+                    case 4:
+                        tenNganHang = "Viettinbank";
+                        break;
+                    case 5:
+                        tenNganHang = "Vietcombank";
+                        break;
+                }
+                break; // exit the loop if a valid choice is made
+            } else {
                 System.out.println("Lua chon ngan hang khong hop le.");
-                continue;
+            }
+        } else {
+            System.out.println("GIA TRI KHONG HOP LE. VUI LONG NHAP LAI");
+            sc.next(); // consume the invalid input
         }
-        break;
-    } while (bankChoice < 1 || bankChoice > 5);
+    }
 
     String soTaiKhoan;
 

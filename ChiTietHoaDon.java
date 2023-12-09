@@ -19,6 +19,7 @@ public class ChiTietHoaDon {
 
         int choice;
         while (true) {
+            boolean shouldExit = false;
         do {
             System.out.println("Menu:");
             System.out.println("[1] In toan bo hoa don");
@@ -52,13 +53,16 @@ public class ChiTietHoaDon {
                     } while (true);
                     xoaHoaDonTheoSoHoaDon(danhSachHoaDon, soHoaDon,"hoadon.txt");
                     break;
-                case 0:
-                    System.out.println("Thoat chuong trinh.");
-                    break;
+                    case 0:
+                    shouldExit = true;
+                    break;  
                 default:
                     System.out.println("Lua chon khong hop le. Vui long nhap lai.");
             }
         } while (choice != 0);
+        if (shouldExit) {
+            break;
+        }
     }
 }
 
@@ -177,12 +181,12 @@ public class ChiTietHoaDon {
 
     public static void xoaHoaDonTheoSoHoaDon(List<List<HoaDonItem>> danhSachHoaDon, int soHoaDon, String File) {
         boolean found = false;
-        for (int i = 0; i < danhSachHoaDon.size(); i++) {
+        for (int i = danhSachHoaDon.size() - 1; i >= 0; i--) {
             List<HoaDonItem> hoaDonItems = danhSachHoaDon.get(i);
             if (i + 1 == soHoaDon) {
                 found = true;
                 danhSachHoaDon.remove(i);
-                ghiDuLieuVaoFile(danhSachHoaDon, File);
+                ghiDuLieuVaoFileForDel(danhSachHoaDon, File);
                 System.out.println("Da xoa hoa don so " + soHoaDon + ".");
                 break;
             }
@@ -190,8 +194,8 @@ public class ChiTietHoaDon {
         if (!found) {
             System.out.println("Khong tim thay hoa don so " + soHoaDon + ".");
         }
-        
     }
+    
 
     public static void ghiDuLieuVaoFile(List<List<HoaDonItem>> danhSachHoaDon, String File) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
@@ -204,6 +208,25 @@ public class ChiTietHoaDon {
                     String line = item.getMaKhachHang() + "," + ngayDatSachStr + "," + item.getTenSach() + "," + item.getSoLuongMua() + "," + item.getGiaSach() + "," + item.getTongTien();
                     bw.write(line);
                     // bw.newLine();
+                }
+                bw.newLine();
+            }
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+        public static void ghiDuLieuVaoFileForDel(List<List<HoaDonItem>> danhSachHoaDon, String File) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(File));
+            for (List<HoaDonItem> hoaDonItems : danhSachHoaDon) {
+                for (HoaDonItem item : hoaDonItems) {
+                    String ngayDatSachStr = dateFormat.format(item.getNgayDatSach());
+                    String line = item.getMaKhachHang() + "," + ngayDatSachStr + "," + item.getTenSach() + "," + item.getSoLuongMua() + "," + item.getGiaSach() + "," + item.getTongTien();
+                    bw.write(line);
+                    bw.newLine();
                 }
                 bw.newLine();
             }

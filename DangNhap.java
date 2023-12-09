@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class DangNhap {
-    private static TaiKhoan[] danhSachTaiKhoanDaDangNhapArray; // Chuyển danh sách đăng nhập sang mảng
+    private static TaiKhoan[] danhSachTaiKhoanDaDangNhap=new TaiKhoan[1]; // Chuyển danh sách đăng nhập sang mảng
 
     public static void DangNhaptaikhoan() {
         DanhSachTK ds = new DanhSachTK();
@@ -49,7 +49,7 @@ public class DangNhap {
                     System.out.println("Dang nhap thanh cong");
                     System.out.println("Quyen truy cap la quyen " + taiKhoanTimThay.getRole());
 
-                    danhSachTaiKhoanDaDangNhapArray = getDanhSachTaiKhoanDaDangNhapArray();
+                    danhSachTaiKhoanDaDangNhap[0] = taiKhoanTimThay;
 
                     // Gọi hàm hiển thị menu hoặc thực hiện các công việc liên quan đến đăng nhập thành công
 
@@ -74,7 +74,7 @@ public class DangNhap {
     }
 
     public static TaiKhoan[] getDanhSachTaiKhoanDaDangNhapArray() {
-        return danhSachTaiKhoanDaDangNhapArray;
+        return danhSachTaiKhoanDaDangNhap;
     }
 
     public static void main(String[] args) {

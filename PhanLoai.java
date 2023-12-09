@@ -1,11 +1,11 @@
-import java.util.List;
 import java.util.Scanner;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
 public class PhanLoai {
-
+    String tenFile = "Sach.txt";
+    Sach[] danhSachSach = new Sach[1000];
     public void docDuLieuTuFile(String TenFile, DanhSachTK dstaikhoans) {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(TenFile));
@@ -27,10 +27,10 @@ public class PhanLoai {
     }
 
     public static Sach[] DocDuLieuTuFileSach(String TenFile, Sach[] danhSachSach) {
+        int index = 0;
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(TenFile));
             String line;
-            int index = 0;
             while ((line = bufferedReader.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length == 9) {
@@ -44,8 +44,9 @@ public class PhanLoai {
                     int NamXuatBan = Integer.parseInt(parts[7].trim());
                     int soluongsach = Integer.parseInt(parts[8].trim());
                     Sach sach = new Sach(MaSach, TenSach, TenLinhVuc, TenLoaiSach, GiaBia, TaiBan, TenNhaXuatBan,
-                            NamXuatBan, soluongsach);
-                    danhSachSach[index++] = sach;
+                    NamXuatBan, soluongsach);
+                    danhSachSach[index] = sach;
+                    index++;
                 }
             }
         } catch (IOException e) {
@@ -59,8 +60,11 @@ public class PhanLoai {
         Sach[] sachTheoGiaBia = new Sach[danhSachSach.length];
         int index = 0;
         for (Sach sach : danhSachSach) {
-            if (sach.getGiaBia() >= giaMin && sach.getGiaBia() <= giaMax) {
-                sachTheoGiaBia[index++] = sach;
+            if(sach!=null){
+                if (sach.getGiaBia() >= giaMin && sach.getGiaBia() <= giaMax) {
+                    sachTheoGiaBia[index] = sach;
+                    index++;
+                }
             }
         }
         return sachTheoGiaBia;
@@ -70,8 +74,11 @@ public class PhanLoai {
         Sach[] sachTheoLinhVuc = new Sach[danhSachSach.length];
         int index = 0;
         for (Sach sach : danhSachSach) {
-            if (sach.getTenLinhVuc() != null && sach.getTenLinhVuc().equals(linhVuc)) {
-                sachTheoLinhVuc[index++] = sach;
+            if(sach!=null){
+                if (sach.getTenLinhVuc() != null && sach.getTenLinhVuc().trim().equalsIgnoreCase(linhVuc.trim())) {
+                    sachTheoLinhVuc[index] = sach;
+                    index++;
+                }
             }
         }
         return sachTheoLinhVuc;
@@ -81,8 +88,11 @@ public class PhanLoai {
         Sach[] sachTheoLoaiSach = new Sach[danhSachSach.length];
         int index = 0;
         for (Sach sach : danhSachSach) {
-            if (sach.getTenLoaiSach() != null && sach.getTenLoaiSach().equals(loaiSach)) {
-                sachTheoLoaiSach[index++] = sach;
+            if(sach!=null){                
+                if (sach.getTenLoaiSach() != null && sach.getTenLoaiSach().trim().equalsIgnoreCase(loaiSach.trim())) {
+                    sachTheoLoaiSach[index] = sach;
+                    index++;
+                }
             }
         }
         return sachTheoLoaiSach;
@@ -92,16 +102,19 @@ public class PhanLoai {
         Sach[] sachTheoNhaXuatBan = new Sach[danhSachSach.length];
         int index = 0;
         for (Sach sach : danhSachSach) {
-            if (sach.getTenNhaXuatBan() != null && sach.getTenNhaXuatBan().equals(nhaxuatban)) {
-                sachTheoNhaXuatBan[index++] = sach;
-            }
+            if(sach!=null){                
+                if (sach.getTenNhaXuatBan() != null && sach.getTenNhaXuatBan().trim().equalsIgnoreCase(nhaxuatban.trim())) {
+                    sachTheoNhaXuatBan[index] = sach;
+                    index++;
+                }
+            }            
         }
         return sachTheoNhaXuatBan;
     }
 
     public static void MenuPhanLoai(Sach[] danhSachSach, HoaDonItem[] hoaDonItems, DanhSachTK ds) {
         ds.docDuLieuTuFile("DanhSachTaiKhoan.txt");
-        DocDuLieuTuFileSach("Sach.txt", danhSachSach);
+        danhSachSach=DocDuLieuTuFileSach("Sach.txt", danhSachSach);
         Scanner sc = new Scanner(System.in);
         int choice;
         while (true) {
@@ -119,7 +132,39 @@ public class PhanLoai {
             if (isNumeric(input)) {
                 choice = Integer.parseInt(input);
                 switch (choice) {
-                    // ...
+                    case 1:
+                    System.out.println("Hay nhap gia toi thieu:");
+                    int nhonhat=sc.nextInt();
+                    sc.nextLine();
+                    System.out.println("Hay nhap gia toi da:");
+                    int lonnhat=sc.nextInt();                
+                    Sach[] sachTheoGiaBia=phanLoaiTheoGiaBia(danhSachSach, nhonhat, lonnhat);
+                    inDanhSachSach(sachTheoGiaBia);
+                    break;
+                    case 2:
+                    sc.nextLine();
+                    System.out.println("Hay nhap linh vuc:");
+                    String Linhvuc=sc.nextLine();          
+                    Sach[] sachTheoLinhVuc=phanLoaiTheoLinhVuc(danhSachSach,Linhvuc);
+                    inDanhSachSach(sachTheoLinhVuc);
+                    break;
+                    case 3:
+                    sc.nextLine();
+                    System.out.println("Hay nhap the loai:");
+                    String loaiSach=sc.nextLine();                                              
+                    Sach[] sachTheoLoaiSach=phanLoaiTheoLoaiSach(danhSachSach,loaiSach);
+                    inDanhSachSach(sachTheoLoaiSach);
+                    break;    
+                    case 4:
+                    sc.nextLine();
+                    System.out.println("Hay nhap nha san xuat:");
+                    String Nhasanxuat=sc.nextLine();                                                 
+                    Sach[] sachTheoNhaXuatBan=phanLoaiNhaXuatBan(danhSachSach,Nhasanxuat);
+                    inDanhSachSach(sachTheoNhaXuatBan);
+                    break;      
+                    case 0:
+                    shouldExit = true;
+                    break;        
                 }
             }
             if (shouldExit) {
