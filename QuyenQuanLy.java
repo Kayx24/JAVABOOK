@@ -1,5 +1,5 @@
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.Iterator;
 import java.util.Scanner;
 
 public abstract class QuyenQuanLy extends QuyenNhanVien {
@@ -12,8 +12,6 @@ public abstract class QuyenQuanLy extends QuyenNhanVien {
         NhanVien[] dNhanViens = new NhanVien[1000];
         NhanVien nv = new NhanVien();
         Scanner sc = new Scanner(System.in);
-        // ds.docDuLieuTuFile("DanhSachTaiKhoan.txt");
-
         System.out.println("Nhap ten tai khoan muon tao:");
         String userName = sc.nextLine();
 
@@ -26,6 +24,10 @@ public abstract class QuyenQuanLy extends QuyenNhanVien {
         String password = sc.nextLine();
 
         String role = getRole();
+        
+        TaiKhoan tk = new TaiKhoan(userName, password, role);
+        ds.themTaiKhoan(userName, password, role);
+        ds.luuDuLieuVaoFile("DanhSachTaiKhoan.txt", tk);
         if(role.equals("NhanVien")){
             nv.setUserName(userName);
             nv.setPassword(password);
@@ -33,9 +35,6 @@ public abstract class QuyenQuanLy extends QuyenNhanVien {
             QuyenNhanVien qnn = new QuyenNhanVien();
             qnn.ThemNhanVien(ds, dNhanViens);
         }
-        TaiKhoan tk = new TaiKhoan(userName, password, role);
-        ds.themTaiKhoan(userName, password, role);
-        ds.luuDuLieuVaoFile("DanhSachTaiKhoan.txt", tk);
     }
 
     public abstract boolean CoTheXoa(String tenTaiKhoan, DanhSachTK ds);
@@ -47,11 +46,14 @@ public abstract class QuyenQuanLy extends QuyenNhanVien {
         String tenTaiKhoan = sc.nextLine();
         QuyenNhanVien qnn = new QuyenNhanVien();
         if (CoTheXoa(tenTaiKhoan, ds) == true) {
-            qnn.XoaNhanVien(ds, dsNhanViens, tenTaiKhoan);
-            //TaiKhoan tkToDelete = ds.layTaiKhoan(tenTaiKhoan);
+            TaiKhoan tk = ds.layTaiKhoan(tenTaiKhoan);
+            if (tk != null && tk.getRole().equals("NhanVien")) {
+                qnn.XoaNhanVien(ds, dsNhanViens, tenTaiKhoan);
+            }
+            // qnn.XoaNhanVien(ds, dsNhanViens, tenTaiKhoan);
             ds.xoaTaiKhoan(tenTaiKhoan);
-            //ds.xoaTaiKhoan(tenTaiKhoan);
             ds.luuDuLieuVaoFileForDel("DanhSachTaiKhoan.txt");
+
 
         } else {
             System.out.println("TAI KHOAN ADMIN KHONG DUOC PHEP XOA");

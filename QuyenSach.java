@@ -15,21 +15,27 @@ public class QuyenSach {
     public QuyenSach() {
         this.sc = new Scanner(System.in);
         this.isAdmin = false;
-        this.danhSachSach = docDanhSachSachTuFile("sach.txt");
+        this.danhSachSach = docDanhSachSachTuFile("Sach.txt");
         this.soLuongSach = danhSachSach.length;
     }
 
     public void themSach(int maSach, String tenSach, String tenLinhVuc, String tenLoaiSach, int giaBia, int taiBan,
-                         String tenNhaXuatBan, int namXuatBan, int soLuongSach) {
-        if (soLuongSach < 1000) {
-            Sach sach = new Sach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan, soLuongSach);
-            danhSachSach[soLuongSach] = sach;
-            soLuongSach++;
-            ghiSachVaoFile(sach);
-        } else {
-            System.out.println("Danh sach sach da dat toi gioi han (1000 phan tu). Khong the them moi.");
+                     String tenNhaXuatBan, int namXuatBan, int soSach) {
+    if (soLuongSach < 1000) {
+        Sach sach = new Sach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan, soSach);
+        
+        if (soLuongSach == danhSachSach.length) {
+
+            danhSachSach = Arrays.copyOf(danhSachSach, danhSachSach.length + 100);
         }
+
+        danhSachSach[soLuongSach] = sach;
+        soLuongSach++;
+        ghiSachVaoFile(sach);
+    } else {
+        System.out.println("Tổng số lượng sách đã đạt tới giới hạn (1000). Không thể thêm mới.");
     }
+}
 
 
     private boolean kiemTraMaSachTonTai(int maSach) {
@@ -55,11 +61,10 @@ public class QuyenSach {
                 }
             } else {
                 System.out.println("Ma sach khong hop le, vui long nhap lai.");
-                sc.next();
+                sc.next(); // Đọc bỏ giá trị không hợp lệ khỏi bộ đệm đầu vào
             }
         } while (true);
         sc.nextLine();
-
         System.out.print("Ten sach: ");
         String tenSach = sc.nextLine();
         System.out.print("Linh vuc: ");
@@ -67,7 +72,7 @@ public class QuyenSach {
         System.out.print("Ten loai sach: ");
         String tenLoaiSach = sc.nextLine();
         int giaBia;
-        do {
+                do {
             System.out.print("Gia bia: ");
             if (sc.hasNextInt()) {
                 giaBia = sc.nextInt();
@@ -79,7 +84,7 @@ public class QuyenSach {
         } while (true);
         sc.nextLine();
         int taiBan;
-        do {
+                    do {
             System.out.print("So lan tai ban: ");
             if (sc.hasNextInt()) {
                 taiBan = sc.nextInt();
@@ -93,7 +98,7 @@ public class QuyenSach {
         System.out.print("Ten nha xuat ban: ");
         String tenNhaXuatBan = sc.nextLine();
         int namXuatBan;
-        do {
+            do {
             System.out.print("Nam tai ban: ");
             if (sc.hasNextInt()) {
                 namXuatBan = sc.nextInt();
@@ -102,25 +107,25 @@ public class QuyenSach {
                 System.out.println("Nam tai ban khong hop le, vui long nhap lai.");
                 sc.next();
             }
-        } while (true);
+        } while (true);   
         sc.nextLine();
-
-        int soLuongSach;
-        do {
+        
+        int soSach;
+            do {
             System.out.print("So luong sach: ");
             if (sc.hasNextInt()) {
-                soLuongSach = sc.nextInt();
+                soSach = sc.nextInt();
                 break;
             } else {
                 System.out.println("so luong khong hop le, vui long nhap lai.");
                 sc.next();
             }
         } while (true);
-        themSach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan, soLuongSach);
+        themSach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan,soSach);
     }
 
     private static void ghiSachVaoFile(Sach sach) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("sach.txt", true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("Sach.txt", true))) {
             writer.write(sach.toStringFirstTime());
             writer.newLine(); 
         } catch (IOException e) {
@@ -142,7 +147,7 @@ public class QuyenSach {
     
 
     public void chinhSuaThongTinSach() {
-        danhSachSach = docDanhSachSachTuFile("sach.txt");
+        danhSachSach = docDanhSachSachTuFile("Sach.txt");
         System.out.print("Nhap ma sach can sua: ");
         int maSach = sc.nextInt();
         sc.nextLine();
@@ -169,8 +174,8 @@ public class QuyenSach {
                             break;
                         } else {
                             System.out.println("Gia bia khong hop le, vui long nhap lai.");
-                            sc.next();
-                        }
+                    sc.next();
+}
                     } while (true);
                     sach.setGiaBia(giaBia);
     
@@ -183,8 +188,8 @@ public class QuyenSach {
                             break;
                         } else {
                             System.out.println("Tai ban khong hop le, vui long nhap lai.");
-                            sc.next();
-                        }
+                    sc.next();
+}
                     } while (true);
                     sach.setTaiBan(taiBan);
     
@@ -199,7 +204,7 @@ public class QuyenSach {
                     do {
                         if (sc.hasNextInt()) {
                             namXuatBan = sc.nextInt();
-                            break;
+break;
                         } else {
                             System.out.println("Gia bia khong hop le, vui long nhap lai.");
                             sc.next();
@@ -210,17 +215,17 @@ public class QuyenSach {
     
                     System.out.println("So luong sach hien tai: " + sach.getSoLuongSach());
                     System.out.print("So luong sach moi: ");
-                    int soluongsach;
+                    int sosach;
                     do {
                         if (sc.hasNextInt()) {
-                            soluongsach = sc.nextInt();
+                            sosach = sc.nextInt();
                             break;
                         } else {
                             System.out.println("Gia bia khong hop le, vui long nhap lai.");
-                            sc.next();
-                        }
+                    sc.next();
+}
                     } while (true);
-                    sach.setSoLuongSach(soluongsach);
+                    sach.setSoLuongSach(sosach);
     
                     System.out.println("Da sua thong tin sach.");
                     ghiDanhSachSachVaoFile("Sach.txt");
@@ -256,47 +261,97 @@ public class QuyenSach {
                 System.out.println("Khong tim thay sach co ma " + maSachXoa);
             }
         }
+        public static void quanLySachMenu(DanhSachTK danhSachTK,Sach[] danhSachSach, HoaDonItem[] hoaDonItems, DanhSachTK ds, NhanVien[] dsNhanViens) {
+            int choice;
+            Scanner sc = new Scanner(System.in);
+            Admin adm= new Admin();
+            QuyenSach quyenSach = new QuyenSach();
+            while (true) {
+        
+                System.out.println("[1] Them sach moi");
+                System.out.println("[2] Chinh sua thong tin sach");
+                System.out.println("[3] Xoa sach");
+                System.out.println("[0] Quay lai");
+    
+                System.out.print("Nhap lua chon cua ban: ");
+                String input = sc.next();
+    
+                if (isNumeric(input)) {
+                    choice = Integer.parseInt(input);
+                    switch (choice) {
+                    case 1:
+                        quyenSach.nhapThongTinSachMoi();
+                        break;
+                    case 2:
+                        quyenSach.chinhSuaThongTinSach();
+                        break;
+                    case 3:
+                        System.out.print("Nhap ma sach can xoa: ");
+                        int maSachXoa = sc.nextInt();
+                        quyenSach.xoaSach(maSachXoa);
+                        break;
+                    case 0:
+                        Admin.MenuAdmin(danhSachSach, hoaDonItems, ds, dsNhanViens);
+                        break;
+                    default:
+                        System.out.println("Lua chon khong hop le. Vui long nhap lai.");
+                        break;
+                }
+            } else {
+                System.out.println("Vui long nhap mot so.");
+            }
+        }
+        
+    }
     
 
-    private Sach[] docDanhSachSachTuFile(String file) {
-        Sach[] danhSachSach = new Sach[1000];
-        int soLuong = 0;
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length == 9) {
-                    int maSach = Integer.parseInt(parts[0].trim());
-                    String tenSach = parts[1].trim();
-                    String tenLinhVuc = parts[2].trim();
-                    String tenLoaiSach = parts[3].trim();
-                    int giaBia = Integer.parseInt(parts[4].trim());
-                    int taiBan = Integer.parseInt(parts[5].trim());
-                    String tenNhaXuatBan = parts[6].trim();
-                    int namXuatBan = Integer.parseInt(parts[7].trim());
-                    int soLuongSach = Integer.parseInt(parts[8].trim());
-                    Sach sach = new Sach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan, soLuongSach);
-                    
-                    if (soLuong < 1000) {
-                        danhSachSach[soLuong] = sach;
-                        soLuong++;
-                    } else {
-                        System.out.println("Danh sach sach da dat toi gioi han (1000 phan tu). Khong the doc them.");
-                        break;
+        public Sach[] docDanhSachSachTuFile(String file) {
+            Sach[] danhSachSach = new Sach[1000];
+            int soLuong = 0;
+            try {
+                BufferedReader br = new BufferedReader(new FileReader(file));
+                String line;
+                while ((line = br.readLine()) != null) {
+                    String[] parts = line.split(",");
+                    if (parts.length == 9) {
+                        int maSach = Integer.parseInt(parts[0].trim());
+                        String tenSach = parts[1].trim();
+                        String tenLinhVuc = parts[2].trim();
+                        String tenLoaiSach = parts[3].trim();
+                        int giaBia = Integer.parseInt(parts[4].trim());
+                        int taiBan = Integer.parseInt(parts[5].trim());
+                        String tenNhaXuatBan = parts[6].trim();
+                        int namXuatBan = Integer.parseInt(parts[7].trim());
+                        int soSach = Integer.parseInt(parts[8].trim());
+                        Sach sach = new Sach(maSach, tenSach, tenLinhVuc, tenLoaiSach, giaBia, taiBan, tenNhaXuatBan, namXuatBan, soSach);
+    
+                        if (soLuong < 1000) {
+                            danhSachSach[soLuong] = sach;
+                            soLuong++;
+                        } else {
+                            System.out.println("Danh sách sách đã đạt tới giới hạn (1000 phần tử). Không thể đọc thêm.");
+                            break;
+                        }
                     }
                 }
+                br.close();
+                this.soLuongSach = soLuong;
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            br.close();
-            this.soLuongSach = soLuong;
-        } catch (IOException e) {
-            e.printStackTrace();
+            return Arrays.copyOf(danhSachSach, soLuong);
         }
-        return Arrays.copyOf(danhSachSach, soLuong);
-    }
 
 
     public boolean isAdmin() {
         return isAdmin;
+    }
+    public static boolean isNumeric(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }

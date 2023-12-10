@@ -93,7 +93,7 @@ public class QuanLy extends TaiKhoan {
                     }
             
                     tieptuc = sc.nextInt();
-                    sc.nextLine(); // Consume the newline character
+                    sc.nextLine();
             
                     if (tieptuc != 0 && tieptuc != 1 && tieptuc != 2) {
                         System.out.println("GIA TRI KHONG HOP LE. VUI LONG NHAP LAI");

@@ -101,6 +101,8 @@ class DanhSachTK {
         }
         return false;
     }
+
+    
     // thêm tài khoản
 
 // public void luuDuLieuVaoFile(String tenTepTin, TaiKhoan tk) {
@@ -180,5 +182,9 @@ public void luuDuLieuVaoFile(String tenTepTin, TaiKhoan tk) {
         e.printStackTrace();
     }
 }
+
+    public Iterator<TaiKhoan> iterator() {
+        return null;
+    }
 }
 // có các hàm check,sửa,xóa ,thêm NẾU RẢNH

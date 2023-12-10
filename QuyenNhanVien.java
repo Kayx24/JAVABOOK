@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+
 import java.util.Scanner;
 
 public class QuyenNhanVien {
@@ -11,7 +9,7 @@ public class QuyenNhanVien {
     public void ThemNhanVien(DanhSachTK ds, NhanVien[] dsNhanViens) {
         int index=0;
         NhanVien nv = new NhanVien();
-        Scanner sc = new Scanner(System.in);
+        // Scanner sc = new Scanner(System.in);
         //ds.docDuLieuTuFile("DanhSachTaiKhoan.txt");
         // Prompt for unique username
         // System.out.print("Nhap Username cho tai khoan nhan vien: ");
@@ -38,10 +36,11 @@ public class QuyenNhanVien {
         //ds.luuDuLieuVaoFile("DanhSachTaiKhoan.txt", tk);
         nv.docDuLieuTuFileTaiKhoan();
         // Add NhanVien to danh sach nhan vien
-        dsNhanViens[index++]=nv;
+        dsNhanViens[index]=nv;
         //nv.LuuNhanVienVaoFile(dsNhanViens);
         nv.LuuNhanVienVaoFile(nv);
         //dsNhanViens.add(nv);
+        index++;
     }
 
     public void XoaNhanVien(DanhSachTK ds, NhanVien[] dsNhanViens, String userName) {
@@ -53,24 +52,17 @@ public class QuyenNhanVien {
             NhanVien nvItem = nhanVienArray[i];
             if(nvItem!=null){
                 if (nvItem.getUserName().equals(userName)) {
-                    // Create a new array and copy elements excluding the one to be removed
                     NhanVien[] newArray = new NhanVien[nhanVienArray.length - 1];
                     System.arraycopy(nhanVienArray, 0, newArray, 0, i);
                     System.arraycopy(nhanVienArray, i + 1, newArray, i, nhanVienArray.length - i - 1);
-                    
-                    // Update reference to the new array
                     nhanVienArray = newArray;
                     break;
                 }
             }
         }
     
-        // At this point, nhanVienArray contains the updated array without the removed NhanVien
-    
-        // Remove the username from DanhSachNhanVien.txt
         NhanVien nv = new NhanVien();
         nv.XoaNhanVienTuFile(userName, ds);
-    
         System.out.println("Nhan vien da duoc xoa.");
     }
     

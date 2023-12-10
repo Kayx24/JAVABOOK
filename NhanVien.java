@@ -211,8 +211,7 @@ public class NhanVien extends TaiKhoan {
             String ngaySinhStr = dateFormat.format(vn.getNgaySinh());
             String ngayBatDauLamStr = dateFormat.format(vn.getNgayBatDauLam());
 
-            bufferedWriter.write(
-                    vn.getUserName() + "," + vn.getTenNhanVien() + "," + vn.getMaNV() + ","
+            bufferedWriter.write( vn.getUserName() + "," + vn.getTenNhanVien() + "," + vn.getMaNV() + ","
                             + ngaySinhStr + "," + vn.getGioiTinh() + "," + ngayBatDauLamStr + ","
                             + vn.getTrangThaiCongViec());
             bufferedWriter.newLine();
@@ -262,24 +261,60 @@ public class NhanVien extends TaiKhoan {
 
     public void XoaNhanVienTuFile(String userName, DanhSachTK ds) {
         Path filePath = Paths.get("DanhSachNhanVien.txt");
-    
+
         try {
-            String[] linesArray = Files.readAllLines(filePath).toArray(new String[0]);
-            // Your existing code...
-    
-            // Instead of using Files.write, you can use a BufferedWriter to write the array to the file
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter("DanhSachNhanVien.txt"))) {
-                for (String line : linesArray) {
-                    writer.write(line);
+            // Đọc số lượng dòng trong tệp
+            int numberOfLines = countLines(filePath);
+
+            // Tạo mảng để lưu trữ dữ liệu từ tệp
+            String[] linesArray = new String[numberOfLines];
+
+            // Đọc dữ liệu từ tệp vào mảng
+            try (BufferedReader reader = new BufferedReader(new FileReader(filePath.toFile()))) {
+                for (int i = 0; i < numberOfLines; i++) {
+                    linesArray[i] = reader.readLine();
+                }
+            }
+
+            // Tạo mảng mới để lưu trữ dữ liệu đã cập nhật
+            String[] updatedLinesArray = new String[numberOfLines - 1];
+
+            // Chỉ sao chép các dòng khác với tên tài khoản cần xóa vào mảng mới
+            int updatedIndex = 0;
+            for (String line : linesArray) {
+                if (!line.startsWith(userName + ",")) {
+                    updatedLinesArray[updatedIndex++] = line;
+                }
+            }
+
+            // Ghi lại dữ liệu vào tệp tin
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath.toFile()))) {
+                for (String updatedLine : updatedLinesArray) {
+                    writer.write(updatedLine);
                     writer.newLine();
                 }
             }
-    
+
+            // Cập nhật danh sách tài khoản trong bộ nhớ
+            ds.xoaTaiKhoan(userName);
+
             System.out.println("Tai khoan nhan vien da duoc xoa tu DanhSachNhanVien.");
         } catch (IOException e) {
-            System.out.println("Co loi xay ra khi xoá nhân viên tu file DanhSachNhanVien.");
+            System.out.println("Co loi xay ra khi xoa nhan vien tu file DanhSachNhanVien.");
             e.printStackTrace();
         }
+    }
+
+    // Phương thức để đếm số lượng dòng trong tệp tin
+    private int countLines(Path path) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(path.toFile()))) {
+            int lines = 0;
+            while (reader.readLine() != null) {
+                lines++;
+            }
+            return lines;
+        }
+       
     }
     
 
