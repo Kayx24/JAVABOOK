@@ -2,8 +2,6 @@
 //(tìm kiếm),
 // thêm user và những thằng user (arraylist) 
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class QuyenUser {
@@ -17,12 +15,9 @@ public static void xemThongTinSach(Sach[] danhSachSach, String tenFile) {
 
     System.out.println("Nhap ten sach muon tim: ");
     String tenSach = sc.nextLine();
-
-    // Tìm kiếm cuốn sách có tên gần đúng là tenSach
     Sach[] sachGanDung = new Sach[1000];
     for (Sach sach : danhSachSach) {
         int index=0;
-        // System.out.println("co hoat dong");
         if(sach!=null){
             if (sach.getTenSach().equalsIgnoreCase(tenSach)) {
                 sachGanDung[index]=sach;
@@ -31,9 +26,9 @@ public static void xemThongTinSach(Sach[] danhSachSach, String tenFile) {
         }
     }
 
-    // Kiểm tra danh sách sách gần đúng
+
     if (sachGanDung.length > 0) {
-        // In ra thông tin các sách gần đúng
+        
         System.out.println("Thong tin sach:");
         for (Sach sach : sachGanDung) {
             if(sach!=null){

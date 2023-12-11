@@ -1,12 +1,8 @@
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
-
-import org.xml.sax.SAXException;
 
 public class HoaDon {
 
@@ -171,7 +167,7 @@ public static void hienThiTatCaHoaDon(HoaDonItem[] hoaDonItems, int hoaDonItemCo
 
 public static void thucHienThanhToan(HoaDonItem[] hoaDonItems, int hoaDonItemCount) {
     // Hiển thị tổng hóa đơn
-    hienThiTatCaHoaDon(hoaDonItems, hoaDonItemCount);
+    // hienThiTatCaHoaDon(hoaDonItems, hoaDonItemCount);
     Scanner sc = new Scanner(System.in);
     int choice;
 
@@ -182,16 +178,15 @@ public static void thucHienThanhToan(HoaDonItem[] hoaDonItems, int hoaDonItemCou
 
         while (!sc.hasNextInt()) {
             System.out.println("GIA TRI KHONG HOP LE. VUI LONG NHAP LAI");
-            sc.next(); // consume the non-integer input
+            sc.next();
         }
 
         choice = sc.nextInt();
-        sc.nextLine(); // Consume the newline character
+        sc.nextLine();
 
         switch (choice) {
             case 1:
                 thanhToanNganHang(hoaDonItems, hoaDonItemCount);
-                // After successful payment, update the quantity in the file
                 for (HoaDonItem item : hoaDonItems) {
                     if(item!=null){
                         capNhatSoLuongSachTrongFile(item.getTenSach(), item.getSoLuongMua());
@@ -200,7 +195,6 @@ public static void thucHienThanhToan(HoaDonItem[] hoaDonItems, int hoaDonItemCou
                 break;
             case 2:
                 thanhToanMomo(hoaDonItems, hoaDonItemCount);
-                // After successful payment, update the quantity in the file
                 for (HoaDonItem item : hoaDonItems) {
                     if(item!=null){
                         capNhatSoLuongSachTrongFile(item.getTenSach(), item.getSoLuongMua());
@@ -223,7 +217,7 @@ public static void thanhToanNganHang(HoaDonItem[] hoaDonItems,int hoaDonItemCoun
         System.out.println("Khong co hoa don de thanh toan.");
         return;
     }
-    hienThiTatCaHoaDon(hoaDonItems,hoaDonItemCount);
+    // hienThiTatCaHoaDon(hoaDonItems,hoaDonItemCount);
 
     // Chọn ngân hàng thanh toán
     String tenNganHang = "";
@@ -259,13 +253,13 @@ public static void thanhToanNganHang(HoaDonItem[] hoaDonItems,int hoaDonItemCoun
                         tenNganHang = "Vietcombank";
                         break;
                 }
-                break; // exit the loop if a valid choice is made
+                break; 
             } else {
                 System.out.println("Lua chon ngan hang khong hop le.");
             }
         } else {
             System.out.println("GIA TRI KHONG HOP LE. VUI LONG NHAP LAI");
-            sc.next(); // consume the invalid input
+            sc.next(); 
         }
     }
 
@@ -298,8 +292,37 @@ public static void thanhToanNganHang(HoaDonItem[] hoaDonItems,int hoaDonItemCoun
 
     System.out.println("Thanh toan thanh cong " + money + "vnd voi ngan hang " + tenNganHang + " tai khoan " + soTaiKhoan);
 
+    int choice;
+    while (true) {
+        
+        System.out.println("\n[1] xem lai hoa don"); 
+        System.out.println("[0] thoat");
+        System.out.print("nhap lua chon");
+        boolean shouldExit = false;
+   
+        if (sc.hasNextInt()) {
+            choice = sc.nextInt();
+            sc.nextLine();
+            switch (choice) {
+                case 1:
+                    hienThiTatCaHoaDon(hoaDonItems,hoaDonItemCount);
+                    break;
+                case 0:
+                    shouldExit = true;
+                    break;
+                    }
+                break; 
+        } else {
+            System.out.println("GIA TRI KHONG HOP LE. VUI LONG NHAP LAI");
+            sc.next(); 
+        }
+        if(shouldExit){
+            break;
+        }
+    }
+
     luuHoaDonVaoTep(hoaDonItems,hoaDonItemCount);
-    Arrays.fill(hoaDonItems, null); // Clear the array
+    Arrays.fill(hoaDonItems, null);
 }
 
 public static void thanhToanMomo(HoaDonItem[] hoaDonItems,int hoaDonItemCount) {
@@ -310,7 +333,7 @@ public static void thanhToanMomo(HoaDonItem[] hoaDonItems,int hoaDonItemCount) {
         return;
     }
 
-    hienThiTatCaHoaDon(hoaDonItems,hoaDonItemCount);
+    // hienThiTatCaHoaDon(hoaDonItems,hoaDonItemCount);
     boolean isValidPhoneNumber = false;
 
     do {
@@ -333,7 +356,7 @@ public static void thanhToanMomo(HoaDonItem[] hoaDonItems,int hoaDonItemCount) {
                 if (money == tongTienHoaDon) {
                     System.out.println("Thanh toan thanh cong " + money + "đ qua Momo voi so dien thoai " + soDienThoai);
                     luuHoaDonVaoTep(hoaDonItems,hoaDonItemCount);
-                    Arrays.fill(hoaDonItems, null); // Clear the array
+                    Arrays.fill(hoaDonItems, null); 
                     isValidPhoneNumber = true;
                 } else {
                     System.out.println("So tien thanh toan khong dung. Vui long nhap lai.");

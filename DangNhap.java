@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class DangNhap {
-    private static TaiKhoan[] danhSachTaiKhoanDaDangNhap=new TaiKhoan[1]; // Chuyển danh sách đăng nhập sang mảng
+    private static TaiKhoan[] danhSachTaiKhoanDaDangNhap=new TaiKhoan[1]; 
 
     public static void DangNhaptaikhoan() {
         DanhSachTK ds = new DanhSachTK();
@@ -50,8 +50,6 @@ public class DangNhap {
                     System.out.println("Quyen truy cap la quyen " + taiKhoanTimThay.getRole());
 
                     danhSachTaiKhoanDaDangNhap[0] = taiKhoanTimThay;
-
-                    // Gọi hàm hiển thị menu hoặc thực hiện các công việc liên quan đến đăng nhập thành công
 
                     if (taiKhoanTimThay.getRole().equals("user")) {
                         User.MenuUser(danhSachSach, hoaDonItems, ds, tenFile);

@@ -50,7 +50,6 @@ public class HoaDonItem {
         this.ngayDatSach = ngayDatSach;
     }
 
-    // Getter và Setter cho maKhachHang
     public String getMaKhachHang() {
         return maKhachHang;
     }

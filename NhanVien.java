@@ -3,7 +3,6 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.ParseException;
@@ -149,7 +148,7 @@ public class NhanVien extends TaiKhoan {
                 System.out.print("Ngay bat dau lam (dd/MM/yyyy): ");
                 String ngayBatDauLamStr = sc.nextLine();
                 NgayBatDauLam = dateFormat.parse(ngayBatDauLamStr);
-                validDate = true; // Nếu ngày tháng năm hợp lệ, thoát khỏi vòng lặp
+                validDate = true;
             } catch (ParseException e) {
                 System.out.println("Ngay bat dau lam khong hop le. Vui long nhap lai.");
             }
@@ -175,34 +174,12 @@ public class NhanVien extends TaiKhoan {
                 }
             }
             bufferedReader.close();
-            // System.out.println("Doc du lieu tu file thanh cong!");
+            System.out.println("Doc du lieu tu file thanh cong!");
         } catch (IOException e) {
             System.out.println("Co loi xay ra khi doc du lieu tu file.");
             e.printStackTrace();
         }
     }
-
-    // public void LuuNhanVienVaoFile(List<NhanVien> dsNhanViens) {
-    //     try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("DanhSachNhanVien.txt", false))) {
-    //         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-    
-    //         for (NhanVien nv : dsNhanViens) {
-    //             String ngaySinhStr = dateFormat.format(nv.getNgaySinh());
-    //             String ngayBatDauLamStr = dateFormat.format(nv.getNgayBatDauLam());
-    
-    //             bufferedWriter.write(
-    //                     nv.getUserName() + "," + nv.getTenNhanVien() + "," + nv.getMaNV() + ","
-    //                             + ngaySinhStr + "," + nv.getGioiTinh() + "," + ngayBatDauLamStr + ","
-    //                             + nv.getTrangThaiCongViec());
-    //             bufferedWriter.newLine();
-    //         }
-    
-    //         System.out.println("Luu du lieu nhan vien vao file thanh cong!");
-    //     } catch (IOException e) {
-    //         System.out.println("Co loi xay ra khi luu du lieu nhan vien vao file.");
-    //         e.printStackTrace();
-    //     }
-    // }
 
     public void LuuNhanVienVaoFile(NhanVien vn) {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("DanhSachNhanVien.txt", true))) {
@@ -211,8 +188,7 @@ public class NhanVien extends TaiKhoan {
             String ngaySinhStr = dateFormat.format(vn.getNgaySinh());
             String ngayBatDauLamStr = dateFormat.format(vn.getNgayBatDauLam());
 
-            bufferedWriter.write(
-                    vn.getUserName() + "," + vn.getTenNhanVien() + "," + vn.getMaNV() + ","
+            bufferedWriter.write( vn.getUserName() + "," + vn.getTenNhanVien() + "," + vn.getMaNV() + ","
                             + ngaySinhStr + "," + vn.getGioiTinh() + "," + ngayBatDauLamStr + ","
                             + vn.getTrangThaiCongViec());
             bufferedWriter.newLine();
@@ -224,62 +200,96 @@ public class NhanVien extends TaiKhoan {
         }
     }
 
-    public void DocDuNhanVienTuFile(NhanVien[] dsNhanViens) {
-        int index = 0;
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("DanhSachNhanVien.txt"))) {
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length == 7) {
-                    String username = parts[0].trim();
-                    String tenNhanVien = parts[1].trim();
-                    String maNV = parts[2].trim();
+        public void DocDuNhanVienTuFile(NhanVien[] dsNhanViens) {
+            int index = 0;
+            try (BufferedReader bufferedReader = new BufferedReader(new FileReader("DanhSachNhanVien.txt"))) {
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    String[] parts = line.split(",");
+                    if (parts.length == 7) {
+                        String username = parts[0].trim();
+                        String tenNhanVien = parts[1].trim();
+                        String maNV = parts[2].trim();
 
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                    Date ngaySinh = dateFormat.parse(parts[3].trim());
-                    String gioiTinh = parts[4].trim();
-                    Date ngayBatDauLam = dateFormat.parse(parts[5].trim());
-                    String trangThaiLamViec = parts[6].trim();
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                        Date ngaySinh = dateFormat.parse(parts[3].trim());
+                        String gioiTinh = parts[4].trim();
+                        Date ngayBatDauLam = dateFormat.parse(parts[5].trim());
+                        String trangThaiLamViec = parts[6].trim();
 
-                    NhanVien nv = new NhanVien();
-                    nv.setUserName(username);
-                    nv.setTenNhanVien(tenNhanVien);
-                    nv.setMaNV(maNV);
-                    nv.setNgaySinh(ngaySinh);
-                    nv.setGioiTinh(gioiTinh);
-                    nv.setNgayBatDauLam(ngayBatDauLam);
-                    nv.setTrangThaiCongViec(trangThaiLamViec);
+                        NhanVien nv = new NhanVien();
+                        nv.setUserName(username);
+                        nv.setTenNhanVien(tenNhanVien);
+                        nv.setMaNV(maNV);
+                        nv.setNgaySinh(ngaySinh);
+                        nv.setGioiTinh(gioiTinh);
+                        nv.setNgayBatDauLam(ngayBatDauLam);
+                        nv.setTrangThaiCongViec(trangThaiLamViec);
 
-                    dsNhanViens[index++] = nv;
+                        dsNhanViens[index++] = nv;
+                    }
+                }
+                System.out.println("Doc du lieu tu file thanh cong!");
+            } catch (IOException | ParseException e) {
+                System.out.println("Co loi xay ra khi doc du lieu tu file.");
+                e.printStackTrace();
+            }
+        }
+
+    public void XoaNhanVienTuFile(String userName, DanhSachTK ds) {
+        Path filePath = Paths.get("DanhSachNhanVien.txt");
+
+        try {
+            int numberOfLines = countLines(filePath);
+            // Tạo mảng để lưu trữ dữ liệu từ tệp
+            String[] linesArray = new String[numberOfLines];
+
+            // Đọc dữ liệu từ tệp vào mảng
+            try (BufferedReader reader = new BufferedReader(new FileReader(filePath.toFile()))) {
+                for (int i = 0; i < numberOfLines; i++) {
+                    linesArray[i] = reader.readLine();
                 }
             }
-            System.out.println("Doc du lieu tu file thanh cong!");
-        } catch (IOException | ParseException e) {
-            System.out.println("Co loi xay ra khi doc du lieu tu file.");
+
+            // Tạo mảng mới để lưu trữ dữ liệu đã cập nhật
+            String[] updatedLinesArray = new String[numberOfLines - 1];
+
+            // Chỉ sao chép các dòng khác với tên tài khoản cần xóa vào mảng mới
+            int updatedIndex = 0;
+            for (String line : linesArray) {
+                if (!line.startsWith(userName + ",")) {
+                    updatedLinesArray[updatedIndex++] = line;
+                }
+            }
+
+            // Ghi lại dữ liệu vào tệp tin
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath.toFile()))) {
+                for (String updatedLine : updatedLinesArray) {
+                    writer.write(updatedLine);
+                    writer.newLine();
+                }
+            }
+
+            // Cập nhật danh sách tài khoản trong bộ nhớ
+            ds.xoaTaiKhoan(userName);
+
+            System.out.println("Tai khoan nhan vien da duoc xoa tu DanhSachNhanVien.");
+        } catch (IOException e) {
+            System.out.println("Co loi xay ra khi xoa nhan vien tu file DanhSachNhanVien.");
             e.printStackTrace();
         }
     }
 
-    public void XoaNhanVienTuFile(String userName, DanhSachTK ds) {
-        Path filePath = Paths.get("DanhSachNhanVien.txt");
-    
-        try {
-            String[] linesArray = Files.readAllLines(filePath).toArray(new String[0]);
-            // Your existing code...
-    
-            // Instead of using Files.write, you can use a BufferedWriter to write the array to the file
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter("DanhSachNhanVien.txt"))) {
-                for (String line : linesArray) {
-                    writer.write(line);
-                    writer.newLine();
-                }
+    // Phương thức để đếm số lượng dòng trong tệp tin
+    private int countLines(Path path) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(path.toFile()))) {
+            int lines = 0;
+            while (reader.readLine() != null) {
+                lines++;
             }
-    
-            System.out.println("Tai khoan nhan vien da duoc xoa tu DanhSachNhanVien.");
-        } catch (IOException e) {
-            System.out.println("Co loi xay ra khi xoá nhân viên tu file DanhSachNhanVien.");
-            e.printStackTrace();
+            return lines;
         }
+       
     }
     
 
@@ -351,4 +361,44 @@ public class NhanVien extends TaiKhoan {
     public static boolean isNumeric(String str) {
         return str.matches("-?\\d+");
     }
+    public void HienThiNhanVienTuFile(NhanVien[] dsNhanViens) {
+            int index = 0;
+            try (BufferedReader bufferedReader = new BufferedReader(new FileReader("DanhSachNhanVien.txt"))) {
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    String[] parts = line.split(",");
+                    if (parts.length == 7) {
+                        String username = parts[0].trim();
+                        String tenNhanVien = parts[1].trim();
+                        String maNV = parts[2].trim();
+
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                        Date ngaySinh = dateFormat.parse(parts[3].trim());
+                        String gioiTinh = parts[4].trim();
+                        Date ngayBatDauLam = dateFormat.parse(parts[5].trim());
+                        String trangThaiLamViec = parts[6].trim();
+
+                        NhanVien nv = new NhanVien();
+                        nv.setUserName(username);
+                        nv.setTenNhanVien(tenNhanVien);
+                        nv.setMaNV(maNV);
+                        nv.setNgaySinh(ngaySinh);
+                        nv.setGioiTinh(gioiTinh);
+                        nv.setNgayBatDauLam(ngayBatDauLam);
+                        nv.setTrangThaiCongViec(trangThaiLamViec);
+
+                        dsNhanViens[index++] = nv;
+                    }
+                }
+                System.out.println("Doc du lieu tu file thanh cong!");
+            } catch (IOException | ParseException e) {
+                System.out.println("Co loi xay ra khi doc du lieu tu file.");
+                e.printStackTrace();
+            }
+            for (NhanVien nv : dsNhanViens) {
+                if (nv != null) {
+                    System.out.println(nv.toString());
+                }
+            }
+        }
 }

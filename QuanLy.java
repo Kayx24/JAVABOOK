@@ -93,7 +93,7 @@ public class QuanLy extends TaiKhoan {
                     }
             
                     tieptuc = sc.nextInt();
-                    sc.nextLine(); // Consume the newline character
+                    sc.nextLine();
             
                     if (tieptuc != 0 && tieptuc != 1 && tieptuc != 2) {
                         System.out.println("GIA TRI KHONG HOP LE. VUI LONG NHAP LAI");
@@ -121,7 +121,7 @@ public class QuanLy extends TaiKhoan {
         };
         while (true) {
         System.out.println("------------------------------------------------------------------------------------------------------------------");
-        System.out.println("Chuc nang Quanly");
+        System.out.println("Chuc nang: ");
         System.out.println("[0] THOAT MENU");
         System.out.println("[1] Xem danh sach sach.");
         System.out.println("[2] Phan loai sach.");

@@ -101,23 +101,8 @@ class DanhSachTK {
         }
         return false;
     }
-    // thêm tài khoản
 
-// public void luuDuLieuVaoFile(String tenTepTin, TaiKhoan tk) {
-//     try {
-//         FileWriter fileWriter = new FileWriter(tenTepTin, false); // Mở tệp tin với chế độ ghi mới (overwrite)
-//         for (TaiKhoan taiKhoan : dstaikhoans) {
-//             String line = taiKhoan.getUserName() + "," + taiKhoan.getPassword() + "," + taiKhoan.getRole();
-//             fileWriter.write(line + "\n");
-//         }
-//         fileWriter.close();
-//         System.out.println("Luu du lieu thanh cong!");
-//     } catch (IOException e) {
-//         System.out.println("Co loi xay ra khi luu du lieu vao file.");
-//         e.printStackTrace();
-//     }
-// }
-
+    
 public void luuDuLieuVaoFile(String tenTepTin, TaiKhoan tk) {
     try {
         FileWriter fileWriter = new FileWriter(tenTepTin, true);
@@ -180,5 +165,9 @@ public void luuDuLieuVaoFile(String tenTepTin, TaiKhoan tk) {
         e.printStackTrace();
     }
 }
+
+    public Iterator<TaiKhoan> iterator() {
+        return null;
+    }
 }
-// có các hàm check,sửa,xóa ,thêm NẾU RẢNH
+// có các hàm check,sửa,xóa

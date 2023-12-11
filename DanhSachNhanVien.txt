@@ -1,2 +1,1 @@
-helo1,dai,NV001,12/01/0002,nam,01/01/0001,Dang lam
-helo1,Le Hoang Huy,NV312,19/10/2004,nam,19/10/2000,Dang lam
+helo3,Huy,NV999,13/11/2019,nam,13/11/2023,Dang lam

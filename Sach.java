@@ -1,15 +1,15 @@
 public class Sach implements danhSachSach {
     private int MaSach;
     private String TenSach;
-    private String TenLinhVuc; // thuộc lĩnh vực nào
-    private String TenLoaiSach; // thuộc loại sách nào
-    private int GiaBia; // Gía bán sách
-    private int TaiBan; // số lần tái bản
+    private String TenLinhVuc;
+    private String TenLoaiSach; 
+    private int GiaBia;
+    private int TaiBan; 
     private String TenNhaXuatBan;
     private int NamXuatBan;
     private int SoLuongSach;
 
-    // Constructor
+
     public Sach() {
     }
 
@@ -26,7 +26,7 @@ public class Sach implements danhSachSach {
         SoLuongSach=soLuongSach;
     }
 
-    // GETTER,SETTER
+
     @Override
     public int getMaSach() {
         return MaSach;

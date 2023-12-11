@@ -35,9 +35,9 @@ public class PhanLoai {
                 String[] parts = line.split(",");
                 if (parts.length == 9) {
                     int MaSach = Integer.parseInt(parts[0].trim());
-                    String TenSach = parts[1];
-                    String TenLinhVuc = parts[2];
-                    String TenLoaiSach = parts[3];
+                    String TenSach = parts[1].trim();
+                    String TenLinhVuc = parts[2].trim();
+                    String TenLoaiSach = parts[3].trim();
                     int GiaBia = Integer.parseInt(parts[4].trim());
                     int TaiBan = Integer.parseInt(parts[5].trim());
                     String TenNhaXuatBan = parts[6];
@@ -177,14 +177,19 @@ public class PhanLoai {
         if (danhSachSach.length == 0 || danhSachSach[0] == null) {
             System.out.println("Khong co sach phu hop.");
         } else {
-            System.out.println("Danh sach sach:");
+            System.out.println("Cac sach da tim thay: ");
+            System.out.printf("%-6s%-30s%-20s%-20s%-12s%-8s%-25s%-8s%-12s%n",
+                    "ID", "Ten Sach", "Linh Vuc", "Loai Sach", "Gia Bia", "Tai Ban", "Nha Xuat Ban", "Nam XB", "So Luong");
             for (Sach sach : danhSachSach) {
                 if (sach != null) {
-                    System.out.println(sach);
+                    System.out.printf("%-6s%-30s%-20s%-20s%-12s%-8s%-25s%-8s%-12s%n",
+                            sach.getMaSach(), sach.getTenSach(), sach.getTenLinhVuc(), sach.getTenLoaiSach(),
+                            sach.getGiaBia(), sach.getTaiBan(), sach.getTenNhaXuatBan(), sach.getNamXuatBan(), sach.getSoLuongSach());
                 }
             }
         }
     }
+    
 
     public static boolean isNumeric(String str) {
         return str.matches("-?\\d+");
