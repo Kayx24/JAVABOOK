@@ -130,9 +130,8 @@ public class QuanLy extends TaiKhoan {
         System.out.println("[5] Sua Thong tin sach");
         System.out.println("[6] Xoa sach");
         System.out.println("[7] Quan ly tai khoan");
-        System.out.println("[8] Mua sach");
-        System.out.println("[9] Xuat hoa don");
-        System.out.println("[10] Thong ke");
+        System.out.println("[8] Xuat hoa don");
+        System.out.println("[9] Thong ke");
         System.out.print("Chon: ");
 
         String input = sc.next();
@@ -178,12 +177,9 @@ public class QuanLy extends TaiKhoan {
                     qql.MenuQuyenQuanLy(danhSachSach, ds);
                     break;
                 case 8:
-                    HoaDon.hoaDon(hoaDonItems);
-                    break;
-                case 9:
                     ChiTietHoaDon.runChiTietHoaDon();
                     break;
-                case 10: 
+                case 9: 
                     THONGKE.MenuThongKe(danhSachHoaDon);
                     sc.nextLine();
                     break;

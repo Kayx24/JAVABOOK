@@ -121,9 +121,8 @@ public static void MenuQuanly(Sach[] danhSachSach,HoaDonItem[] hoaDonItems,DanhS
     System.out.println("[4] Them sach");
     System.out.println("[5] Sua Thong tin sach");
     System.out.println("[6] Quan ly tai khoan");
-    System.out.println("[7] Mua sach");
-    System.out.println("[8] Xuat hoa don");
-    System.out.println("[9] Thong ke");
+    System.out.println("[7] Xuat hoa don");
+    System.out.println("[8] Thong ke");
     System.out.print("Chon: ");
 
     String input = sc.next();
@@ -154,12 +153,9 @@ public static void MenuQuanly(Sach[] danhSachSach,HoaDonItem[] hoaDonItems,DanhS
                     qql.MenuQuyenQuanLy(danhSachSach, ds);
                     break;
                 case 7:
-                    HoaDon.hoaDon(hoaDonItems);
-                    break;
-                case 8:
                     ChiTietHoaDon.runChiTietHoaDon();
                     break;
-                case 9:
+                case 8:
                     THONGKE.MenuThongKe(danhSachHoaDon);
                     break;
                 default:
